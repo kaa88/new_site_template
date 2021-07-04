@@ -1,0 +1,38 @@
+#checkb {
+	display: none;
+	& + label {
+		position: relative;
+		font-size: 22px;
+		font-family: Arial;
+		margin-left: 40px;
+		&:before, &:after {
+			content: '';
+			display: inline-block;
+			position: absolute;
+			border-radius: 20px;
+			cursor: pointer;
+		}
+		&:before {
+			height: 24px;
+			width: 40px;
+			background-color: #ddd;
+			top: 0;
+			left: -45px;
+			transition: background-color .2s;
+		}
+		&:after {
+			width: 22px;
+			height: 22px;
+			background-color: white;
+			top: 1px;
+			left: -44px;
+			transition: left .2s;
+		}
+	}
+	&:checked {
+		& + label {
+			&:before {background-color: orange;}
+			&:after {left: -28px;}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+body {
+	background-color: #f1f1f1; // scrollbar color
+	font-family: Arial;
+	color: black;
+	&._locked {
+		overflow: hidden;
+	}
+}
+.page {
+	overflow: hidden;
+}
+.container {
+	max-width: 1200px;
+	min-width: calc(320px - (100vw - 100%));
+	margin: 0 auto;
+	padding: 0 10px;
+}
+@import "templates/menu";
+@import "templates/popup";

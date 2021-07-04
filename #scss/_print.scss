@@ -1,0 +1,9 @@
+@media print {
+	body, p, a, div, span, i, button {
+		color: black !important;
+	}
+	.container {
+		padding: 0;
+	}
+	.header {display: none;}
+}
