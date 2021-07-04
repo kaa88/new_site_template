@@ -36,18 +36,18 @@
 
 ---
 ### Changelog:
-###### v1.03
-добавил модули в scss (fonts, mixins, popups, print)
-добавил папку для сборки js
+#### v1.03
+- добавил модули в scss (fonts, mixins, popups, print)
+- добавил папку для сборки js
 
-###### v1.02
-убрал поддержку IE (ie.scss, detect.js, script.js)
-добавил noscript.scss
+#### v1.02
+- убрал поддержку IE (ie.scss, detect.js, script.js)
+- добавил noscript.scss
 
-###### v1.01
-файлы scss разбиты на блоки (main, reset, settings, style)
+#### v1.01
+- файлы scss разбиты на блоки (main, reset, settings, style)
 
-###### v1.00
-созданы папки
-файлы index.html, main.scss, script.js, .gitignore, .gitattributes
-поддержка ie (detect.js)
+#### v1.00
+- созданы папки
+- файлы index.html, main.scss, script.js, .gitignore, .gitattributes
+- поддержка ie (detect.js)
