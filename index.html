@@ -9,33 +9,184 @@
 	<!-- <script src="https://use.fontawesome.com/78ee93020b.js"></script> -->
 	<!-- <link rel="icon" type="image/png" href="img/favicon.png" sizes="32x32"> -->
 	<!-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> -->
+	<link rel="stylesheet" href="css/jquery-ui.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<noscript>
-		<div class="noscript-alert">
-			<p>For full functionality of this site it is necessary to enable JavaScript.<br>Here are the <a href="https://www.enable-javascript.com/">instructions how to enable JavaScript in your web browser</a>.</p><br>
-			<p>Для полной функциональности этого сайта необходимо включить JavaScript.<br>Вот <a href="https://www.enable-javascript.com/ru/">инструкции, как включить JavaScript в вашем браузере</a>.</p>
-		</div>
-	</noscript>
-
-
-<!-- здесь будут временно находиться модули html --------------------------------->
-<!--
-	// Стилизованный чекбокс
-	<div class="test">
-		<p class="test__header">test 1</p>
-		<input id="checkb" type="checkbox">
-		<label for="checkb">Checkbox</label>
+<noscript>
+	<div class="noscript-alert">
+		<p>For full functionality of this site it is necessary to enable JavaScript.<br>Here are the <a href="https://www.enable-javascript.com/">instructions how to enable JavaScript in your web browser</a>.</p><br>
+		<p>Для полной функциональности этого сайта необходимо включить JavaScript.<br>Вот <a href="https://www.enable-javascript.com/ru/">инструкции, как включить JavaScript в вашем браузере</a>.</p>
 	</div>
+</noscript>
+<main class="page">
+	<header class="header">
+		<div class="header__container container">
+			<div class="header__logo"></div>
+			<!-- <nav class="header__menu menu"></nav> -->
+		</div>
+	</header>
+
+	<footer class="footer">
+	</footer>
+</main>
+
+
+
+<!-- все шаблоны -->
+<h3>menu</h3>
+<div class="test-wrapper">
+
+	<nav class="menu">
+		<div class="menu__menu-open-btn"><span>MENU</span></div>
+		<div class="menu__container container">
+		<!-- удалить класс container, если меню внутри header -->
+			<div class="menu__menu-close-btn"><span>X</span></div>
+			<ul class="menu__items">
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+				<li class="menu__item">
+					<a class="menu__link" href="#">Link</a>
+					<div class="menu__dropdown dropdown">drop</div>
+				</li>
+			</ul>
+			<div class="menu__dropdown dropdown"></div> <!-- общее -->
+		</div>
+	</nav>
+
+</div>
+
+<h3>popup</h3>
+<div class="test-wrapper">
+	<div onclick="function(){}" style="text-align: center; cursor: pointer;">включить</div>
+</div>
+
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+<h3>popup</h3>
+
+
+<!-- /все шаблоны -->
+
+
+<!-- Шаблоны --------------------------------->
+<!--
+// Input checkbox
+	<input class="checkbox" id="styled-checkbox" type="checkbox">
+	<label for="styled-checkbox">Checkbox</label>
+// /Input checkbox
+
+// Input range
+	<div class="jq-slider"></span></div>
+	<p id="jq-slider-count"></p>
+// /Input range
+
+// Popup
+	<div class="popup popup--login">
+		<div class="popup__back"></div>
+		<div class="popup__pop-window pop-window pop-window--login">
+			<div class="pop-window__header">
+				<p class="pop-window__title">Login</p>
+				<div class="pop-window__close"><i class="icon-cross"></i></div>
+			</div>
+			<form class="pop-window__pop-form pop-form" action="#">
+				<p class="pop-form__text">Enter login or email</p>
+				<input class="pop-form__login" type="text">
+				<p class="pop-form__text">Enter password</p>
+				<input class="pop-form__password" type="password">
+				<button class="pop-form__btn">GO</button>
+			</form>
+		</div>
+	</div>
+// /Popup
 
 
 
 
 -->
-<!-- / модули -------------------------------------------------------------------->
+<!-- /Шаблоны -------------------------------------------------------------------->
 
-	<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
-	<script src="js/script.js"></script>
+<!-- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script> -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

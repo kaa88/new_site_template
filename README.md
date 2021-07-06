@@ -1,9 +1,12 @@
 # New site template v1.03
+
 ### Шаблоны элементов:
-- input_checkbox (html, css) - доделать
-- input_range (html, css, js) - доделать
+- menu (html, css, js) - готово
 - popup (html, css, js) - доделать
-- menu (html, css, js) - стадия 0
+- input_checkbox (html, css) - проверить
+- input_range (html, css, js) - доделать, разобраться в jq-ui.css
+- ...
+
 ### Папки:
 #design, #js, #kit, #old, #scss, css, fonts, img, js
 
@@ -11,7 +14,9 @@
 После создания нового репозитория удалить название у файла .gitignore.
 
 ---
+
 ### План развития:
+
 #### Задача:
 для ускорения процесса разработки наработать различные модули шаблона:
 - html: использовать сборщик типа kit или gulp с инклудами + формулы
@@ -34,6 +39,7 @@
 - кнопка "наверх" в разных вариантах
 - ...
 ---
+
 ### Changelog:
 #### v1.03
 - добавил модули в scss (fonts, mixins, popups, print)

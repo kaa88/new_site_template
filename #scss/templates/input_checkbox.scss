@@ -1,4 +1,4 @@
-#checkb {
+.checkbox {
 	display: none;
 	& + label {
 		position: relative;
@@ -11,28 +11,27 @@
 			position: absolute;
 			border-radius: 20px;
 			cursor: pointer;
+			transition: all .2s;
 		}
 		&:before {
 			height: 24px;
 			width: 40px;
 			background-color: #ddd;
 			top: 0;
-			left: -45px;
-			transition: background-color .2s;
+			left: -40px;
 		}
 		&:after {
 			width: 22px;
 			height: 22px;
 			background-color: white;
 			top: 1px;
-			left: -44px;
-			transition: left .2s;
+			left: -39px;
 		}
 	}
 	&:checked {
 		& + label {
 			&:before {background-color: orange;}
-			&:after {left: -28px;}
+			&:after {left: -23px;}
 		}
 	}
 }
