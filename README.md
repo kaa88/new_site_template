@@ -1,8 +1,9 @@
 # New site template v1.03
 
 ### Шаблоны элементов:
+- scroll_lock (js) - готово
 - menu (html, css, js) - готово
-- popup (html, css, js) - доделать
+- popup (html, css, js) - готово
 - input_checkbox (html, css) - проверить
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
 - ...

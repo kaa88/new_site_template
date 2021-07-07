@@ -16,9 +16,9 @@ body {
 
 // Готовые:
 @import "templates/menu";
+@import "templates/popup";
 
 // Доделать:
-@import "templates/popup";
 @import "templates/input_checkbox";
 @import "templates/input_range";
 
@@ -34,4 +34,8 @@ h3 {text-align: center;}
 	border: solid 2px lime;
 	margin: 5px auto 20px;
 	// overflow: hidden;
+}
+.test-button {
+	text-align: center; 
+	cursor: pointer;
 }

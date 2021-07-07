@@ -3,9 +3,9 @@
 // Готовые:
 
 // Доделать:
+// prepros-append templates/input_range.js
 // prepros-append templates/media_switcher.js
 // prepros-append templates/onload_counter.js
-// prepros-append templates/popup.js
 // prepros-append templates/random.js
 // prepros-append templates/simple_slider.js
 
@@ -23,6 +23,24 @@ function toggleMenu() {
 }
 // /
 
+// Popup
+var popupClosingElements = document.querySelectorAll('.popup__back, .popup-content__close');
+for (var i = 0; i < popupClosingElements.length; i++) {
+	popupClosingElements[i].addEventListener('click', hidePopup);
+}
+function hidePopup() {
+	var visiblePopup = document.querySelectorAll('.popup');
+	for (var i = 0; i < visiblePopup.length; i++) {
+		visiblePopup[i].classList.remove('_visible');
+	}
+	lockScrollbar();
+}
+function showPopup(name) {
+	document.querySelector(!name ? '.popup' : ('.popup--' + type)).classList.add('_visible');
+	lockScrollbar();
+}
+// /
+
 // Scroll Lock
 var scrollbarWidth = window.innerWidth - document.body.offsetWidth;
 var scrollLock = false;
@@ -34,6 +52,10 @@ var itemsToLock = {
 	menu: {
 		elem: document.querySelector('.menu__container'),
 		basepad: Number(getComputedStyle(document.querySelector('.menu__container')).paddingRight.slice(0,-2))
+	},
+	popup1: {
+		elem: document.querySelector('.popup--login'),
+		basepad: Number(getComputedStyle(document.querySelector('.popup--login')).paddingRight.slice(0,-2))
 	},
 };
 
@@ -53,22 +75,4 @@ function lockScrollbar() {
 		scrollLock = false;
 	}
 }
-// /
-
-// Input range
-// Required jquery.js & jquery-ui.js
-$('.jq-slider').slider({
-	min: 0,
-	max: 1000,
-	value: 300,
-	range: 'min', // окрашивает область до ползунка
-	slide : function(event, ui) {    
-            $('#jq-slider-count').text(ui.value); // обработчик события
-            $('.slider-bubble').text(ui.value); // обработчик события окошка
-        }
-});
-$('#jq-slider-count').text($('.jq-slider').slider('value')); // установка значения при инициализации
-// далее я добавляю скриптом окошко со значением, т.к. DOM элементов таких нет
-$('.ui-slider-handle').append('<span class="slider-bubble"></span>');
-$('.slider-bubble').text($('.jq-slider').slider('value'));
 // /

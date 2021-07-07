@@ -55,26 +55,6 @@
 					<a class="menu__link" href="#">Link</a>
 					<div class="menu__dropdown dropdown">drop</div>
 				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
 			</ul>
 			<div class="menu__dropdown dropdown"></div> <!-- общее -->
 		</div>
@@ -84,64 +64,82 @@
 
 <h3>popup</h3>
 <div class="test-wrapper">
-	<div onclick="function(){}" style="text-align: center; cursor: pointer;">включить</div>
+	<div class="test-button" onclick="showPopup()">включить</div>
+
+	<div class="popup popup--login">
+		<div class="popup__back"></div>
+		<div class="popup__popup-content popup-content">
+			<div class="popup-content__header">
+				<p class="popup-content__title">Login</p>
+				<div class="popup-content__close"><span>x</span></div>
+			</div>
+			<form class="popup-content__pop-form pop-form" action="#">
+				<p class="pop-form__text">Enter login or email</p>
+				<input class="pop-form__input" type="text">
+				<p class="pop-form__text">Enter password</p>
+				<input class="pop-form__input" type="password">
+				<button class="pop-form__btn">GO</button>
+			</form>
+		</div>
+	</div>
+
 </div>
 
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
-<h3>popup</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
+<h3>test</h3>
 
 
 <!-- /все шаблоны -->
@@ -159,24 +157,6 @@
 	<p id="jq-slider-count"></p>
 // /Input range
 
-// Popup
-	<div class="popup popup--login">
-		<div class="popup__back"></div>
-		<div class="popup__pop-window pop-window pop-window--login">
-			<div class="pop-window__header">
-				<p class="pop-window__title">Login</p>
-				<div class="pop-window__close"><i class="icon-cross"></i></div>
-			</div>
-			<form class="pop-window__pop-form pop-form" action="#">
-				<p class="pop-form__text">Enter login or email</p>
-				<input class="pop-form__login" type="text">
-				<p class="pop-form__text">Enter password</p>
-				<input class="pop-form__password" type="password">
-				<button class="pop-form__btn">GO</button>
-			</form>
-		</div>
-	</div>
-// /Popup
 
 
 
