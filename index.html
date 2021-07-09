@@ -85,6 +85,25 @@
 
 </div>
 
+<h3>random</h3>
+<div class="test-wrapper">
+	<div class="test-button" onclick="testFunc()">click</div>
+	<p class="test-random">null</p>
+	<script>
+		function testFunc() {
+			document.querySelector('.test-random').innerHTML = getRandom();
+		}
+	</script>
+</div>
+
+<h3>onload counter</h3>
+<div class="test-wrapper">
+	<div class="test-button" onclick="onloadCounter1.startCounter(); onloadCounter2.startCounter()">load or scroll event</div>
+	<p class="test-counter1">null</p>
+	<p class="test-counter2">null</p>
+</div>
+
+
 <h3>test</h3>
 <h3>test</h3>
 <h3>test</h3>

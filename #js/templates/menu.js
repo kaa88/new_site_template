@@ -1,7 +1,7 @@
 // Main Menu
-var menu = document.querySelector('.menu__container');
-var menuBtn = document.querySelectorAll('.menu__menu-open-btn, .menu__menu-close-btn');
-for (var i = 0; i < menuBtn.length; i++) {
+let menu = document.querySelector('.menu__container');
+let menuBtn = document.querySelectorAll('.menu__menu-open-btn, .menu__menu-close-btn');
+for (let i = 0; i < menuBtn.length; i++) {
 	menuBtn[i].addEventListener('click', toggleMenu);
 }
 

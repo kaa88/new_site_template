@@ -1,23 +1,18 @@
 // Media switcher
-var mobileSwitchWidth = 768;
-
-if (window.innerWidth <= mobileSwitchWidth)
-	var mobileIsOn = true, prevMobileIsOn = true;
-else
-	var mobileIsOn = false, prevMobileIsOn = false;
+// let mobileSwitchWidth = 768; // переместил в главный скрипт файл
+let mobileIsOn= false, prevMobileIsOn = false;
+window.addEventListener('resize', mobileSwitch);
 
 function mobileSwitch() {
 	if (window.innerWidth <= mobileSwitchWidth) mobileIsOn = true;
 	else mobileIsOn = false;
 
 	if (mobileIsOn != prevMobileIsOn) {
-		hideEverything();
+		mobileHideElements();
 	}
 	prevMobileIsOn = mobileIsOn;
 }
-window.addEventListener('resize', mobileSwitch);
-
-function hideEverything() {
+function mobileHideElements() {
 	if (menu.classList.contains('_active')) 
 		toggleMenu();
 }
