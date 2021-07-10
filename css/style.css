@@ -278,6 +278,37 @@ body._locked {
 	color: black;
 }
 
+.accordion {
+	width: 300px;
+	border: solid 1px gray;
+}
+.accordion input {
+	display: none;
+}
+.accordion input:checked + label {
+	height: 150px;
+}
+.accordion__item {
+	display: block;
+	overflow: hidden;
+	height: 30px;
+	transition: height 0.3s;
+}
+.accordion__item-header {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	background-color: lemonchiffon;
+	font-weight: bold;
+	cursor: pointer;
+}
+.accordion__item-content {
+	display: block;
+	height: 100%;
+	overflow-y: scroll;
+	background-color: silver;
+}
+
 .checkbox {
 	display: none;
 }

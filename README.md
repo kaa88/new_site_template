@@ -7,8 +7,10 @@
 - media_switcher (js) - готово
 - random (js) - готово
 - onload_counter (js) - готово
-- input_checkbox (html, css) - проверить
+- input_checkbox (html, css) - готово
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
+- accordion_css (html, css) - готово
+- accordion_js (html, css, js) - сделать!
 - ...
 
 ### Папки:

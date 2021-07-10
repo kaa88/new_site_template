@@ -1,0 +1,10 @@
+.accordion {
+	width: 400px;
+}
+.accordion input {
+	display: none;
+}
+.accordion__item-header {
+	height: 30px;
+	cursor: pointer;
+}
