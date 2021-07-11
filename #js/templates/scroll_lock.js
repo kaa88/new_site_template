@@ -9,12 +9,12 @@ let itemsToLock = {
 	},
 	menu: {
 		elem: document.querySelector('.menu__container'),
-		basepad: Number(getComputedStyle(document.querySelector('.menu__container')).paddingRight.slice(0,-2))
+		basepad: Number(getComputedStyle(document.querySelector('.menu__container')).paddingRight.slice(0,-2)),
 		always: false
 	},
 	popup1: {
 		elem: document.querySelector('.popup--login'),
-		basepad: Number(getComputedStyle(document.querySelector('.popup--login')).paddingRight.slice(0,-2))
+		basepad: Number(getComputedStyle(document.querySelector('.popup--login')).paddingRight.slice(0,-2)),
 		always: true
 	},
 };

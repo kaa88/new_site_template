@@ -9,8 +9,8 @@
 - onload_counter (js) - готово
 - input_checkbox (html, css) - готово
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
-- accordion_css (html, css) - готово
-- accordion_js (html, css, js) - сделать!
+- accordion_css (html, css) - готово (кроме адаптива)
+- accordion_js (html, css, js) - готово (кроме адаптива)
 - ...
 
 ### Папки:

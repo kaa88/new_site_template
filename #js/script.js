@@ -9,6 +9,7 @@ const mobileSwitchWidth = 768;
 // @prepros-append templates/media_switcher.js
 // @prepros-append templates/random.js
 // @prepros-append templates/onload_counter.js
+// @prepros-append templates/accordion_js.js
 
 // Доделать:
 // prepros-append templates/input_range.js
