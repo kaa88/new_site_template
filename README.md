@@ -1,17 +1,19 @@
 # New site template v1.03
 
 ### Шаблоны элементов:
-- menu (html, css, js) - готово
-- popup (html, css, js) - готово
-- scroll_lock (js) - готово
-- media_switcher (js) - готово
+- menu (html, css, js)
+- popup (html, css, js)
+- scroll_lock (js)
+- media_switcher (js)
 - random (js) - готово
-- onload_counter (js) - готово
-- input_checkbox (html, css) - готово
-- accordion_css (html, css) - готово
-- accordion_js (html, css, js) - готово
-#### Доделать
+- onload_counter (js)
+- input_checkbox (html, css)
+- accordion_css (html, css)
+- accordion_js (html, css, js) - сделать конструктор
+- selection (html, css, js)
+##### Доделать
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
+- accordion_jq c jq-ui
 
 ### Папки:
 #design, #js, #kit, #old, #scss, css, fonts, img, js

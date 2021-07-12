@@ -333,6 +333,36 @@ body._locked {
 	left: -23px;
 }
 
+.selection {
+	display: flex;
+	flex-direction: column;
+	cursor: pointer;
+}
+.selection__header {
+	height: 30px;
+	border: 1px solid gray;
+}
+.selection__list {
+	height: 0;
+	border: 1px solid gray;
+	margin-top: 5px;
+	overflow: hidden;
+	visibility: hidden;
+	transition: height 0.3s, visibility 0.3s;
+}
+.selection__list._active {
+	visibility: visible;
+}
+.selection__option {
+	height: 30px;
+}
+.selection__option:hover {
+	background-color: silver;
+}
+.selection__option._selected {
+	color: red;
+}
+
 .jq-slider {
 	display: inline-block;
 }

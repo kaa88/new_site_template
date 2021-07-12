@@ -10,6 +10,7 @@ const mobileSwitchWidth = 768;
 // @prepros-append templates/random.js
 // @prepros-append templates/onload_counter.js
 // @prepros-append templates/accordion_js.js
+// @prepros-append templates/selection.js
 
 // Доделать:
 // prepros-append templates/input_range.js
@@ -19,3 +20,4 @@ const mobileSwitchWidth = 768;
 
 // избавиться от undefined значений
 // использовать const и let
+// прототипы
