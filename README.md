@@ -8,10 +8,10 @@
 - random (js) - готово
 - onload_counter (js) - готово
 - input_checkbox (html, css) - готово
+- accordion_css (html, css) - готово
+- accordion_js (html, css, js) - готово
+#### Доделать
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
-- accordion_css (html, css) - готово (кроме адаптива)
-- accordion_js (html, css, js) - готово (кроме адаптива)
-- ...
 
 ### Папки:
 #design, #js, #kit, #old, #scss, css, fonts, img, js

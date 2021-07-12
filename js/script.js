@@ -139,7 +139,7 @@ function startCounter() {
 // Accordion
 let accordion = {
 	names: {
-		accordion: '.accordion',
+		accordion: '.accordion', // если несколько, добавить id
 		item: '.accordion__item',
 		header: '.accordion__item-header',
 		content: '.accordion__item-content'
