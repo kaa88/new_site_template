@@ -1,19 +1,22 @@
-# New site template v1.03
+# New site template v1.04
 
 ### Шаблоны элементов:
 - menu (html, css, js)
 - popup (html, css, js)
 - scroll_lock (js)
 - media_switcher (js)
-- random (js) - готово
+- random (js)
 - onload_counter (js)
 - input_checkbox (html, css)
 - accordion_css (html, css)
 - accordion_js (html, css, js) - сделать конструктор
 - selection (html, css, js)
-##### Доделать
+##### Сделать:
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
 - accordion_jq c jq-ui
+- неактивная кнопка текущей страницы
+- кнопка "наверх" в разных вариантах
+
 
 ### Папки:
 #design, #js, #kit, #old, #scss, css, fonts, img, js
@@ -34,21 +37,16 @@
 Учить горячие клавиши, создавать сниппеты, искать полезные плагины.<br>
 При выключенном JS применять деградацию: замена скриптованных элементов прямыми ссылками (?)
 
-#### Список элементов, которым нужны шаблоны:
-- основное меню с бургером
-- модал. окно
-- попап
-- загрузочный счетчик
-- input range
-- чекбокс
-- выпадающий список
-- неактивная кнопка текущей страницы
-- аккордеон
-- кнопка "наверх" в разных вариантах
-- ...
+Нужен GULP!
+
 ---
 
 ### Changelog:
+#### v1.04
+- резервная копия в GitHub, файл readme.md
+- добавил и доделал шаблоны шаблоны (menu, popup, scroll_lock, media_switcher, random, onload_counter, input_checkbox, accordion_css, accordion_js, selection)
+- в некоторых шаблонах использован конструктор
+
 #### v1.03
 - добавил модули в scss (fonts, mixins, popups, print)
 - добавил папку для сборки js
