@@ -4,9 +4,9 @@ for (let i = 0; i < popupClosingElements.length; i++) {
 	popupClosingElements[i].addEventListener('click', hidePopup);
 }
 function hidePopup() {
-	let visiblePopup = document.querySelectorAll('.popup');
-	for (let i = 0; i < visiblePopup.length; i++) {
-		visiblePopup[i].classList.remove('_visible');
+	let popup = document.querySelectorAll('.popup');
+	for (let i = 0; i < popup.length; i++) {
+		popup[i].classList.remove('_visible');
 	}
 	lockScrollbar();
 }

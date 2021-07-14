@@ -9,13 +9,16 @@
 - onload_counter (js)
 - input_checkbox (html, css)
 - accordion_css (html, css)
-- accordion_js (html, css, js) - сделать конструктор
+- accordion_js (html, css, js)
 - selection (html, css, js)
+
 ##### Сделать:
 - input_range (html, css, js) - доделать, разобраться в jq-ui.css
 - accordion_jq c jq-ui
 - неактивная кнопка текущей страницы
 - кнопка "наверх" в разных вариантах
+- scrolling navigation (mogo)
+- simple slider
 
 
 ### Папки:

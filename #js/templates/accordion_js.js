@@ -1,23 +1,24 @@
 // Accordion
-let accordion = {
-	names: {
-		accordion: '.accordion', // если несколько, добавить id
-		item: '.accordion__item',
-		header: '.accordion__item-header',
-		content: '.accordion__item-content'
-	},
+function Accordion(elem = '.accordion', isOpened = false){
+	this.elem = document.querySelector(elem);
+	this.items = this.elem.querySelectorAll('.accordion__item');
+	for (let i = 0; i < this.items.length; i++) {
+		this.items[i].itemMinHeight = this.items[i].querySelector('.accordion__item-header').offsetHeight;
+		this.items[i].itemMaxHeight = this.items[i].itemMinHeight + this.items[i].querySelector('.accordion__item-content').offsetHeight;
+		this.items[i].addEventListener('click', this.closeItem.bind(this));
+		this.items[i].addEventListener('click', this.openItem);
+	};
+	if (isOpened == true) this.openItem(0, this.items[0]);
 };
-accordion.items = document.querySelectorAll(accordion.names.item);
-for (let i = 0; i < accordion.items.length; i++) {
-	accordion.items[i].addEventListener('click', openItem);
-	accordion.items[i].itemMinHeight = accordion.items[i].querySelector(accordion.names.header).offsetHeight;
-	accordion.items[i].itemMaxHeight = accordion.items[i].itemMinHeight + accordion.items[i].querySelector(accordion.names.content).offsetHeight;
-}
-
-function openItem(){
-	for (let i = 0; i < accordion.items.length; i++) {
-		accordion.items[i].style.height = accordion.items[i].itemMinHeight + 'px';
+Accordion.prototype.closeItem = function(){
+	for (let i = 0; i < this.items.length; i++) {
+		this.items[i].style.height = this.items[i].itemMinHeight + 'px';
 	}
-	this.style.height = this.itemMaxHeight + 'px';
-}
+};
+Accordion.prototype.openItem = function(event, item = this){
+	item.style.height = item.itemMaxHeight + 'px';
+};
+
+let accordion1 = new Accordion('.accordion--1', true);
+let accordion2 = new Accordion('.accordion--2');
 // /

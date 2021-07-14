@@ -33,9 +33,9 @@ for (let i = 0; i < popupClosingElements.length; i++) {
 	popupClosingElements[i].addEventListener('click', hidePopup);
 }
 function hidePopup() {
-	let visiblePopup = document.querySelectorAll('.popup');
-	for (let i = 0; i < visiblePopup.length; i++) {
-		visiblePopup[i].classList.remove('_visible');
+	let popup = document.querySelectorAll('.popup');
+	for (let i = 0; i < popup.length; i++) {
+		popup[i].classList.remove('_visible');
 	}
 	lockScrollbar();
 }
@@ -112,18 +112,13 @@ function getRandom(min = 0, max = 99) {
 // /
 
 // Onload counter
-let onloadCounter1 = new OnloadCounter(51806, 1 , '.test-counter1');
-let onloadCounter2 = new OnloadCounter(35704, 2 , '.test-counter2');
-
 function OnloadCounter(goal = 1000, timeout = 1, resultElem = '.counter') { 
-	// constructor
 	this.goal = goal; // number
 	this.timeout = timeout; // seconds
-	this.resultElem = document.querySelector(resultElem);
 	this.increment = this.goal / (this.timeout * 1000);
-	this.startCounter = startCounter;
+	this.resultElem = document.querySelector(resultElem);
 }
-function startCounter() {
+OnloadCounter.prototype.startCounter = function() {
 	let o = this;
 	o.startDate = new Date().valueOf();
 	o.timerId = setInterval(function(){
@@ -135,35 +130,39 @@ function startCounter() {
 		o.resultElem.innerHTML = o.goal;
 	}, o.timeout * 1000);
 }
+
+let onloadCounter1 = new OnloadCounter(51806, 1 , '.test-counter--1');
+let onloadCounter2 = new OnloadCounter(35704, 2 , '.test-counter--2');
 // /
 
 // Accordion
-let accordion = {
-	names: {
-		accordion: '.accordion', // если несколько, добавить id
-		item: '.accordion__item',
-		header: '.accordion__item-header',
-		content: '.accordion__item-content'
-	},
+function Accordion(elem = '.accordion', isOpened = false){
+	this.elem = document.querySelector(elem);
+	this.items = this.elem.querySelectorAll('.accordion__item');
+	for (let i = 0; i < this.items.length; i++) {
+		this.items[i].itemMinHeight = this.items[i].querySelector('.accordion__item-header').offsetHeight;
+		this.items[i].itemMaxHeight = this.items[i].itemMinHeight + this.items[i].querySelector('.accordion__item-content').offsetHeight;
+		this.items[i].addEventListener('click', this.closeItem.bind(this));
+		this.items[i].addEventListener('click', this.openItem);
+	};
+	if (isOpened == true) this.openItem(0, this.items[0]);
 };
-accordion.items = document.querySelectorAll(accordion.names.item);
-for (let i = 0; i < accordion.items.length; i++) {
-	accordion.items[i].addEventListener('click', openItem);
-	accordion.items[i].itemMinHeight = accordion.items[i].querySelector(accordion.names.header).offsetHeight;
-	accordion.items[i].itemMaxHeight = accordion.items[i].itemMinHeight + accordion.items[i].querySelector(accordion.names.content).offsetHeight;
-}
-
-function openItem(){
-	for (let i = 0; i < accordion.items.length; i++) {
-		accordion.items[i].style.height = accordion.items[i].itemMinHeight + 'px';
+Accordion.prototype.closeItem = function(){
+	for (let i = 0; i < this.items.length; i++) {
+		this.items[i].style.height = this.items[i].itemMinHeight + 'px';
 	}
-	this.style.height = this.itemMaxHeight + 'px';
-}
+};
+Accordion.prototype.openItem = function(event, item = this){
+	item.style.height = item.itemMaxHeight + 'px';
+};
+
+let accordion1 = new Accordion('.accordion--1', true);
+let accordion2 = new Accordion('.accordion--2');
 // /
 
 // Selection
-function Selection(elem){
-	this.elem = document.querySelector(elem ? elem : '.selection');
+function Selection(elem = '.selection'){
+	this.elem = document.querySelector(elem);
 	this.header = this.elem.querySelector('.selection__header');
 	this.list = this.elem.querySelector('.selection__list');
 	this.options = this.elem.querySelectorAll('.selection__option');
@@ -173,34 +172,33 @@ function Selection(elem){
 		this.listMaxHeight += this.options[i].offsetHeight;
 	}
 
-	this.toggleList = function(){
-		if (this.list.classList.contains('_active'))
-			this.list.style.height = this.listMinHeight + 'px';
-		else
-			this.list.style.height = this.listMaxHeight + 'px';
-		this.header.classList.toggle('_active');
-		this.list.classList.toggle('_active');
-	};
-	this.setToSelected = function(){
-		for (let i = 0; i < this.parentElement.children.length; i++) {
-			this.parentElement.children[i].classList.remove('_selected');
-		}
-		this.classList.add('_selected');
-	};
-	this.selectItem = function(){
-		for (let i = 0; i < this.options.length; i++) {
-			if (this.options[i].classList.contains('_selected'))
-				this.header.innerHTML = this.options[i].innerHTML;
-		}
-		this.toggleList();
-	};
-
 	this.header.addEventListener('click', this.toggleList.bind(this));
 	for (let i = 0; i < this.options.length; i++) {
 		this.options[i].addEventListener('click', this.setToSelected);
 		this.options[i].addEventListener('click', this.selectItem.bind(this));
 	};
-}
+};
+Selection.prototype.toggleList = function(){
+	if (this.list.classList.contains('_active'))
+		this.list.style.height = this.listMinHeight + 'px';
+	else
+		this.list.style.height = this.listMaxHeight + 'px';
+	this.header.classList.toggle('_active');
+	this.list.classList.toggle('_active');
+};
+Selection.prototype.setToSelected = function(){
+	for (let i = 0; i < this.parentElement.children.length; i++) {
+		this.parentElement.children[i].classList.remove('_selected');
+	}
+	this.classList.add('_selected');
+};
+Selection.prototype.selectItem = function(){
+	for (let i = 0; i < this.options.length; i++) {
+		if (this.options[i].classList.contains('_selected'))
+			this.header.innerHTML = this.options[i].innerHTML;
+	}
+	this.toggleList();
+};
 
 let selection1 = new Selection('.selection--1');
 let selection2 = new Selection('.selection--2');
