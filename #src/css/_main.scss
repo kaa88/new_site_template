@@ -1,0 +1,22 @@
+body {
+	background-color: #f1f1f1; // Chrome scrollbar color
+	font-family: Arial;
+	color: black;
+	&._locked {overflow: hidden;}
+}
+.page {
+	overflow: hidden; // при scroll lock не вылезают всякие куски
+}
+.container {
+	max-width: 900px;
+	min-width: calc(320px - (100vw - 100%));
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+@import "t/menu";
+@import "t/selection";
+// @import "t/accordion_css";
+@import "t/accordion_js";
+@import "t/input_checkbox";
+@import "t/popup";

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('_head.html', {
+	'title': 'New site'
+})
+<body>
+@@include('_noscript.html')
+
+<main class="page">
+	<header class="header">
+		<div class="header__container container">
+			<div class="header__logo">LOGO</div>
+			<nav class="header__menu menu">
+				<div class="menu__menu-open-btn"><span>MENU</span></div>
+				<div class="menu__container">
+				<!-- если меню вне header, добавить класс container -->
+					<div class="menu__menu-close-btn"><span>X</span></div>
+					<ul class="menu__items">
+						<li class="menu__item">
+							<a class="menu__link" href="#">Link</a>
+							<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
+						</li>
+						<li class="menu__item">
+							<a class="menu__link" href="#">Link</a>
+							<div class="menu__dropdown dropdown">drop</div>
+						</li>
+						<li class="menu__item">
+							<a class="menu__link" href="#">Link</a>
+							<div class="menu__dropdown dropdown">drop</div>
+						</li>
+					</ul>
+					<!-- <div class="menu__dropdown dropdown"></div> --> <!-- общее -->
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+
+</main>
+@@include('_popups.html')
+@@include('_script.html')
+</body>
+</html>

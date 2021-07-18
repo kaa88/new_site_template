@@ -1,4 +1,4 @@
-# New site template v1.04
+# New site template v2.00
 
 ### Шаблоны элементов:
 - menu (html, css, js)
@@ -22,7 +22,7 @@
 
 
 ### Папки:
-#design, #js, #kit, #old, #scss, css, fonts, img, js
+#src (css, js, fonts, img, temp), design, test
 
 ### Комментарии по работе:
 После создания нового репозитория удалить название у файла .gitignore.
@@ -40,11 +40,13 @@
 Учить горячие клавиши, создавать сниппеты, искать полезные плагины.<br>
 При выключенном JS применять деградацию: замена скриптованных элементов прямыми ссылками (?)
 
-Нужен GULP!
-
 ---
 
 ### Changelog:
+#### v2.00
+- переход на Gulp, смена структуры шаблона, начальный сценарий (gulpfile.js)
+- добавил папку "test" для тестирования всех модулей
+
 #### v1.04
 - резервная копия в GitHub, файл readme.md
 - добавил и доделал шаблоны шаблоны (menu, popup, scroll_lock, media_switcher, random, onload_counter, input_checkbox, accordion_css, accordion_js, selection)
