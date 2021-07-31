@@ -2,16 +2,10 @@
 // -
 
 // Media breakpoints:
-$md1: 970;
-$md2: 850;
-$md3: 768;
-$md4: 650;
-$md5: 530;
-$md6: 430;
-$md7: 380;
+// 1400 768 620 550 500 400
+$mobile: 768;
 
-// $minWidth: 320;
-// $maxWidth: ;
+// $maxWidth: ; // продвинутое... для скалирования шрифтов? и retina
 
 
 // Colors
@@ -27,4 +21,5 @@ $color-2: #000000;
 // SCSS 
 // width: 55px / 1200px * 100vw; 
 // width: 23 / $md1 * 100vw;
+// новая версия sass: math.div(70, $mobile) * 100vw; (использовать с @use "sass:math";)
 // /

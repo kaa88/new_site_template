@@ -2,7 +2,7 @@
 	&__menu-open-btn {
 		display: none;
 		cursor: pointer;
-		@media (max-width: 768px) {
+		@media (max-width: $mobile+px) {
 			display: inline-block;
 		}
 	}
@@ -32,7 +32,7 @@
 	// 		&:after {transform: rotate(-45deg);}
 	// 		& span {transform: translateX(100%);}
 	// 	}
-	// 	@media (max-width: 768px) {
+	// 	@media (max-width: $mobile+px) {
 	// 		display: block;
 	// 	}
 	// }
@@ -47,12 +47,12 @@
 			top: 20px;
 			right: 20px;
 		}
-		@media (max-width: 768px) {
+		@media (max-width: $mobile+px) {
 			display: block;
 		}
 	}
 	&__container {
-		@media (max-width: 768px) {
+		@media (max-width: $mobile+px) {
 			height: 100%;
 			width: 100%;
 			position: fixed;
@@ -72,7 +72,7 @@
 		justify-content: space-between;
 		align-items: center;
 		background-color: thistle;
-		@media (max-width: 768px) {
+		@media (max-width: $mobile+px) {
 			height: 100%;
 			overflow: auto;
 			flex-direction: column;
@@ -86,7 +86,7 @@
 			opacity: 1;
 		}
 	}
-	&__link {
+	&__link, &__link:visited {
 		display: inline-block;
 		height: 50px;
 		line-height: 50px;
@@ -111,7 +111,17 @@
 	visibility: hidden;
 	opacity: 0;
 	transition: all .2s;
-	@media (max-width: 768px) {
+	@media (max-width: $mobile+px) {
 		display: none;
 	}
+}
+.menu-turn-off-area {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 40;
+	width: 100vw;
+	height: 100vh;
+	display: none;
+	&._active {display: block;}
 }

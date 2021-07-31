@@ -1,15 +1,19 @@
-// TO DO:
-// избавиться от undefined значений
-// использовать const и let
-// прототипы
-
+// Media switcher
 const mobileSwitchWidth = 768;
-
-@@include('t/menu.js')
-@@include('t/popup.js')
-@@include('t/scroll_lock.js')
 @@include('t/media_switcher.js')
-@@include('t/selection.js')
-@@include('t/accordion_js.js')
+// /
+
+// Scroll Lock
+const scrollLockTimeout = 400;
+@@include('t/scroll_lock.js')
+// /
+
+// Main Menu
+@@include('t/menu.js')
+// /
+
+//include('t/popup.js')
+//include('t/selection.js')
+//include('t/accordion_js.js')
 //include('t/random.js')
 //include('t/onload_counter.js')

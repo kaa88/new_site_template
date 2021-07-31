@@ -1,3 +1,7 @@
+// TO DO
+// сделать таймаут от повторных нажатий
+// все блоки
+
 // Scroll Lock
 let scrollbarWidth = window.innerWidth - document.body.offsetWidth;
 let scrollLock = false;

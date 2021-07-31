@@ -1,5 +1,3 @@
-// Media switcher
-// let mobileSwitchWidth = 768; // переместил в главный скрипт файл
 let mobileIsOn= false, prevMobileIsOn = false;
 window.addEventListener('resize', mobileSwitch);
 
@@ -16,4 +14,3 @@ function mobileHideElements() {
 	if (menu.classList.contains('_active')) 
 		toggleMenu();
 }
-// /

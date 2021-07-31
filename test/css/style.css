@@ -419,6 +419,22 @@ h3 {
 	cursor: pointer;
 }
 
+#test-color-1 {
+	background-color: pink;
+}
+
+#test-color-2 {
+	background-color: lightgreen;
+}
+
+#test-color-3 {
+	background-color: coral;
+}
+
+#test-color-4 {
+	background-color: teal;
+}
+
 @media print {
 	body, p, a, div, span, i, button {
 		color: black !important;

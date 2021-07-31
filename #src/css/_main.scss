@@ -1,13 +1,15 @@
+@use "sass:math";
 body {
-	background-color: #f1f1f1; // Chrome scrollbar color
+	background-color: $color-1;
 	font-family: Arial;
-	color: black;
+	color: #222;
 	&._locked {overflow: hidden;}
 }
 .page {
-	overflow: hidden; // при scroll lock не вылезают всякие куски
+	overflow: hidden;
 }
 .container {
+	width: 100%;
 	max-width: 900px;
 	min-width: calc(320px - (100vw - 100%));
 	margin: 0 auto;
@@ -15,8 +17,10 @@ body {
 }
 
 @import "t/menu";
-@import "t/selection";
+// @import "t/selection";
 // @import "t/accordion_css";
-@import "t/accordion_js";
-@import "t/input_checkbox";
-@import "t/popup";
+// @import "t/accordion_js";
+// @import "t/input_checkbox";
+// @import "t/popup";
+
+.footer {} // сделать базовый стиль
