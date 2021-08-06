@@ -1,185 +1,167 @@
-<!-- все шаблоны -->
-<h3>menu</h3>
-<div class="test-wrapper">
+<!-- ШАБЛОНЫ -->
 
-	<nav class="menu">
-		<div class="menu__menu-open-btn"><span>MENU</span></div>
-		<div class="menu__container container">
-		<!-- удалить класс container, если меню внутри header -->
-			<div class="menu__menu-close-btn"><span>X</span></div>
-			<ul class="menu__items">
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" href="#">Link</a>
-					<div class="menu__dropdown dropdown">drop</div>
-				</li>
-			</ul>
-			<div class="menu__dropdown dropdown"></div> <!-- общее -->
-		</div>
-	</nav>
-
-</div>
-
-<h3>popup</h3>
-<div class="test-wrapper">
-	<div class="test-button" onclick="showPopup()">включить</div>
-
-	<div class="popup popup--login">
-		<div class="popup__back"></div>
-		<div class="popup__popup-content popup-content">
-			<div class="popup-content__header">
-				<p class="popup-content__title">Login</p>
-				<div class="popup-content__close"><span>x</span></div>
-			</div>
-			<form class="popup-content__pop-form pop-form" action="#">
-				<p class="pop-form__text">Enter login or email</p>
-				<input class="pop-form__input" type="text">
-				<p class="pop-form__text">Enter password</p>
-				<input class="pop-form__input" type="password">
-				<button class="pop-form__btn">GO</button>
-			</form>
-		</div>
-	</div>
-
-</div>
-
-<h3>random</h3>
-<div class="test-wrapper">
-	<div class="test-button" onclick="testFunc()">click</div>
-	<p class="test-random">null</p>
-	<script>
-		function testFunc() {
-			document.querySelector('.test-random').innerHTML = getRandom();
-		}
-	</script>
-</div>
-
-<h3>onload counter</h3>
-<div class="test-wrapper">
-	<div class="test-button" onclick="onloadCounter1.startCounter(); onloadCounter2.startCounter()">load or scroll event</div>
-	<p class="test-counter test-counter--1">null</p>
-	<p class="test-counter test-counter--2">null</p>
-</div>
-
-<h3>accordion (css version)</h3>
-<div class="test-wrapper">
-<!--
-	<div class="accordion">
-		<input type="radio" name="accordion-radio" id="accordion-radio-1" checked>
-		<label class="accordion__item" for="accordion-radio-1">
-			<span class="accordion__item-header">Header</span>
-			<span class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</span>
-		</label>
-		<input type="radio" name="accordion-radio" id="accordion-radio-2">
-		<label class="accordion__item" for="accordion-radio-2">
-			<span class="accordion__item-header">Header</span>
-			<span class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</span>
-		</label>
-		<input type="radio" name="accordion-radio" id="accordion-radio-3">
-		<label class="accordion__item" for="accordion-radio-3">
-			<span class="accordion__item-header">Header</span>
-			<span class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</span>
-		</label>
-	</div>
--->
-</div>
-
-<h3>accordion (js version)</h3>
-<div class="test-wrapper">
-
-	<div class="accordion accordion--1">
-		<div class="accordion__item">
-			<div class="accordion__item-header">Header</div>
-			<div class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci!
-			</div>
-		</div>
-		<div class="accordion__item">
-			<div class="accordion__item-header">Header</div>
-			<div class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</div>
-		</div>
-		<div class="accordion__item">
-			<div class="accordion__item-header">Header</div>
-			<div class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</div>
-		</div>
-	</div>
-	<div class="accordion accordion--2">
-		<div class="accordion__item">
-			<div class="accordion__item-header">Header</div>
-			<div class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</div>
-		</div>
-		<div class="accordion__item">
-			<div class="accordion__item-header">Header</div>
-			<div class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</div>
-		</div>
-		<div class="accordion__item">
-			<div class="accordion__item-header">Header</div>
-			<div class="accordion__item-content">
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-			</div>
-		</div>
-	</div>
-
-</div>
-
-<h3>selection (dropdown list)</h3>
-<div class="test-wrapper">
-
-	<div class="selection selection--1">
-		<div class="selection__header">choose</div>
-		<ul class="selection__list">
-			<li class="selection__option">option 1</li>
-			<li class="selection__option">option 2</li>
-			<li class="selection__option">option 3</li>
+<!-- Menu -->
+<nav class="menu">
+	<div class="menu__menu-open-btn"><span>MENU</span></div>
+	<div class="menu__container container">
+	<!-- удалить класс container, если меню внутри header -->
+		<div class="menu__menu-close-btn"><span>x</span></div>
+		<ul class="menu__items">
+			<li class="menu__item">
+				<a class="menu__link" href="#">Link</a>
+				<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" href="#">Link</a>
+				<div class="menu__dropdown dropdown">drop</div>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" href="#">Link</a>
+				<div class="menu__dropdown dropdown">drop</div>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" href="#">Link</a>
+				<div class="menu__dropdown dropdown">drop</div>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" href="#">Link</a>
+				<div class="menu__dropdown dropdown">drop</div>
+			</li>
 		</ul>
+		<div class="menu__dropdown dropdown"></div> <!-- общее -->
 	</div>
-	<div class="selection selection--2">
-		<div class="selection__header">choose</div>
-		<ul class="selection__list">
-			<li class="selection__option">option 1</li>
-			<li class="selection__option">option 2</li>
-			<li class="selection__option">option 3</li>
-		</ul>
-	</div>
+</nav>
+<div class="menu-turn-off-area"></div>
 
+
+<!-- Modal -->
+<div class="modal modal--login"> <!-- в скрипт передавать название класса после "--"    -->
+	<div class="modal__close-area"></div>
+	<div class="modal__window">
+		<div class="modal__close-button">x</div>
+		<div class="modal__content">
+			<p class="test-article">
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error porro pariatur dolorem consequuntur totam, a itaque ipsam sed ducimus doloribus? Tempora voluptate ipsa tenetur delectus deleniti aliquam eius, dignissimos pariatur ipsum temporibus omnis deserunt impedit repellendus sapiente veritatis nulla minus perferendis quaerat illo eligendi neque architecto voluptatibus velit placeat alias!
+			</p>
+		</div>
+	</div>
 </div>
 
-<h3>input_checkbox</h3>
-<div class="test-wrapper">
-	<input class="checkbox" id="styled-checkbox" type="checkbox">
-	<label for="styled-checkbox">Checkbox</label>
+
+<!-- Popup -->
+<div class="popup popup--login">
+	<div class="popup__back"></div>
+	<div class="popup__popup-content popup-content">
+		<div class="popup-content__header">
+			<p class="popup-content__title">Login</p>
+			<div class="popup-content__close"><span>x</span></div>
+		</div>
+		<form class="popup-content__pop-form pop-form" action="#">
+			<p class="pop-form__text">Enter login or email</p>
+			<input class="pop-form__input" type="text">
+			<p class="pop-form__text">Enter password</p>
+			<input class="pop-form__input" type="password">
+			<button class="pop-form__btn">GO</button>
+		</form>
+	</div>
 </div>
 
-<h3>input_range</h3>
+
+<!-- Accordion (css version) -->
+<div class="accordion">
+	<input type="radio" name="accordion-radio" id="accordion-radio-1" checked>
+	<label class="accordion__item" for="accordion-radio-1">
+		<span class="accordion__item-header">Header</span>
+		<span class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</span>
+	</label>
+	<input type="radio" name="accordion-radio" id="accordion-radio-2">
+	<label class="accordion__item" for="accordion-radio-2">
+		<span class="accordion__item-header">Header</span>
+		<span class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</span>
+	</label>
+	<input type="radio" name="accordion-radio" id="accordion-radio-3">
+	<label class="accordion__item" for="accordion-radio-3">
+		<span class="accordion__item-header">Header</span>
+		<span class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</span>
+	</label>
+</div>
+
+
+<!-- Accordion (js version) -->
+<div class="accordion accordion--1">
+	<div class="accordion__item">
+		<div class="accordion__item-header">Header</div>
+		<div class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci!
+		</div>
+	</div>
+	<div class="accordion__item">
+		<div class="accordion__item-header">Header</div>
+		<div class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</div>
+	</div>
+	<div class="accordion__item">
+		<div class="accordion__item-header">Header</div>
+		<div class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</div>
+	</div>
+</div>
+<div class="accordion accordion--2">
+	<div class="accordion__item">
+		<div class="accordion__item-header">Header</div>
+		<div class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</div>
+	</div>
+	<div class="accordion__item">
+		<div class="accordion__item-header">Header</div>
+		<div class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</div>
+	</div>
+	<div class="accordion__item">
+		<div class="accordion__item-header">Header</div>
+		<div class="accordion__item-content">
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+		</div>
+	</div>
+</div>
+
+
+<!-- Selection (dropdown list) -->
+<div class="selection selection--1">
+	<div class="selection__header">choose</div>
+	<ul class="selection__list">
+		<li class="selection__option">option 1</li>
+		<li class="selection__option">option 2</li>
+		<li class="selection__option">option 3</li>
+	</ul>
+</div>
+<div class="selection selection--2">
+	<div class="selection__header">choose</div>
+	<ul class="selection__list">
+		<li class="selection__option">option 1</li>
+		<li class="selection__option">option 2</li>
+		<li class="selection__option">option 3</li>
+	</ul>
+</div>
+
+
+<!-- Input_checkbox -->
+<input class="checkbox" id="styled-checkbox" type="checkbox">
+<label for="styled-checkbox">Checkbox</label>
+
+
+
+<!-- Input_range -->
 <div class="test-wrapper">
 	<p>доделать!</p>
 </div>
@@ -189,3 +171,11 @@ Input range
 	<p id="jq-slider-count"></p>
 /Input range
 -->
+
+
+<!-- Onload counter -->
+<div class="test-wrapper">
+	<div class="test-button" onclick="onloadCounter1.startCounter(); onloadCounter2.startCounter()">load or scroll event</div>
+	<p class="test-counter test-counter--1">null</p>
+	<p class="test-counter test-counter--2">null</p>
+</div>

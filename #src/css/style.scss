@@ -1,9 +1,48 @@
-// перевести сюда settings?
-
 @import "_reset";
 @import "_noscript";
 @import "_mixins";
-@import "_fonts";
-@import "_settings";
+
+// Colors
+$color-1: #ffffff;
+$color-2: #000000;
+
+
+// Fonts
+// Roboto
+@import "fontscript";
+$font-rob: Roboto, Arial, sans-serif;
+
+
+// Transitions
+$timer-menu: 1.4s;
+$timer-modal: 0.8s;
+$timer-hover: 0.1s;
+
+
+// Media breakpoints:
+// 1400 768 620 550 500 400
+$mobile: 768;
+
+
+@import "_icons";
 @import "_main";
 @import "_print";
+
+// TO DO:
+// -
+
+
+// Дополнительно
+// $maxWidth: ; // продвинутое... для скалирования шрифтов? и retina
+
+
+// Formulas
+
+// CSS:
+// width: calc(900 * 0.8 / 1200 * 100vw + 900 * 0.2 * 1px);
+
+// SCSS:
+// width: 55px / 1200px * 100vw; 
+// width: 23 / $md1 * 100vw;
+// новая версия sass: math.div(70, $mobile) * 100vw; (использовать с @use "sass:math";)
+// /

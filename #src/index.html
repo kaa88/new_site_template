@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 @@include('_head.html', {
-	'title': 'New site'
+	'title': 'New site',
+	'descr': 'Somesite',
+	'robots': 'noindex, nofollow',
 })
 <body>
 @@include('_noscript.html')
@@ -16,7 +18,7 @@
 				<!-- если меню вне header, добавить класс container -->
 					<div class="menu__menu-close-btn"><span>X</span></div>
 					<ul class="menu__items">
-						<li class="menu__item">
+						<li class="menu__item"> <!-- онклик тест -->
 							<a class="menu__link" href="#">Link</a>
 							<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
 						</li>
@@ -36,46 +38,15 @@
 	</header>
 	<div class="menu-turn-off-area"></div>
 
+	<main class="content">
 
-	<!-- sections -->
+		<!-- sections -->
 
+	</main>
 
-	<footer class="footer">
-		<div class="footer-top">
-			<div class="footer-top__container container">
-				<div class="footer-section footer-section--posts">
-					<h4 class="footer-section__title">POSTS</h4>
-					<a class="footer-section__item" href="#">
-						<span class="footer-section__item-img"><i class="icon-news"></i></span>
-						<span class="footer-section__item-content">Lorem ipsum dolor sit amet.</span>
-					</a>
-					<a class="footer-section__item" href="#">
-						<span class="footer-section__item-img"><i class="icon-photo"></i></span>
-						<span class="footer-section__item-content">Lorem ipsum dolor sit amet.</span>
-					</a>
-					<a class="footer-section__item" href="#">
-						<span class="footer-section__item-img"><i class="icon-news"></i></span>
-						<span class="footer-section__item-content">Lorem ipsum dolor sit amet.</span>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="footer-bottom__container container">
-				<p class="footer__copy">© Copyright 2000</p>
-
-				<div class="footer__socials">
-					<a class="footer__social-link" href="#"><i class="icon-twitter"></i></a>
-					<a class="footer__social-link" href="#"><i class="icon-facebook"></i></a>
-					<a class="footer__social-link" href="#"><i class="icon-pinterest"></i></a>
-					<a class="footer__social-link" href="#"><i class="icon-google-plus"></i></a>
-				</div>
-
-			</div>
-		</div>
-	</footer>
+@@include('_footer.html')
 </main>
-<!-- @@include('_popups.html') -->
+@@include('_modal.html')
 @@include('_script.html')
 </body>
 </html>

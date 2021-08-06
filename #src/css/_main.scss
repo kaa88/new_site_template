@@ -6,21 +6,33 @@ body {
 	&._locked {overflow: hidden;}
 }
 .page {
-	overflow: hidden;
+	overflow: hidden; // устраняет случайные горизонтальные прокрутки
+	display: flex; // footer всегда внизу
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
 }
 .container {
-	width: 100%;
 	max-width: 900px;
 	min-width: calc(320px - (100vw - 100%));
 	margin: 0 auto;
 	padding: 0 10px;
 }
+.header {}
 
 @import "t/menu";
+
+.content {
+	flex-grow: 1; // footer всегда внизу
+}
+
+// Content here
+
+
+@import "t/footer";
+@import "t/modal";
+// @import "t/popup";
 // @import "t/selection";
 // @import "t/accordion_css";
 // @import "t/accordion_js";
 // @import "t/input_checkbox";
-// @import "t/popup";
-
-.footer {} // сделать базовый стиль

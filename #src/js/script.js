@@ -1,15 +1,27 @@
-// Media switcher
-const mobileSwitchWidth = 768;
-@@include('t/media_switcher.js')
+// Mobile switcher (turns off menu on window resize)
+let mobileSwitch = {switchWidth: 768};
+@@include('t/mobile_switcher.js')
+mobileSwitch.do = function() { // place functions here to run
+	if (menu.element.classList.contains('_active')) menu.toggle();
+}
 // /
 
-// Scroll Lock
-const scrollLockTimeout = 400;
+// Transition lock (prevents double-clicking, e.g. when menu slides)
+@@include('t/trans_lock.js')
+// /
+
+// Scroll lock
 @@include('t/scroll_lock.js')
 // /
 
-// Main Menu
+// Main menu
+let menu = {timeout: 1400};
 @@include('t/menu.js')
+// /
+
+// Modal window
+let modal = {timeout: 800};
+@@include('t/modal.js')
 // /
 
 //include('t/popup.js')

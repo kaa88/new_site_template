@@ -1,22 +1,7 @@
-// FONTS
-@font-face {
-	font-family: Roboto;
-	src: local(Roboto),
-			// url('../fonts/Roboto.woff2') format("woff2"),
-			// url('../fonts/Roboto.woff') format("woff"),
-			url('../fonts/Roboto.ttf') format("truetype");
-	font-weight: normal;
-	font-style: normal;
-}
-
-$font-rob: Roboto, Arial, sans-serif;
-// /
-
-
 // ICON FONT (IcoMoon)
 @font-face {
 	font-family: 'iconfont';
-	src:
+	src: url('../fonts/iconfont.woff2') format('woff2'),
 		url('../fonts/iconfont.woff') format('woff'),
 		url('../fonts/iconfont.ttf') format('truetype');
 	font-weight: normal;
@@ -36,7 +21,7 @@ i {
 }
 
 .icon-arrow:before {
-  content: "\e900";
+	content: "\e900";
 }
 
 // /

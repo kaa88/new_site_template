@@ -22,7 +22,7 @@
 	// 		position: absolute;
 	// 		left: -1px;
 	// 		transform-origin: 4px;
-	// 		transition: transform .3s;
+	// 		transition: transform $timer-menu;
 	// 	}
 	// 	&:before {top: 0;}
 	// 	&:after {bottom: 0;}
@@ -60,12 +60,28 @@
 			left: 0;
 			z-index: 50;
 			background-color: silver;
-			transition: top 1.5s;
+			transition: top $timer-menu;
 			&._active {
 				top: 0;
 			}
 		}
 	}
+// Menu slides from right
+	// &__container {
+	// 	@media (max-width: $mobile+px) {
+	// 		height: calc(100% - 60px);
+	// 		width: 300px;
+	// 		position: fixed;
+	// 		top: 60px;
+	// 		right: -300px;
+	// 		z-index: 50;
+	// 		background-color: silver;
+	// 		transition: right $timer-menu linear;
+	// 		&._active {
+	// 			right: 0;
+	// 		}
+	// 	}
+	// }
 	&__items {
 		height: 50px;
 		display: flex;
@@ -122,6 +138,12 @@
 	z-index: 40;
 	width: 100vw;
 	height: 100vh;
-	display: none;
-	&._active {display: block;}
+	background-color: rgba(0, 0, 0, 0.4);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity $timer-menu, visibility $timer-menu;
+	&._active {
+		opacity: 1;
+		visibility: visible;
+	}
 }

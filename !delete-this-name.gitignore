@@ -2,7 +2,6 @@
 *[а-яА-ЯёЁ]*
 temp
 /design
-/test
 
 # Gulp:
 *.json

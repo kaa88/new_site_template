@@ -11,7 +11,7 @@ function hidePopup() {
 	lockScrollbar();
 }
 function showPopup(name) {
-	document.querySelector(!name ? '.popup' : ('.popup--' + type)).classList.add('_visible');
+	document.querySelector(!name ? '.popup' : ('.popup--' + name)).classList.add('_visible');
 	lockScrollbar();
 }
 // /

@@ -1,0 +1,46 @@
+.footer {
+	background-color: silver;
+	&__top {
+		.container {
+			display: grid;
+			grid-template-columns: repeat(3, auto);
+			grid-gap: 20px;
+			@media (max-width: $mobile+px) {
+				grid-template-columns: auto;
+			}
+		}
+	}
+	&__bottom {
+		border-top: solid 1px gray;
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	&__container {}
+	&__copy {}
+	&__socials {
+		font-size: 0;
+	}
+	&__social-link, &__social-link:visited {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background-color: yellow;
+		font-size: 20px;
+	}
+}
+.footer-section {
+	display: flex;
+	flex-direction: column;
+	&__title {}
+	&__item, &__item:visited {
+		display: flex;
+	}
+	&__item-img {}
+	&__item-content {}
+}

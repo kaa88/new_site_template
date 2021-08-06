@@ -1,10 +1,7 @@
 @media print {
-	body, p, a, div, span, i, button {
-		color: black !important;
-	}
-	.container {
-		padding: 0;
-	}
+	* {color: black !important;}
+	.container {padding: 0;}
+	.noscript-alert,
 	.header,
 	.button
 	{display: none;}
