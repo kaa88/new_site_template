@@ -1,8 +1,16 @@
 @media print {
-	* {color: black !important;}
+	* {
+		color: black !important;
+		background: none !important;
+	}
 	.container {padding: 0;}
+	
 	.noscript-alert,
-	.header,
+	.menu,
 	.button
-	{display: none;}
+		{display: none;}
+
+	.header {
+		position: relative;
+	}
 }

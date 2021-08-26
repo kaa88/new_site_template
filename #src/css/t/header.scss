@@ -1,8 +1,14 @@
+.header {
+	&__container {}
+	&__menu {}
+	&__print-address {display: none;}
+}
+
 .menu {
 	&__menu-open-btn {
 		display: none;
 		cursor: pointer;
-		@media (max-width: $mobile+px) {
+		@media (max-width: $media-menu+px) {
 			display: inline-block;
 		}
 	}
@@ -32,7 +38,7 @@
 	// 		&:after {transform: rotate(-45deg);}
 	// 		& span {transform: translateX(100%);}
 	// 	}
-	// 	@media (max-width: $mobile+px) {
+	// 	@media (max-width: $media-menu+px) {
 	// 		display: block;
 	// 	}
 	// }
@@ -47,12 +53,12 @@
 			top: 20px;
 			right: 20px;
 		}
-		@media (max-width: $mobile+px) {
+		@media (max-width: $media-menu+px) {
 			display: block;
 		}
 	}
 	&__container {
-		@media (max-width: $mobile+px) {
+		@media (max-width: $media-menu+px) {
 			height: 100%;
 			width: 100%;
 			position: fixed;
@@ -68,7 +74,7 @@
 	}
 // Menu slides from right
 	// &__container {
-	// 	@media (max-width: $mobile+px) {
+	// 	@media (max-width: $media-menu+px) {
 	// 		height: calc(100% - 60px);
 	// 		width: 300px;
 	// 		position: fixed;
@@ -88,7 +94,7 @@
 		justify-content: space-between;
 		align-items: center;
 		background-color: thistle;
-		@media (max-width: $mobile+px) {
+		@media (max-width: $media-menu+px) {
 			height: 100%;
 			overflow: auto;
 			flex-direction: column;
@@ -108,6 +114,7 @@
 		line-height: 50px;
 		padding: 0 20px;
 		font-size: 16px;
+		white-space: nowrap;
 		background-color: orange;
 		&:hover {
 			background-color: peachpuff;
@@ -127,9 +134,12 @@
 	visibility: hidden;
 	opacity: 0;
 	transition: all .2s;
-	@media (max-width: $mobile+px) {
+	@media (max-width: $media-menu+px) {
 		display: none;
 	}
+}
+.this-page {
+	pointer-events: none;
 }
 .menu-turn-off-area {
 	position: fixed;

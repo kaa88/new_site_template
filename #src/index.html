@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 @@include('_head.html', {
 	'title': 'New site',
 	'descr': 'Somesite',
@@ -9,44 +7,28 @@
 @@include('_noscript.html')
 
 <main class="page">
-	<header class="header">
-		<div class="header__container container">
-			<div class="header__logo">LOGO</div>
-			<nav class="header__menu menu">
-				<div class="menu__menu-open-btn"><span>MENU</span></div>
-				<div class="menu__container">
-				<!-- если меню вне header, добавить класс container -->
-					<div class="menu__menu-close-btn"><span>X</span></div>
-					<ul class="menu__items">
-						<li class="menu__item">
-							<a class="menu__link" href="#">Link</a>
-							<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
-						</li>
-						<li class="menu__item">
-							<a class="menu__link" href="#">Link</a>
-							<div class="menu__dropdown dropdown">drop</div>
-						</li>
-						<li class="menu__item">
-							<a class="menu__link" href="#">Link</a>
-							<div class="menu__dropdown dropdown">drop</div>
-						</li>
-					</ul>
-					<!-- <div class="menu__dropdown dropdown"></div> --> <!-- общее -->
-				</div>
-			</nav>
-		</div>
-	</header>
-	<div class="menu-turn-off-area"></div>
+	@@include('_header.html')
+	<script id="headerMenuOptions">
+		// пункты меню указываются в _header.html
+		// headerMenuOptions обязательно объявлять
+		let headerMenuOptions = null;
+		// or
+		// let headerMenuOptions = {
+		// 	links: ['home','packages','flights','trains','reach'],
+		// 	activeLink: 'home'
+		// }
+	</script>
 
 	<main class="content">
 
-		<!-- sections -->
+		<!-- content sections -->
 
 	</main>
 
-@@include('_footer.html')
+	@@include('_footer.html')
+	@@include('_modal.html')
 </main>
-@@include('_modal.html')
+
 @@include('_script.html')
 </body>
 </html>

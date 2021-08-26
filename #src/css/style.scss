@@ -19,9 +19,12 @@ $timer-modal: 0.8s;
 $timer-hover: 0.1s;
 
 
-// Media breakpoints:
-// 1400 768 620 550 500 400
+// Media breakpoints (desktop first):
 $mobile: 768;
+
+$media-header: $mobile;
+$media-header2: 390;
+$media-menu: $mobile;
 
 
 @import "_icons";
@@ -38,11 +41,8 @@ $mobile: 768;
 
 // Formulas
 
-// CSS:
-// width: calc(900 * 0.8 / 1200 * 100vw + 900 * 0.2 * 1px);
+// width: calc(900 / #{$media} * 100vw);
+// width: calc(900 * 0.8 / #{$media} * 100vw + 900 * 0.2 * 1px);
 
-// SCSS:
-// width: 55px / 1200px * 100vw; 
-// width: 23 / $md1 * 100vw;
-// новая версия sass: math.div(70, $mobile) * 100vw; (использовать с @use "sass:math";)
-// /
+// clip-path: polygon(x y, x y, x y, x y...); // отсчет от левого верхнего угла
+// clip-path: polygon(0px 0px, 50px 0px, 50px 50px, 0px 50px);

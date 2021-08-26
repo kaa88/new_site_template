@@ -1,6 +1,7 @@
 // Accordion
 function Accordion(elem = '.accordion', isOpened = false){
 	this.elem = document.querySelector(elem);
+	if (!this.elem) return;
 	this.items = this.elem.querySelectorAll('.accordion__item');
 	for (let i = 0; i < this.items.length; i++) {
 		this.items[i].itemMinHeight = this.items[i].querySelector('.accordion__item-header').offsetHeight;

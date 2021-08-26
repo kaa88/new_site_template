@@ -1,0 +1,38 @@
+<header class="header">
+	<div class="header__container container">
+		<div class="header__logo">LOGO</div>
+		<nav class="header__menu menu">
+			<div class="menu__menu-open-btn"><span>MENU</span></div>
+			<div class="menu__container">
+			<!-- если меню вне header, добавить класс container -->
+				<div class="menu__menu-close-btn"><span>X</span></div>
+				<ul class="menu__items">
+					<!-- список всех ссылок. сортирует js -->
+					<li class="menu__item" data-name="home">
+						<a class="menu__link" href="index.html">Home</a>
+						<div class="menu__dropdown dropdown">drop</div> <!-- drop поэлементно -->
+					</li>
+					<li class="menu__item" data-name="packages">
+						<a class="menu__link" href="packages.html">Packages</a>
+						<div class="menu__dropdown dropdown">drop</div>
+					</li>
+					<li class="menu__item" data-name="flights">
+						<a class="menu__link" href="#">Flights</a>
+						<div class="menu__dropdown dropdown">drop</div>
+					</li>
+					<li class="menu__item" data-name="trains">
+						<a class="menu__link" href="#">Trains</a>
+						<div class="menu__dropdown dropdown">drop</div>
+					</li>
+					<li class="menu__item" data-name="reach">
+						<a class="menu__link" href="#">Reach us</a>
+						<div class="menu__dropdown dropdown">drop</div>
+					</li>
+				</ul>
+				<!-- <div class="menu__dropdown dropdown"></div> --> <!-- drop общий -->
+			</div>
+		</nav>
+		<div class="header__print-address">address.com</div>
+	</div>
+</header>
+<div class="menu-turn-off-area"></div>

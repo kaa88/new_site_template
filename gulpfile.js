@@ -22,7 +22,7 @@ let path = {
 		scss: source_folder + '/css/**/*.scss',
 		js: source_folder + '/js/**/*.js',
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts_otf: source_folder + '/fonts/*.otf',
+		fonts_otf: source_folder + '/fonts/otf/*.otf',
 		fonts_ttf: source_folder + '/fonts/*.ttf'
 	},
 	clean: './' + project_folder + '/'
@@ -32,10 +32,13 @@ let {src, dest} = require('gulp'),
 	gulp = require('gulp'),
 	fs = require('fs'),
 	browsersync = require('browser-sync').create(),
-	fileinclude = require('gulp-file-include'),
 	del = require('del'),
+	rename = require('gulp-rename'),
+	fileinclude = require('gulp-file-include'),
 	scss = require('gulp-sass')(require('sass')),
 	autoprefixer = require('gulp-autoprefixer'),
+	clean_css = require('gulp-clean-css'),
+	uglify = require('gulp-uglify-es').default,
 	ttf2woff = require('gulp-ttf2woff'),
 	ttf2woff2 = require('gulp-ttf2woff2'),
 	fonter = require('gulp-fonter');
@@ -45,11 +48,16 @@ function cb() {}
 function clean() {
 	return del(path.clean);
 }
+
+// let html_menu_links = require('./include.json');
 function html() {
-	return src(path.src.html) // ввод
-		.pipe(fileinclude()) // действие
-		.pipe(dest(path.build.html)) // вывод
-		.pipe(browsersync.stream()); // обновление
+	return src(path.src.html)
+		.pipe(fileinclude({
+			indent: true,
+			// context: html_menu_links
+		}))
+		.pipe(dest(path.build.html))
+		.pipe(browsersync.stream());
 }
 function css() {
 	src(path.src.css_lib)
@@ -63,6 +71,11 @@ function css() {
 			cascade: true
 		}))
 		.pipe(dest(path.build.css))
+		.pipe(clean_css())
+		.pipe(rename({
+			extname: '.min.css'
+		}))
+		.pipe(dest(path.build.css))
 		.pipe(browsersync.stream());
 }
 function js() {
@@ -70,6 +83,11 @@ function js() {
 		.pipe(dest(path.build.js));
 	return src(path.src.js)
 		.pipe(fileinclude())
+		.pipe(dest(path.build.js))
+		.pipe(uglify())
+		.pipe(rename({
+			extname: '.min.js'
+		}))
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream());
 }
@@ -79,19 +97,18 @@ function images() {
 		.pipe(browsersync.stream());
 }
 function otf2ttf() {
-	return src([source_folder + '/fonts/*.otf'])
+	return src([source_folder + '/fonts/otf/*.otf'])
 		.pipe(fonter({
 			formats: ['ttf']
 		}))
 		.pipe(dest([source_folder + '/fonts/']));
 }
 function fonts() {
-	src(path.src.fonts)
-		.pipe(dest(path.build.fonts));
-	src(path.src.fonts)
-		.pipe(ttf2woff())
-		.pipe(dest(path.build.fonts));
 	return src(path.src.fonts)
+		.pipe(ttf2woff({
+			clone: true
+		}))
+		.pipe(dest(path.build.fonts))
 		.pipe(ttf2woff2())
 		.pipe(dest(path.build.fonts));
 }

@@ -1,71 +1,4 @@
-<!-- ШАБЛОНЫ -->
-
-<!-- Menu -->
-<nav class="menu">
-	<div class="menu__menu-open-btn"><span>MENU</span></div>
-	<div class="menu__container container">
-	<!-- удалить класс container, если меню внутри header -->
-		<div class="menu__menu-close-btn"><span>x</span></div>
-		<ul class="menu__items">
-			<li class="menu__item">
-				<a class="menu__link" href="#">Link</a>
-				<div class="menu__dropdown dropdown">drop</div> <!-- поэлементно -->
-			</li>
-			<li class="menu__item">
-				<a class="menu__link" href="#">Link</a>
-				<div class="menu__dropdown dropdown">drop</div>
-			</li>
-			<li class="menu__item">
-				<a class="menu__link" href="#">Link</a>
-				<div class="menu__dropdown dropdown">drop</div>
-			</li>
-			<li class="menu__item">
-				<a class="menu__link" href="#">Link</a>
-				<div class="menu__dropdown dropdown">drop</div>
-			</li>
-			<li class="menu__item">
-				<a class="menu__link" href="#">Link</a>
-				<div class="menu__dropdown dropdown">drop</div>
-			</li>
-		</ul>
-		<div class="menu__dropdown dropdown"></div> <!-- общее -->
-	</div>
-</nav>
-<div class="menu-turn-off-area"></div>
-
-
-<!-- Modal -->
-<div class="modal modal--login"> <!-- в скрипт передавать название класса после "--"    -->
-	<div class="modal__close-area"></div>
-	<div class="modal__window">
-		<div class="modal__close-button">x</div>
-		<div class="modal__content">
-			<p class="test-article">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error porro pariatur dolorem consequuntur totam, a itaque ipsam sed ducimus doloribus? Tempora voluptate ipsa tenetur delectus deleniti aliquam eius, dignissimos pariatur ipsum temporibus omnis deserunt impedit repellendus sapiente veritatis nulla minus perferendis quaerat illo eligendi neque architecto voluptatibus velit placeat alias!
-			</p>
-		</div>
-	</div>
-</div>
-
-
-<!-- Popup -->
-<div class="popup popup--login">
-	<div class="popup__back"></div>
-	<div class="popup__popup-content popup-content">
-		<div class="popup-content__header">
-			<p class="popup-content__title">Login</p>
-			<div class="popup-content__close"><span>x</span></div>
-		</div>
-		<form class="popup-content__pop-form pop-form" action="#">
-			<p class="pop-form__text">Enter login or email</p>
-			<input class="pop-form__input" type="text">
-			<p class="pop-form__text">Enter password</p>
-			<input class="pop-form__input" type="password">
-			<button class="pop-form__btn">GO</button>
-		</form>
-	</div>
-</div>
-
+<!-- ШАБЛОНЫ HTML ----------------------------------------->
 
 <!-- Accordion (css version) -->
 <div class="accordion">
@@ -94,7 +27,7 @@
 
 
 <!-- Accordion (js version) -->
-<div class="accordion accordion--1">
+<div class="content__accordion accordion">
 	<div class="accordion__item">
 		<div class="accordion__item-header">Header</div>
 		<div class="accordion__item-content">
@@ -114,44 +47,22 @@
 		</div>
 	</div>
 </div>
-<div class="accordion accordion--2">
-	<div class="accordion__item">
-		<div class="accordion__item-header">Header</div>
-		<div class="accordion__item-content">
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-		</div>
-	</div>
-	<div class="accordion__item">
-		<div class="accordion__item-header">Header</div>
-		<div class="accordion__item-content">
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-		</div>
-	</div>
-	<div class="accordion__item">
-		<div class="accordion__item-header">Header</div>
-		<div class="accordion__item-content">
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint animi perferendis earum cupiditate ea, nemo, debitis nisi quaerat adipisci! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-		</div>
-	</div>
-</div>
 
 
 <!-- Selection (dropdown list) -->
-<div class="selection selection--1">
-	<div class="selection__header">choose</div>
-	<ul class="selection__list">
-		<li class="selection__option">option 1</li>
-		<li class="selection__option">option 2</li>
-		<li class="selection__option">option 3</li>
-	</ul>
-</div>
-<div class="selection selection--2">
-	<div class="selection__header">choose</div>
-	<ul class="selection__list">
-		<li class="selection__option">option 1</li>
-		<li class="selection__option">option 2</li>
-		<li class="selection__option">option 3</li>
-	</ul>
+<div class="form__selection selection">
+	<div class="selection__header">
+		<span class="selection__header-text">Select...</span>
+		<span class="selection__header-icon"><i class="icon-play"></i></span>
+	</div>
+	<div class="selection__list-wrapper">
+		<ul class="selection__list">
+			<li class="selection__option">Opt 1</li>
+			<li class="selection__option">Opt 2</li>
+			<li class="selection__option">Opt 3</li>
+			<li class="selection__option">Opt 4</li>
+		</ul>
+	</div>
 </div>
 
 
@@ -179,3 +90,70 @@ Input range
 	<p class="test-counter test-counter--1">null</p>
 	<p class="test-counter test-counter--2">null</p>
 </div>
+
+
+
+<!-- ШАБЛОНЫ CSS ------------------------------------------>
+<style>
+
+/* Обводка текста вместо -webkit-text-stroke (scss) */
+	$tshc: #218DB7;
+	$tsho: 1.8px;
+	text-shadow: 
+		$tsho $tsho 0 $tshc, 
+		-$tsho -#{$tsho} 0 $tshc, 
+		-$tsho $tsho 0 $tshc,
+		$tsho -#{$tsho} 0 $tshc,
+		$tsho 0 0 $tshc, 
+		-$tsho 0 0 $tshc, 
+		0 $tsho 0 $tshc,
+		0 -#{$tsho} 0 $tshc,
+		0 0 2px $tshc;
+
+
+/* Стилизованный адаптивный ползунок прокрутки (scss) */
+	$sbc1: #949292;
+	$sbc2: #7A7979;
+	$sbc3: #AFA9A9;
+	&::-webkit-scrollbar-thumb {
+		border: solid 1px $sbc1;
+		background: linear-gradient(to bottom, 
+											$sbc1 4px,  
+											$sbc2 4px, 
+											$sbc2 5px, 
+											$sbc3 5px, 
+											$sbc3 6px, 
+											$sbc1 6px, 
+											$sbc1 7px,
+											$sbc2 7px, 
+											$sbc2 8px, 
+											$sbc3 8px, 
+											$sbc3 9px, 
+											$sbc1 9px, 
+											$sbc1 10px,
+											$sbc2 10px, 
+											$sbc2 11px, 
+											$sbc3 11px, 
+											$sbc3 12px, 
+											$sbc1 12px,  
+											$sbc1 calc(100% - 12px),
+											$sbc2 calc(100% - 12px), 
+											$sbc2 calc(100% - 11px), 
+											$sbc3 calc(100% - 11px), 
+											$sbc3 calc(100% - 10px), 
+											$sbc1 calc(100% - 10px), 
+											$sbc1 calc(100% - 9px),
+											$sbc2 calc(100% - 9px), 
+											$sbc2 calc(100% - 8px), 
+											$sbc3 calc(100% - 8px), 
+											$sbc3 calc(100% - 7px), 
+											$sbc1 calc(100% - 7px), 
+											$sbc1 calc(100% - 6px),
+											$sbc2 calc(100% - 6px), 
+											$sbc2 calc(100% - 5px), 
+											$sbc3 calc(100% - 5px), 
+											$sbc3 calc(100% - 4px), 
+											$sbc1 calc(100% - 4px));
+	}
+	
+</style>

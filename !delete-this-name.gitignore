@@ -4,6 +4,4 @@ temp
 /design
 
 # Gulp:
-*.json
-gulpfile
 node_modules

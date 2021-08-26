@@ -4,10 +4,10 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-@mixin text-nowrap-multi($num-of-lines) {
+@mixin text-nowrap-multi($lines) {
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: $num-of-lines;
+	-webkit-line-clamp: $lines;
 	overflow: hidden;
 }
 @mixin font($font_name, $file_name, $weight, $style) {

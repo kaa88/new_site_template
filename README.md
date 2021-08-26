@@ -1,9 +1,15 @@
-# New site template v2.01
+# New site template v2.02
 
 ### TO DO:
 - модал: добавить функцию вызова из модального окна еще одного
 - попап переработать
-- selection: див красивее, но на мобиле тег selection открывается в полноэкранное меню (попробовать совместить)
+- onload загрузчик (белый экран с анимацией или без)
+- input_range - доделать, разобраться в jq-ui.css (переделать на чистом js)
+- кнопка "наверх" в разных вариантах
+- scrolling navigation (mogo)
+- simple slider
+
+### Навыки:
 - js: избавиться от undefined значений; использовать const и let; объекты, прототипы
 - использовать стили для a:visited
 - для отмены работы ссылки (нпр на текущей странице) исп. в css - pointer-events: none;
@@ -13,11 +19,12 @@
 
 ---
 
-### Шаблоны элементов:
-- menu (html, css, js)
-- popup (html, css, js)
+### Готовые шаблоны:
+- header (html, css, js)
+- modal (html, css, js)
 - scroll_lock (js)
-- media_switcher (js)
+- transition_lock (js)
+- mobile_switcher (js)
 - random (js)
 - onload_counter (js)
 - input_checkbox (html, css)
@@ -25,24 +32,25 @@
 - accordion_js (html, css, js)
 - selection (html, css, js)
 
-##### Сделать:
-- input_range (html, css, js) - доделать, разобраться в jq-ui.css
-- accordion_jq c jq-ui ???
-- неактивная кнопка текущей страницы
-- кнопка "наверх" в разных вариантах
-- scrolling navigation (mogo)
-- simple slider
-
-
 ### Папки:
-#src (css, js, fonts, img, temp), design
+#src (css, js, fonts(otf), img, temp), design
 
 ### Комментарии по работе:
-После создания нового репозитория удалить название у файла .gitignore.
+- скопировать все файлы в новый репозиторий
+- в коммандной строке прописать "npm i" для установки gulp
+- удалить название у файла .gitignore
 
 ---
 
 ### Changelog:
+#### v2.02
+- gulp: плагины для минификации css и js
+- ссылки меню на каждой странице формируются скриптом
+- в меню добавлена функция, скрывающая header
+- переработан selection
+- изменены формулы, убран @use "sass:math"
+- мелкие исправления
+
 #### v2.01
 - изменены шаблоны (index.html[footer], script.js, scroll_lock, menu, mobile_switcher)
 - изменены формулы, добавлен @use "sass:math"

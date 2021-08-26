@@ -1,20 +1,20 @@
-// Selection
-function Selection(elem = '.selection'){
+function Selection(elem = '.selection', chooseFirstOpt = true){
 	this.elem = document.querySelector(elem);
-	this.header = this.elem.querySelector('.selection__header');
-	this.list = this.elem.querySelector('.selection__list');
+	if (!this.elem) return;
+	this.header = this.elem.querySelector('.selection__header-text');
+	this.list = this.elem.querySelector('.selection__list-wrapper');
 	this.options = this.elem.querySelectorAll('.selection__option');
-
-	this.listMinHeight = this.listMaxHeight = 0;
-	for (let i = 0; i < this.options.length; i++) {
-		this.listMaxHeight += this.options[i].offsetHeight;
-	}
-
-	this.header.addEventListener('click', this.toggleList.bind(this));
+	this.listMaxHeight = this.elem.querySelector('.selection__list').offsetHeight;
+	this.listMinHeight = 0;
+	this.header.parentElement.addEventListener('click', this.toggleList.bind(this));
 	for (let i = 0; i < this.options.length; i++) {
 		this.options[i].addEventListener('click', this.setToSelected);
 		this.options[i].addEventListener('click', this.selectItem.bind(this));
 	};
+	if (chooseFirstOpt == true) {
+		this.header.innerHTML = this.options[0].innerHTML;
+		this.options[0].classList.add('_selected');
+	}
 };
 Selection.prototype.toggleList = function(){
 	if (this.list.classList.contains('_active'))
@@ -37,7 +37,3 @@ Selection.prototype.selectItem = function(){
 	}
 	this.toggleList();
 };
-
-let selection1 = new Selection('.selection--1');
-let selection2 = new Selection('.selection--2');
-// /
