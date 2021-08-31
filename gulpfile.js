@@ -2,7 +2,7 @@ let project_folder = 'dist';
 let source_folder = '#src';
 let path = {
 	build: {
-		html: project_folder + '/',
+		root: project_folder + '/',
 		css: project_folder + '/css/',
 		js: project_folder + '/js/',
 		img: project_folder + '/img/',
@@ -15,7 +15,8 @@ let path = {
 		js: source_folder + '/js/*.js',
 		js_lib: source_folder + '/js/lib/*.js',
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts: source_folder + '/fonts/*.ttf'
+		fonts: source_folder + '/fonts/*.ttf',
+		php: source_folder + '/*.php'
 	},
 	watch: {
 		html: source_folder + '/**/*.html',
@@ -23,7 +24,8 @@ let path = {
 		js: source_folder + '/js/**/*.js',
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
 		fonts_otf: source_folder + '/fonts/otf/*.otf',
-		fonts_ttf: source_folder + '/fonts/*.ttf'
+		fonts_ttf: source_folder + '/fonts/*.ttf',
+		php: source_folder + '/*.php'
 	},
 	clean: './' + project_folder + '/'
 }
@@ -56,7 +58,7 @@ function html() {
 			indent: true,
 			// context: html_menu_links
 		}))
-		.pipe(dest(path.build.html))
+		.pipe(dest(path.build.root))
 		.pipe(browsersync.stream());
 }
 function css() {
@@ -91,17 +93,16 @@ function js() {
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream());
 }
+function php() {
+	src(path.src.php)
+		.pipe(dest(path.build.root));
+	return src([source_folder + '/phpmailer/**/*'])
+		.pipe(dest([project_folder + '/phpmailer/']));
+}
 function images() {
 	return src(path.src.img)
 		.pipe(dest(path.build.img))
 		.pipe(browsersync.stream());
-}
-function otf2ttf() {
-	return src([source_folder + '/fonts/otf/*.otf'])
-		.pipe(fonter({
-			formats: ['ttf']
-		}))
-		.pipe(dest([source_folder + '/fonts/']));
 }
 function fonts() {
 	return src(path.src.fonts)
@@ -111,6 +112,13 @@ function fonts() {
 		.pipe(dest(path.build.fonts))
 		.pipe(ttf2woff2())
 		.pipe(dest(path.build.fonts));
+}
+function otf2ttf() {
+	return src([source_folder + '/fonts/otf/*.otf'])
+		.pipe(fonter({
+			formats: ['ttf']
+		}))
+		.pipe(dest([source_folder + '/fonts/']));
 }
 function fontsStyle() {
 	let file_content = fs.readFileSync(source_folder + '/css/fontscript.scss');
@@ -135,6 +143,7 @@ function watchFiles() {
 	gulp.watch([path.watch.html], html);
 	gulp.watch([path.watch.scss], css);
 	gulp.watch([path.watch.js], js);
+	gulp.watch([path.watch.php], php);
 	gulp.watch([path.watch.img], images);
 	gulp.watch([path.watch.fonts_otf], otf2ttf);
 	gulp.watch([path.watch.fonts_ttf], fonts);
@@ -151,13 +160,14 @@ function browserSync() {
 	},3000)
 }
 
-let build = gulp.series(clean, otf2ttf, gulp.parallel(html, css, js, images, fonts), fontsStyle);
+let build = gulp.series(clean, otf2ttf, gulp.parallel(html, css, js, php, images, fonts), fontsStyle);
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fontsStyle = fontsStyle;
 exports.otf2ttf = otf2ttf;
 exports.fonts = fonts;
 exports.images = images;
+exports.php = php;
 exports.js = js;
 exports.css = css;
 exports.html = html;
