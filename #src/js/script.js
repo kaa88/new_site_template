@@ -25,7 +25,7 @@ let modal = {timeout: 800};
 // /
 
 //include('t/popup.js')
-//include('t/selection.js')
+//include('t/select.js')
 //include('t/accordion_js.js')
 //include('t/random.js')
 //include('t/onload_counter.js')

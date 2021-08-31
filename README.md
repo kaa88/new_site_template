@@ -1,6 +1,7 @@
 # New site template v2.02
 
 ### TO DO:
+- написать инструкцию к модулям какие параметры передавать
 - модал: добавить функцию вызова из модального окна еще одного
 - попап переработать
 - onload загрузчик (белый экран с анимацией или без)
@@ -30,7 +31,7 @@
 - input_checkbox (html, css)
 - accordion_css (html, css)
 - accordion_js (html, css, js)
-- selection (html, css, js)
+- select (html, css, js)
 
 ### Папки:
 #src (css, js, fonts(otf), img, temp), design
