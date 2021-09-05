@@ -1,8 +1,9 @@
 // Mobile switcher (turns off menu on window resize)
-let mobileSwitch = {switchWidth: 768};
+let mobileSwitchWidth = 768;
 @@include('t/mobile_switcher.js')
 mobileSwitch.do = function() { // place functions here to run
 	if (menu.element.classList.contains('_active')) menu.toggle();
+	hidingHeader.init();
 }
 // /
 
@@ -15,8 +16,9 @@ mobileSwitch.do = function() { // place functions here to run
 // /
 
 // Main menu
-let menu = {timeout: 1400};
-@@include('t/menu.js')
+let headerMenu = {timeout: 400};
+let hidingHeader = {hiddenPosition: -100};
+@@include('t/header.js')
 // /
 
 // Modal window
