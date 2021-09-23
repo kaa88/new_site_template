@@ -1,7 +1,7 @@
 // версия с разными размерами текста
 .accordion {
-	width: 300px;
-	border: solid 1px gray;
+	width: 200px;
+	border: solid 1px silver;
 	&__item {
 		height: 30px;
 		overflow: hidden;
@@ -14,6 +14,8 @@
 			font-weight: bold;
 			cursor: pointer;
 		}
-		&-content {}
+		&-content {
+			background-color: silver;
+		}
 	}
 }

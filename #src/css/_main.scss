@@ -1,5 +1,5 @@
 body {
-	background-color: $color-1;
+	background-color: #555;
 	font-family: Arial;
 	color: #222;
 	&._locked {overflow: hidden;}
@@ -28,10 +28,14 @@ body {
 // Content here
 
 
+
 @import "t/footer";
+@import "t/form";
 @import "t/modal";
+@import "t/select";
+@import "t/accordion_css";
+@import "t/accordion_js";
+@import "t/input_checkbox";
+@import "t/input_radio";
+@import "t/input_range";
 // @import "t/popup";
-// @import "t/select";
-// @import "t/accordion_css";
-// @import "t/accordion_js";
-// @import "t/input_checkbox";

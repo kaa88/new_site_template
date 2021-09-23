@@ -1,14 +1,13 @@
-# New site template v2.02
+# New site template v2.03
 
 ### TO DO:
-- написать инструкцию к модулям какие параметры передавать
 - модал: добавить функцию вызова из модального окна еще одного
 - попап переработать
-- onload загрузчик (белый экран с анимацией или без)
-- input_range - доделать, разобраться в jq-ui.css (переделать на чистом js)
+- page_loader загрузчик (белый экран с анимацией или без)
 - кнопка "наверх" в разных вариантах
 - scrolling navigation (mogo)
 - simple slider
+- сниппеты sublime (var, for)
 
 ### Навыки:
 - js: избавиться от undefined значений; использовать const и let; объекты, прототипы
@@ -22,19 +21,23 @@
 
 ### Готовые шаблоны:
 - header (html, css, js)
+- footer (html, css)
 - modal (html, css, js)
 - scroll_lock (js)
 - transition_lock (js)
 - mobile_switcher (js)
 - random (js)
 - onload_counter (js)
-- input_checkbox (html, css)
 - accordion_css (html, css)
 - accordion_js (html, css, js)
 - select (html, css, js)
+- input_checkbox (html, css)
+- input_radio (html, css)
+- input_range - (html, css, js)
+- form_to_email (html, css, js, php)
 
 ### Папки:
-#src (css, js, fonts(otf), img, temp), design
+#src (css, js, php, libs, fonts(otf), img, temp), design
 
 ### Комментарии по работе:
 - скопировать все файлы в новый репозиторий
@@ -44,6 +47,16 @@
 ---
 
 ### Changelog:
+#### v2.03
+- gulp: выделена папка libs, добавлена обработка файлов php и др.
+- добавлен плагин и скрипт php-mailer 
+- шаблон input_range на чистом js
+- шаблон input_radio
+- select поддержка форм, закрытие в любом месте
+- добавлен robots.txt
+- переработан режим тестирования
+- мелкие исправления
+
 #### v2.02
 - gulp: плагины для минификации css и js
 - ссылки меню на каждой странице формируются скриптом

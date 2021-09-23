@@ -5,27 +5,29 @@ let path = {
 		root: project_folder + '/',
 		css: project_folder + '/css/',
 		js: project_folder + '/js/',
+		php: project_folder + '/php/',
+		libs: project_folder + '/libs/',
 		img: project_folder + '/img/',
 		fonts: project_folder + '/fonts/'
 	},
 	src: {
 		html: [source_folder + '/*.html', '!' + source_folder + '/[_#]*.html'],
 		scss: source_folder + '/css/style.scss',
-		css_lib: source_folder + '/css/lib/*.css',
 		js: source_folder + '/js/*.js',
-		js_lib: source_folder + '/js/lib/*.js',
+		php: source_folder + '/php/**/*',
+		libs: source_folder + '/libs/**/*',
+		other: [source_folder + '/*.*', '!' + source_folder + '/*.html'],
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts: source_folder + '/fonts/*.ttf',
-		php: source_folder + '/*.php'
+		fonts: source_folder + '/fonts/*.ttf'
 	},
 	watch: {
 		html: source_folder + '/**/*.html',
 		scss: source_folder + '/css/**/*.scss',
 		js: source_folder + '/js/**/*.js',
+		php: source_folder + '/php/*.php',
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
 		fonts_otf: source_folder + '/fonts/otf/*.otf',
-		fonts_ttf: source_folder + '/fonts/*.ttf',
-		php: source_folder + '/*.php'
+		fonts_ttf: source_folder + '/fonts/*.ttf'
 	},
 	clean: './' + project_folder + '/'
 }
@@ -62,8 +64,6 @@ function html() {
 		.pipe(browsersync.stream());
 }
 function css() {
-	src(path.src.css_lib)
-		.pipe(dest(path.build.css));
 	return src(path.src.scss)
 		.pipe(scss({
 			outputStyle: 'expanded'
@@ -81,8 +81,6 @@ function css() {
 		.pipe(browsersync.stream());
 }
 function js() {
-	src(path.src.js_lib)
-		.pipe(dest(path.build.js));
 	return src(path.src.js)
 		.pipe(fileinclude())
 		.pipe(dest(path.build.js))
@@ -94,10 +92,17 @@ function js() {
 		.pipe(browsersync.stream());
 }
 function php() {
-	src(path.src.php)
+	return src(path.src.php)
+		.pipe(dest(path.build.php))
+		.pipe(browsersync.stream());
+}
+function libs() {
+	return src(path.src.libs)
+		.pipe(dest(path.build.libs));
+}
+function otherFiles() {
+	return src(path.src.other)
 		.pipe(dest(path.build.root));
-	return src([source_folder + '/phpmailer/**/*'])
-		.pipe(dest([project_folder + '/phpmailer/']));
 }
 function images() {
 	return src(path.src.img)
@@ -141,7 +146,7 @@ function fontsStyle() {
 }
 function watchFiles() {
 	gulp.watch([path.watch.html], html);
-	gulp.watch([path.watch.scss], css);
+	gulp.watch([path.watch.scss], css).on('change', browsersync.reload);
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.php], php);
 	gulp.watch([path.watch.img], images);
@@ -160,13 +165,20 @@ function browserSync() {
 	},3000)
 }
 
-let build = gulp.series(clean, otf2ttf, gulp.parallel(html, css, js, php, images, fonts), fontsStyle);
+let build = gulp.series(
+	clean, 
+	otf2ttf, 
+	gulp.parallel(html, css, js, php, libs, otherFiles, images, fonts), 
+	fontsStyle
+);
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.fontsStyle = fontsStyle;
 exports.otf2ttf = otf2ttf;
 exports.fonts = fonts;
 exports.images = images;
+exports.otherFiles = otherFiles;
+exports.libs = libs;
 exports.php = php;
 exports.js = js;
 exports.css = css;

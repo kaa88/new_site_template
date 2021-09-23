@@ -1,6 +1,6 @@
 // простая версия с фиксированными размерами
-.accordion {
-	width: 300px;
+.css-accordion {
+	width: 200px;
 	border: solid 1px gray;
 	input {
 		display: none;
@@ -23,7 +23,7 @@
 		}
 		&-content {
 			display: block;
-			height: 100%;
+			height: calc(100% - 30px);
 			overflow-y: scroll;
 			background-color: silver;
 		}

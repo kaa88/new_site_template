@@ -9,14 +9,11 @@
 <main class="page">
 	@@include('_header.html')
 	<script id="headerMenuOptions">
-		// пункты меню указываются в _header.html
-		// headerMenuOptions обязательно объявлять
-		let headerMenuOptions = null;
-		// or
-		// let headerMenuOptions = {
+		// список пунктов меню в _header.html
+		let headerMenuOptions = { // всегда объявлять
 		// 	links: ['home','packages','flights','trains','reach'],
 		// 	activeLink: 'home'
-		// }
+		}
 	</script>
 
 	<main class="content">
@@ -27,8 +24,9 @@
 
 	@@include('_footer.html')
 	@@include('_modal.html')
+	
+	<!-- <div class="test-block">@@include('#templates.html')</div> -->
 </main>
-
 @@include('_script.html')
 </body>
 </html>

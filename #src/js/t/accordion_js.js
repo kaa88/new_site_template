@@ -1,6 +1,6 @@
-// Accordion
-function Accordion(elem = '.accordion', isOpened = false){
-	this.elem = document.querySelector(elem);
+function Accordion(elem, isOpened = false){
+	this.elemName = elem ? '.' + elem : '.accordion';
+	this.elem = document.querySelector(this.elemName);
 	if (!this.elem) return;
 	this.items = this.elem.querySelectorAll('.accordion__item');
 	for (let i = 0; i < this.items.length; i++) {
@@ -19,7 +19,3 @@ Accordion.prototype.closeItem = function(){
 Accordion.prototype.openItem = function(event, item = this){
 	item.style.height = item.itemMaxHeight + 'px';
 };
-
-let accordion1 = new Accordion('.accordion--1', true);
-let accordion2 = new Accordion('.accordion--2');
-// /
