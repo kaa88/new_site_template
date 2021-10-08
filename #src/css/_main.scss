@@ -1,15 +1,11 @@
 body {
+	display: flex;
+	flex-direction: column;
 	background-color: #555;
 	font-family: Arial;
 	color: #222;
+	overflow-x: hidden;
 	&._locked {overflow: hidden;}
-}
-.page {
-	overflow: hidden; // устраняет случайные горизонтальные прокрутки (блокирует position: sticky)
-	display: flex; // footer всегда внизу
-	flex-direction: column;
-	justify-content: space-between;
-	min-height: 100vh;
 }
 .container {
 	width: 100%;

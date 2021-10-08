@@ -1,3 +1,9 @@
+// Onload inits (contains all funcs to run on body load)
+function onloadInits() {
+	hidingHeader.init();
+}
+// /
+
 // Mobile switcher (turns off menu on window resize)
 let mobileSwitchWidth = 768;
 @@include('t/mobile_switcher.js')
@@ -16,7 +22,7 @@ mobileSwitch.do = function() { // place functions here to run
 // /
 
 // Main menu
-let headerMenu = {timeout: 400};
+let headerMenu = {timeout: 500};
 let hidingHeader = {hiddenPosition: -100};
 @@include('t/header.js')
 // /
@@ -78,4 +84,31 @@ let iRange2 = new InputRange({
 
 // Popup
 //include('t/popup.js')
+// /
+
+// Swiper
+// const swiper = new Swiper('.swiper', {
+// 	navigation: {
+// 		nextEl: '.swiper-button-next',
+// 		prevEl: '.swiper-button-prev',
+// 	},
+// 	loop: true,
+// 	loopAdditionalSlides: 4,
+// 	speed: 800,
+// 	effect: 'cube',
+// 	cubeEffect: {
+// 		shadow: false,
+// 		slideShadows: false,
+// 	},
+// 	autoplay: {
+// 		delay: 4000,
+// 		disableOnInteraction: false,
+// 		pauseOnMouseEnter: true
+// 	},
+// 	breakpoints: {
+// 		600: {
+// 			slidesPerView: 'auto'
+// 		}
+// 	}
+// });
 // /

@@ -3,30 +3,28 @@
 	'descr': 'Somesite',
 	'robots': 'noindex, nofollow',
 })
-<body>
+<body onload="onloadInits()">
 @@include('_noscript.html')
 
-<main class="page">
-	@@include('_header.html')
-	<script id="headerMenuOptions">
-		// список пунктов меню в _header.html
-		let headerMenuOptions = { // всегда объявлять
-		// 	links: ['home','packages','flights','trains','reach'],
-		// 	activeLink: 'home'
-		}
-	</script>
+@@include('_header.html')
+<script id="headerMenuOptions">
+	// список пунктов меню в _header.html
+	let headerMenuOptions = { // всегда объявлять
+	// 	links: ['home','packages','flights','trains','reach'],
+	// 	activeLink: 'home'
+	}
+</script>
 
-	<main class="content">
+<main class="content">
 
-		<!-- content sections -->
+	<!-- content sections -->
 
-	</main>
-
-	@@include('_footer.html')
-	@@include('_modal.html')
-	
-	<!-- <div class="test-block">@@include('#templates.html')</div> -->
 </main>
+
+@@include('_footer.html')
+@@include('_modal.html')
+	
+<!-- <div class="test-block">@@include('#templates.html')</div> -->
 @@include('_script.html')
 </body>
 </html>

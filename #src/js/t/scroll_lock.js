@@ -1,7 +1,7 @@
 let scrollLock = {
 	scrollbarWidth: 0,
 	initializer: null,
-	items: document.querySelector('.page').children
+	items: document.body.children
 };
 for (let i = 0; i < scrollLock.items.length; i++) {
 	scrollLock.items[i].basePadding = Number(getComputedStyle(scrollLock.items[i]).paddingRight.slice(0,-2));

@@ -1,5 +1,5 @@
 headerMenu.element = document.querySelector('.menu__container');
-headerMenu.buttons = document.querySelectorAll('.menu__menu-open-btn, .menu__menu-close-btn, .menu-turn-off-area');
+headerMenu.buttons = document.querySelectorAll('.menu-open-btn, .menu-close-btn, .menu-turn-off-area');
 headerMenu.init = function() {
 	let newMenu = document.getElementsByClassName('menu__items')[0];
 	let options = headerMenuOptions;
@@ -33,6 +33,8 @@ headerMenu.toggle = function() {
 		o.buttons[i].classList.toggle('_active');
 	}
 	scrollLock.toggle(o.element, o.timeout);
+	if (o.element.classList.contains('_active'))
+		hidingHeader.scroll(0, true);
 }
 for (let i = 0; i < headerMenu.buttons.length; i++) {
 	headerMenu.buttons[i].addEventListener('click', headerMenu.toggle);
@@ -43,20 +45,30 @@ headerMenu.init();
 hidingHeader.elem = document.querySelector('.header');
 hidingHeader.visiblePosition = Number(getComputedStyle(hidingHeader.elem).top.slice(0,-2));
 
-hidingHeader.scroll = function() {
+hidingHeader.scroll = function(e, click) {
 	if (window.innerWidth > mobileSwitchWidth) return;
 	let o = hidingHeader;
-	o.currentPos -= pageYOffset - o.pagePrevPos;
-	o.pagePrevPos = pageYOffset;
+	if (click) {
+		o.elem.style.top = o.visiblePosition + 'px';
+		o.currentPos = o.visiblePosition;
+		return;
+	}
+	// lazyLoadFix check
+	if ((pageYOffset < (o.Y + o.diff) && o.Y > o.YPrev) || (pageYOffset > (o.Y + o.diff) && o.Y < o.YPrev)) {
+		o.diff = pageYOffset - o.Y;
+	}
+	o.YPrev = o.Y;
+	o.Y = pageYOffset - o.diff;
+	o.currentPos -= o.Y - o.YPrev;
 	if (o.currentPos > o.visiblePosition) o.currentPos = o.visiblePosition;
 	if (o.currentPos < o.hiddenPosition) o.currentPos = o.hiddenPosition;
 	o.elem.style.top = o.currentPos + 'px';
 }
 hidingHeader.init = function() {
 	let o = hidingHeader;
+	o.Y = o.YPrev = pageYOffset;
+	o.diff = 0;
 	o.currentPos = o.visiblePosition;
-	o.pagePrevPos = pageYOffset;
 	o.elem.style.top = o.currentPos + 'px';
+	window.addEventListener('scroll', hidingHeader.scroll);
 }
-window.addEventListener('scroll', hidingHeader.scroll);
-hidingHeader.init();
