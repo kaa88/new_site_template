@@ -1,6 +1,7 @@
 # New site template v2.04
 
 ### TO DO:
+- video player сделать конструктор
 - в форму добавить отправку по Enter (или оно уже есть по-умолчанию в кнопке submit???)
 - для портфолио сделать скрипт об успешном завершении без php
 - модал: добавить функцию вызова из модального окна еще одного
@@ -10,6 +11,14 @@
 - scrolling navigation (mogo)
 - simple slider
 - сниппеты sublime (var, for)
+
+НОВОЕ ПОРТФОЛИО:
+- фоновая картинка с параллаксом
+- профиль инфо приклеено слева как aside
+- работы крупнее раза в 2-3
+- описание появляется при ховере с какой-нибудь интересной анимацией
+- убрать картинки html css js
+- load-анимация (возможно раскрывающиеся шторки на весь экран с приветствием)
 
 ### Навыки:
 - js: избавиться от undefined значений; использовать const и let; объекты, прототипы
@@ -36,7 +45,9 @@
 - input_checkbox (html, css)
 - input_radio (html, css)
 - input_range - (html, css, js)
+- input_range_jsv - (html, css, js)
 - form_to_email (html, css, js, php)
+- video_player (html, css, js) - сделать конструктор
 
 ### Папки:
 #src (css, js, php, libs, fonts(otf), img, temp), design
@@ -49,6 +60,11 @@
 ---
 
 ### Changelog:
+#### v2.05
+- модуль video_player
+- light версия input_range: использует один элемент "input", оформление через css певдоклассы, закрашивание прогресса трека через javascript, поддерживает вертикальную ориентацию
+- onloadInits заменен на window.onload в каждом модуле
+
 #### v2.04
 - обновление шаблона header (css + lazyload bug)
 - script.js добавлен шаблон swiper, onloadInits

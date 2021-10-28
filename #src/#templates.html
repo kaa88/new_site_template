@@ -1,5 +1,19 @@
 <!-- ШАБЛОНЫ HTML ----------------------------------------->
 
+<!-- Swiper -->
+<div class="banner__slider">
+	<div class="swiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide"></div>
+			<div class="swiper-slide"></div>
+			<div class="swiper-slide"></div>
+		</div>
+	</div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+</div>
+
+
 <!-- Accordion (css version) -->
 <div class="css-accordion">
 	<input type="radio" name="accordion-radio" id="accordion-radio-1" checked>
@@ -102,11 +116,14 @@
 </div>
 
 
-<!-- Input_range -->
-<div class="elem1__input-range input-range" name="range"></div>
-<p class="elem1__ir-result"></p>
+<!-- Input_range (simple) -->
+<div class="input-range">
+	<input type="range" name="range" value="20" min="0" max="100" step="1">
+</div>
 
-<div class="form__input-range input-range" name="range"></div>
+
+<!-- Input_range_2 (js version with 1 or 2 thumbs) -->
+<div class="form__input-range-jsv input-range-jsv" name="range"></div>
 <input class="form__ir-result1" type="number">
 <input class="form__ir-result2" type="number">
 
@@ -116,6 +133,29 @@
 	<button class="test-button" onclick="onloadCounter1.startCounter(); onloadCounter2.startCounter()">Onload counter</button>
 	<p class="test-counter test-counter--1">0</p>
 	<p class="test-counter test-counter--2">0</p>
+</div>
+
+
+<!-- Video player -->
+<div class="video-player">
+	<video src="videosample.mp4"></video>
+	<div class="video-controls">
+		<div class="video-controls__area">
+			<div class="video-controls__area-btn">P</div>
+		</div>
+		<div class="video-controls__panel">
+			<button class="video-controls__play-pause">P</button>
+			<div class="video-controls__seek-bar">
+				<input type="range" value="0">
+			</div>
+			<div class="video-controls__volume">
+				<div class="video-controls__volume-bar">
+					<input type="range" value="70">
+				</div>
+				<button class="video-controls__volume-btn">V</i></button>
+			</div>
+		</div>
+	</div>
 </div>
 
 

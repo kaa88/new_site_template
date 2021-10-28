@@ -1,9 +1,3 @@
-// Onload inits (contains all funcs to run on body load)
-function onloadInits() {
-	hidingHeader.init();
-}
-// /
-
 // Mobile switcher (turns off menu on window resize)
 let mobileSwitchWidth = 768;
 @@include('t/mobile_switcher.js')
@@ -56,24 +50,28 @@ let accordion = new Accordion('js__accordion', true);
 @@include('t/onload_counter.js')
 // /
 
-// Input range
+// Input range simple (script for input's track gradient filling)
 // Params: {}
-// - elem - element name (default = 'input-range')
+// - elemName - element name (default = 'input-range')
+// - trackColorStart - color of the left track part (default = 'var(--track-color-start)')
+// - trackColorEnd - color of the right track part (default = 'var(--track-color-end)')
+@@include('t/input_range.js')
+iRange_simple = new InputRange({
+	elemName: 'input-range'
+});
+// /
+
+// Input range (full js version, may have 2 thumbs, no vertical orientation)
+// Params: {}
+// - elem - element name (default = 'input-range-jsv')
 //	- start - track scale start (default = 0)
 // - end - track scale end (default = 100)
 // - thumbs [] - thumbs base position (default = [0])
 // - bubble - enable bubble (default = false)
 // - results [] - result element (no default)
-@@include('t/input_range.js')
-let iRange1 = new InputRange({
-	elem: 'elem1__input-range',
-	start: 20,
-	end: 200,
-	thumbs: 100,
-	results: 'elem1__ir-result'
-});
-let iRange2 = new InputRange({
-	elem: 'form__input-range',
+@@include('t/input_range_jsv.js')
+let iRangeJSV = new InputRangeJsv({
+	elem: 'form__input-range-jsv',
 	start: 200,
 	end: 492,
 	thumbs: [250, 400],
@@ -82,16 +80,13 @@ let iRange2 = new InputRange({
 });
 // /
 
-// Popup
-//include('t/popup.js')
-// /
-
 // Swiper
 // const swiper = new Swiper('.swiper', {
 // 	navigation: {
 // 		nextEl: '.swiper-button-next',
-// 		prevEl: '.swiper-button-prev',
+// 		prevEl: '.swiper-button-prev'
 // 	},
+//		spaceBetween: 50,
 // 	loop: true,
 // 	loopAdditionalSlides: 4,
 // 	speed: 800,
@@ -111,4 +106,19 @@ let iRange2 = new InputRange({
 // 		}
 // 	}
 // });
+// /
+
+// Video player
+@@include('t/video_player.js')
+// Include "Input range simple" script if track colored progress is required.
+// iRange_seek = new InputRange({
+// 	elemName: 'video-controls__seek-bar'
+// });
+// iRange_volume = new InputRange({
+// 	elemName: 'video-controls__volume-bar'
+// });
+// /
+
+// Popup
+//include('t/popup.js')
 // /

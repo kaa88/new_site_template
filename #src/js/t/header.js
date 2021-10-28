@@ -72,3 +72,4 @@ hidingHeader.init = function() {
 	o.elem.style.top = o.currentPos + 'px';
 	window.addEventListener('scroll', hidingHeader.scroll);
 }
+window.addEventListener('load', hidingHeader.init);

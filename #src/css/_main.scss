@@ -4,7 +4,7 @@ body {
 	background-color: #555;
 	font-family: Arial;
 	color: #222;
-	overflow-x: hidden;
+	// overflow-x: hidden;
 	&._locked {overflow: hidden;}
 }
 .container {
@@ -34,4 +34,6 @@ body {
 @import "t/input_checkbox";
 @import "t/input_radio";
 @import "t/input_range";
+@import "t/input_range_jsv";
+@import "t/video_player";
 // @import "t/popup";

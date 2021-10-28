@@ -53,10 +53,10 @@
 	}
 	&__item {
 		position: relative;
-		&:hover .dropdown {
-			visibility: visible;
-			opacity: 1;
-		}
+		// &:hover .dropdown {
+		// 	visibility: visible;
+		// 	opacity: 1;
+		// }
 	}
 	&__link, &__link:visited {
 		display: inline-block;
