@@ -5,12 +5,18 @@
 // Colors
 $color-1: #fff;
 $color-2: #000;
+// $color-3: #7F0037;
+$color-3: #A30046;
+$color-4: #313BA9;
+$color-5: #3AA171;
+$color-6: rgba(0, 0, 0, 0.12);
 
 
 // Fonts
 // Roboto
 @import "fontscript";
-$font-rob: Roboto, Arial, sans-serif;
+$rbm: RobotoMono, monospace;
+$ops: OpenSans, Arial, sans-serif;
 
 
 // Transitions
@@ -21,14 +27,19 @@ $timer-select: 0.2s;
 
 
 // Media breakpoints (desktop first):
-$mobile: 768;
+// 1275
+// 700
+// 537
+// 480
 
-$media-header: $mobile;
-$media-header2: 390;
-$media-menu: $mobile;
+// $mobile: 768;
 
-$media-footer: 850;
-$media-footer2: 530;
+// $media-header: $mobile;
+// $media-header2: 390;
+// $media-menu: $mobile;
+
+// $media-footer: 850;
+// $media-footer2: 530;
 
 
 @import "_icons";
@@ -36,7 +47,10 @@ $media-footer2: 530;
 @import "_print";
 
 // TO DO:
-// -
+// фон клава!
+// улучшить дизайн окон описания работ (м.б. раскрывающийся текст)
+// карусель скилов
+// hello world background
 
 
 // Дополнительно

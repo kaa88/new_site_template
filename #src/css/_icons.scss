@@ -20,8 +20,20 @@ i {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.icon-arrow:before {
-	content: "\e900";
+.icon-mail:before {
+  content: "\ea83";
+}
+.icon-whatsapp:before {
+  content: "\ea93";
+}
+.icon-vk:before {
+  content: "\ea98";
+}
+.icon-github:before {
+  content: "\eab0";
+}
+.icon-skype:before {
+  content: "\eac5";
 }
 
 // /
