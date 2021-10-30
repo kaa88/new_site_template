@@ -1,8 +1,7 @@
-# New site template v2.04
+# New site template v2.05
 
 ### TO DO:
 - video player сделать конструктор
-- в форму добавить отправку по Enter (или оно уже есть по-умолчанию в кнопке submit???)
 - для портфолио сделать скрипт об успешном завершении без php
 - модал: добавить функцию вызова из модального окна еще одного
 - попап переработать
@@ -50,7 +49,7 @@
 - video_player (html, css, js) - сделать конструктор
 
 ### Папки:
-#src (css, js, php, libs, fonts(otf), img, temp), design
+#src (css, js, php, libs, fonts(otf), img, other_stuff, temp), design
 
 ### Комментарии по работе:
 - скопировать все файлы в новый репозиторий
@@ -64,6 +63,7 @@
 - модуль video_player
 - light версия input_range: использует один элемент "input", оформление через css певдоклассы, закрашивание прогресса трека через javascript, поддерживает вертикальную ориентацию
 - onloadInits заменен на window.onload в каждом модуле
+- gulpfile.js и папка other_stuff
 
 #### v2.04
 - обновление шаблона header (css + lazyload bug)

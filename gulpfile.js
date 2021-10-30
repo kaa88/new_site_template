@@ -16,9 +16,9 @@ let path = {
 		js: source_folder + '/js/*.js',
 		php: source_folder + '/php/**/*',
 		libs: source_folder + '/libs/**/*',
-		other: [source_folder + '/*.*', '!' + source_folder + '/*.html'],
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts: source_folder + '/fonts/*.ttf'
+		fonts: source_folder + '/fonts/*.ttf',
+		other_stuff: source_folder + '/other_stuff/**/*'
 	},
 	watch: {
 		html: source_folder + '/**/*.html',
@@ -100,8 +100,8 @@ function libs() {
 	return src(path.src.libs)
 		.pipe(dest(path.build.libs));
 }
-function otherFiles() {
-	return src(path.src.other)
+function otherStuff() {
+	return src(path.src.other_stuff)
 		.pipe(dest(path.build.root));
 }
 function images() {
@@ -168,7 +168,7 @@ function browserSync() {
 let build = gulp.series(
 	clean, 
 	otf2ttf, 
-	gulp.parallel(html, css, js, php, libs, otherFiles, images, fonts), 
+	gulp.parallel(html, css, js, php, libs, otherStuff, images, fonts), 
 	fontsStyle
 );
 let watch = gulp.parallel(build, watchFiles, browserSync);
@@ -177,7 +177,7 @@ exports.fontsStyle = fontsStyle;
 exports.otf2ttf = otf2ttf;
 exports.fonts = fonts;
 exports.images = images;
-exports.otherFiles = otherFiles;
+exports.otherStuff = otherStuff;
 exports.libs = libs;
 exports.php = php;
 exports.js = js;
