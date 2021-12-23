@@ -28,13 +28,27 @@ headerMenu.toggle = function() {
 	let o = headerMenu;
 	if (transitionLock.check(o.timeout)) return;
 	
-	o.element.classList.toggle('_active');
-	for (let i = 0; i < o.buttons.length; i++) {
-		o.buttons[i].classList.toggle('_active');
+	if (o.element.classList.contains('_active')) {
+		o.element.classList.remove('_active');
+		for (let i = 0; i < o.buttons.length; i++) {
+			o.buttons[i].classList.remove('_active');
+		}
+		scrollLock.unlock(o.element, o.timeout);
 	}
-	scrollLock.toggle(o.element, o.timeout);
-	if (o.element.classList.contains('_active'))
+	else {
+		o.element.classList.add('_active');
+		for (let i = 0; i < o.buttons.length; i++) {
+			o.buttons[i].classList.add('_active');
+		}
+		scrollLock.lock(o.element);
 		hidingHeader.scroll(0, true);
+	}
+	
+	//new
+	if (submenu.list.classList.contains('_visible')) {
+		submenu.link.classList.remove('_active');
+		submenu.list.classList.remove('_visible');
+	}
 }
 for (let i = 0; i < headerMenu.buttons.length; i++) {
 	headerMenu.buttons[i].addEventListener('click', headerMenu.toggle);
@@ -42,8 +56,9 @@ for (let i = 0; i < headerMenu.buttons.length; i++) {
 headerMenu.init();
 
 // Hiding header
-hidingHeader.elem = document.querySelector('.header');
+let hidingHeader = {elem: document.querySelector('.header')};
 hidingHeader.visiblePosition = Number(getComputedStyle(hidingHeader.elem).top.slice(0,-2));
+hidingHeader.hiddenPosition = hidingHeader.elem.offsetHeight * -1;
 
 hidingHeader.scroll = function(e, click) {
 	if (window.innerWidth > mobileSwitchWidth) return;
@@ -73,3 +88,35 @@ hidingHeader.init = function() {
 	window.addEventListener('scroll', hidingHeader.scroll);
 }
 window.addEventListener('load', hidingHeader.init);
+
+// SubMenu
+// let submenu = {
+// 	link: document.querySelector('._drop-link'),
+// 	list: document.querySelector('.menu__dropdown'),
+// 	backButton: document.querySelector('.menu-back-btn'),
+// 	header: document.querySelector('.header')
+// }
+// submenu.open = function(e) {
+// 	e.preventDefault();
+// 	submenu.link.classList.add('_active');
+// 	submenu.list.classList.add('_visible');
+// }
+// submenu.close = function() {
+// 	submenu.link.classList.remove('_active');
+// 	submenu.list.classList.remove('_visible');
+// }
+// submenu.updateEvents = function() {
+// 	if (window.innerWidth <= mobileSwitchWidth) {
+// 		this.link.removeEventListener('mouseover', this.open);
+// 		this.header.removeEventListener('mouseleave', this.close);
+// 		this.link.addEventListener('click', this.open);
+// 	}
+// 	else {
+// 		this.link.addEventListener('mouseover', this.open);
+// 		this.header.addEventListener('mouseleave', this.close);
+// 		this.link.removeEventListener('click', this.open);
+// 	}
+// }
+// submenu.backButton.addEventListener('click', submenu.close);
+// submenu.updateEvents();
+// /

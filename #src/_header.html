@@ -1,6 +1,10 @@
 <header class="header">
 	<div class="header__container container">
-		<div class="header__logo">LOGO</div>
+		<div class="header__logo logo">
+			<a class="logo__link" href="index.html">
+				LOGO
+			</a>
+		</div>
 
 		<nav class="header__menu menu">
 			<div class="menu-open-btn"><span>MENU</span></div>
@@ -8,25 +12,22 @@
 			<!-- если меню вне header, добавить класс container -->
 				<div class="menu-close-btn"><span>X</span></div>
 				<ul class="menu__items">
-					<!-- список всех ссылок. сортирует js -->
+					<!-- список всех ссылок -->
 					<li class="menu__item" data-name="home">
 						<a class="menu__link" href="index.html">Home</a>
 					</li>
-					<li class="menu__item" data-name="packages">
-						<a class="menu__link" href="packages.html">Packages</a>
+					<li class="menu__item" data-name="products">
+						<a class="menu__link" href="#">Products</a>
 					</li>
-					<li class="menu__item" data-name="flights">
-						<a class="menu__link" href="#">Flights</a>
+					<li class="menu__item" data-name="about">
+						<a class="menu__link" href="#">About</a>
 					</li>
-					<li class="menu__item" data-name="trains">
-						<a class="menu__link" href="#">Trains</a>
-					</li>
-					<li class="menu__item" data-name="reach">
-						<a class="menu__link" href="#">Reach us</a>
+					<li class="menu__item" data-name="contacts">
+						<a class="menu__link" href="#">Contacts</a>
 					</li>
 				</ul>
 				<!-- drop общий тут или вставить в каждый пункт -->
-				<!-- <div class="menu__dropdown dropdown"></div> -->
+				<!-- <span class="menu__dropdown dropdown"></span> -->
 			</div>
 		</nav>
 

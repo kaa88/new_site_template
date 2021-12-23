@@ -15,8 +15,7 @@ videoPlayer.create = function() {
 	videoPlayer.hidingTimeout = 0;
 	if (!videoPlayer.window) return;
 
-	videoPlayer.window.addEventListener('mouseover', videoPlayer.showOnMouseover);
-	videoPlayer.window.addEventListener('mouseleave', videoPlayer.hideOnMouseleave);
+	videoPlayer.window.addEventListener('mousemove', videoPlayer.showOnMousemove);
 
 	videoPlayer.playArea.addEventListener("click", videoPlayer.play);
 	videoPlayer.playBtn.addEventListener("click", videoPlayer.play);
@@ -33,8 +32,7 @@ videoPlayer.create = function() {
 videoPlayer.destroy = function() {
 	if (!videoPlayer.window) return;
 
-	videoPlayer.window.removeEventListener('mouseover', videoPlayer.showOnMouseover);
-	videoPlayer.window.removeEventListener('mouseleave', videoPlayer.hideOnMouseleave);
+	videoPlayer.window.removeEventListener('mousemove', videoPlayer.showOnMousemove);
 
 	videoPlayer.playArea.removeEventListener("click", videoPlayer.play);
 	videoPlayer.playBtn.removeEventListener("click", videoPlayer.play);
@@ -48,32 +46,35 @@ videoPlayer.destroy = function() {
 	videoPlayer.volBar.removeEventListener("input", videoPlayer.setVolume);
 }
 
-videoPlayer.showOnMouseover = function() {
+videoPlayer.showOnMousemove = function() {
+	if (!videoPlayer.video) return;
 	videoPlayer.panel.classList.remove('_hidden');
 	clearTimeout(videoPlayer.hidingTimeout);
-}
-videoPlayer.hideOnMouseleave = function() {
-	if (!videoPlayer.video) return;
-	if (videoPlayer.video.paused == false && videoPlayer.seekBar.value != 0) {
+	if (videoPlayer.video.paused == false){// && videoPlayer.seekBar.value != 0) {
 		videoPlayer.hidingTimeout = setTimeout(function() {
 			if (videoPlayer.panel) videoPlayer.panel.classList.add('_hidden');
 		}, 2000);
 	}
 }
-videoPlayer.play = function(e, slider) {
+videoPlayer.play = function(e, command) {
 	if (!videoPlayer.video) return;
-	if (videoPlayer.video.paused == true) {
-		if (slider) return;
+	function play() {
 		videoPlayer.video.play();
-		// videoPlayer.playBtn.children[0].className = "icon-pause";
 		videoPlayer.playAreaBtn.classList.add('_hidden');
-		// banner_swiper.detachEvents();
-	} else {
-		videoPlayer.video.pause();
-		// videoPlayer.playBtn.children[0].className = "icon-play";
-		videoPlayer.playAreaBtn.classList.remove('_hidden');
-		// banner_swiper.attachEvents();
 	}
+	function pause() {
+		videoPlayer.video.pause();
+		videoPlayer.playAreaBtn.classList.remove('_hidden');
+	}
+	if (command) {
+		if (command == 'play') play();
+		if (command == 'pause') pause();
+	}
+	else {
+		if (videoPlayer.video.paused == true) play();
+		else pause();
+	}
+	videoPlayer.showOnMousemove();
 }
 videoPlayer.seekBarUpdate = function() {
 	let value = (100 / videoPlayer.video.duration) * videoPlayer.video.currentTime;

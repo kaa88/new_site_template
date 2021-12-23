@@ -1,10 +1,11 @@
+/* TO DO:
+
+*/
+
 @import "_reset";
 @import "_noscript";
 @import "_mixins";
-
-// Colors
-$color-1: #fff;
-$color-2: #000;
+@import "_icons";
 
 
 // Fonts
@@ -13,14 +14,25 @@ $color-2: #000;
 $font-rob: Roboto, Arial, sans-serif;
 
 
+// Colors
+$color-1: #fff;
+$color-2: #000;
+
+
 // Transitions
 $timer-hover: 0.1s;
 $timer-menu: 0.5s;
-$timer-modal: 0.8s;
+$timer-modal: 0.7s;
 $timer-select: 0.2s;
+$timer-slider: 0.5s;
 
 
-// Media breakpoints (desktop first):
+// Header heights
+$header-desktop-height: 70px;
+$header-mobile-height: 70px;
+
+
+// Media breakpoints
 $mobile: 768;
 
 $media-header: $mobile;
@@ -31,22 +43,6 @@ $media-footer: 850;
 $media-footer2: 530;
 
 
-@import "_icons";
+@import "_globs";
 @import "_main";
 @import "_print";
-
-// TO DO:
-// -
-
-
-// Дополнительно
-// $maxWidth: ; // для скалирования шрифтов? и retina
-
-
-// Formulas
-
-// width: calc(900 / #{$media} * 100vw);
-// width: calc(900 * 0.8 / #{$media} * 100vw + 900 * 0.2 * 1px);
-
-// clip-path: polygon(x y, x y, x y, x y...); // отсчет от левого верхнего угла
-// clip-path: polygon(0px 0px, 50px 0px, 50px 50px, 0px 50px);

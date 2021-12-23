@@ -5,26 +5,36 @@
 })
 <body>
 @@include('_noscript.html')
+<!-- @@include('_loadscreen.html') -->
 
 @@include('_header.html')
 <script id="headerMenuOptions">
 	// список пунктов меню в _header.html
-	let headerMenuOptions = { // всегда объявлять
-		// links: ['home','packages','flights','trains','reach'],
+	// наличие и порядок устанавливаются в массиве 'links'
+	// 'activeLink' добавляет класс 'this-page'
+	// переменную всегда объявлять
+	let headerMenuOptions = {
+		// links: ['home','products','about','contacts'],
 		// activeLink: 'home'
 	}
 </script>
 
-<main class="content">
+<main class="content --page-home">
 
-	<!-- content sections -->
-
+	<h1 class="g-h1">content sections</h1>
+	
 </main>
 
 @@include('_footer.html')
-@@include('_modal.html')
-	
+
+<section class="modal">
+	<!-- @@include('_modal-info.html') -->
+</section>
+
+<!-- @@include('_svg.html') -->
+
 <!-- <div class="test-block">@@include('#templates.html')</div> -->
+
 @@include('_script.html')
 </body>
 </html>

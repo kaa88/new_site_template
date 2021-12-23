@@ -39,6 +39,7 @@ function Select(elem, chooseFirstOpt = true){
 	else {
 		this.header.innerHTML = this.basicSelect[0].innerHTML;
 	}
+	this.onselect = function(selection){};
 };
 Select.prototype.hideList = function(e){
 	this.list.style.height = this.listMinHeight + 'px';
@@ -60,11 +61,13 @@ Select.prototype.setToSelected = function(e, that, i){
 	}
 	e.target.classList.add('_selected');
 	that.basicSelect[i+1].setAttribute('selected', 'true');
+	that.onselect(that.basicSelect[i+1].value);
 };
 Select.prototype.selectItem = function(){
 	for (let i = 0; i < this.options.length; i++) {
 		if (this.options[i].classList.contains('_selected')) {
 			this.header.innerHTML = this.options[i].innerHTML;
+			break;
 		}
 	}
 };

@@ -5,7 +5,11 @@
 	}
 	.container {padding: 0;}
 
-	.header__print-address {display: block;}
+	.header__print-address {
+		display: block;
+		font-family: Arial;
+		font-size: 26px;
+	}
 
 	.noscript-alert,
 	.menu,

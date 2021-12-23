@@ -1,39 +1,55 @@
 body {
-	display: flex;
-	flex-direction: column;
-	background-color: #555;
+	background-color: #BDE;
 	font-family: Arial;
 	color: #222;
-	// overflow-x: hidden;
+	// if header is fixed there are it's heights in style.scss
+	padding-top: $header-desktop-height;
+	@media (max-width: $mobile+px) {
+		padding-top: $header-mobile-height;
+	}
 	&._locked {overflow: hidden;}
 }
 .container {
 	width: 100%;
-	max-width: 900px;
+	max-width: 1200px;
 	min-width: calc(320px - (100vw - 100%));
 	margin: 0 auto;
-	padding: 0 10px;
+	padding: 0 15px;
 }
 
 @import "t/header";
 
+// #svg-map path {
+// 	transform: scale(0.00113378, 0.00192307);
+// }
+
 .content {
-	flex-grow: 1; // footer всегда внизу
+	// Example for block margins
+	// padding-top: 70px;
+	// padding-bottom: 80px;
+	// &__catalog {
+	// 	.--page-about & {margin-top: 67px;}
+	// 	.--page-activity & {margin-top: 10px;}
+	// }
+	// &__about {
+	// 	.--page-main & {margin-top: 110px;}
+	// 	.--page-about & {margin-top: 10px;}
+	// }
 }
 
-// Content here
+// Content styles here
 
 
 
 @import "t/footer";
-@import "t/form";
-@import "t/modal";
-@import "t/select";
-@import "t/accordion_css";
-@import "t/accordion_js";
-@import "t/input_checkbox";
-@import "t/input_radio";
-@import "t/input_range";
-@import "t/input_range_jsv";
-@import "t/video_player";
-// @import "t/popup";
+// @import "t/modal";
+// @import "t/form";
+// @import "t/select";
+// @import "t/accordion_css";
+// @import "t/accordion_js";
+// @import "t/input_checkbox";
+// @import "t/input_radio";
+// @import "t/input_range";
+// @import "t/input_range_jsv";
+// @import "t/video_player";
+// @import "t/loadscreen";

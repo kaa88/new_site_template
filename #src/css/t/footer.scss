@@ -1,59 +1,15 @@
 .footer {
 	background-color: silver;
 	&__container {}
-	&__top {
-		display: grid;
-		grid-template-columns: repeat(3, auto);
-		grid-gap: 30px;
-		justify-content: space-around;
-	}
-	&__title {
-		display: inline-block;
-		font-size: 25px;
-		margin-bottom: 12px;
-	}
+	&__top {}
 	&__bottom {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		column-gap: 20px;
+		column-gap: 40px;
 		flex-wrap: wrap;
 		text-align: center;
 	}
 	&__copy {}
 	&__author {}
-	@media (max-width: $media-footer+px) and (min-width: $media-footer2+1+px) {
-		&__top {
-			grid-template-columns: auto min-content;
-			grid-template-rows: auto;
-			margin-bottom: 30px;
-		}
-	}
-	@media (max-width: $media-footer2+px) {
-		&__top {
-			grid-template-columns: min-content;
-			margin-bottom: 40px;
-		}
-	}
-}
-.socials {
-	&__links {
-		font-size: 0;
-	}
-	&__link, &__link:visited {
-		display: inline-flex;
-		justify-content: center;
-		align-items: center;
-		width: 39px;
-		height: 39px;
-		border-radius: 50%;
-		background-color: #70B0DA;
-		margin-right: 9px;
-		i {
-			font-size: 23px;
-		}
-		&:hover {
-			background-color: orange;
-		}
-	}
 }

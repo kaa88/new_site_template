@@ -1,4 +1,4 @@
-// ICON FONT (IcoMoon)
+// Icon font (IcoMoon)
 @font-face {
 	font-family: 'iconfont';
 	src: url('../fonts/iconfont.woff2') format('woff2'),
@@ -19,9 +19,7 @@ i {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
+// Icons' codes
 .icon-arrow:before {
 	content: "\e900";
 }
-
-// /

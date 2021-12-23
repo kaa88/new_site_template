@@ -1,15 +1,16 @@
-# New site template v2.05
+# New site template v2.06
 
 ### TO DO:
+- раздел fonts в style.css для подключения шрифтов google fonts?
 - video player сделать конструктор
-- для портфолио сделать скрипт об успешном завершении без php
-- модал: добавить функцию вызова из модального окна еще одного
 - попап переработать
+- grid-slider
 - page_loader загрузчик (белый экран с анимацией или без)
 - кнопка "наверх" в разных вариантах
 - scrolling navigation (mogo)
 - simple slider
-- сниппеты sublime (var, for)
+- сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.snippet,
+	туда вставить код из snippet generator
 
 НОВОЕ ПОРТФОЛИО:
 - фоновая картинка с параллаксом
@@ -35,7 +36,7 @@
 - modal (html, css, js)
 - scroll_lock (js)
 - transition_lock (js)
-- mobile_switcher (js)
+- recounter (js)
 - random (js)
 - onload_counter (js)
 - accordion_css (html, css)
@@ -49,16 +50,40 @@
 - video_player (html, css, js) - сделать конструктор
 
 ### Папки:
-#src (css, js, php, libs, fonts(otf), img, other_stuff, temp), design
+design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 
 ### Комментарии по работе:
 - скопировать все файлы в новый репозиторий
 - в коммандной строке прописать "npm i" для установки gulp
 - удалить название у файла .gitignore
 
+### Правила:
+- использовать БЭМ нейминг
+- html делать отдельный файл для одинаковых модулей
+- css @media писать внутри каждого элемента
+- css ко всем ссылкам добавлять :visited
+- для retina изображения в src сохранять только в 2х (остальное нарежет gulp)
+
 ---
 
 ### Changelog:
+
+#### v2.06
+- gulp при сохранении копирует не все файлы, а измененный (кроме модулей)
+- gulp добавлена обработка картинок (ретинизация и сжатие)
+- mobileSwitch переделан в recounter, теперь поддерживает несколько брейкпоинтов
+- modal: добавлено открытие другого модала из предыдущего, общий закрывающий фон, ссылки вместо эвентов
+- добавлен loadscreen
+- video модуль: обновлены css js, new videosample
+- svg sprite module (html & reset.scss)
+- hiding header сам считает высоту хедера
+- new globs.scss
+- phone mask для формы
+- select добавлен вызов функции при выборе
+- scroll_lock переделан toggle
+- templates update
+- мелкие исправления
+
 #### v2.05
 - модуль video_player
 - light версия input_range: использует один элемент "input", оформление через css певдоклассы, закрашивание прогресса трека через javascript, поддерживает вертикальную ориентацию

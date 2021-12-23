@@ -1,4 +1,3 @@
-// Onload counter
 function OnloadCounter(goal = 1000, timeout = 1, resultElem = '.counter') { 
 	this.goal = goal; // number
 	this.timeout = timeout; // seconds
@@ -20,4 +19,3 @@ OnloadCounter.prototype.startCounter = function() {
 
 let onloadCounter1 = new OnloadCounter(51806, 1 , '.test-counter--1');
 let onloadCounter2 = new OnloadCounter(35704, 2 , '.test-counter--2');
-// /

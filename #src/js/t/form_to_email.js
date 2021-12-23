@@ -1,70 +1,106 @@
-let formToEmail = {};
+// To do: class names
+
+formToEmail.messages = {
+	ok: 'Your message has been sent',
+	okDemo: 'Your message has been sent (demo)',
+	error: 'Error when sending a message',
+	emptyReqField: 'Fill in the required fields, please',
+	incorrectName: 'Incorrect name',
+	incorrectPhone: 'Incorrect phone number',
+	incorrectEmail: 'Incorrect email',
+};
+formToEmail.inputs = document.querySelectorAll('form input');
+for (let i = 0; i < formToEmail.inputs.length; i++) {
+	formToEmail.inputs[i].addEventListener('input', function(){
+		this.classList.remove('_error');
+	})
+}
 formToEmail.send = async function(e) {
 	e.preventDefault();
-	let report = e.target.querySelector('.form-report');
+	let report = e.target.querySelector('.contact-form__report');
 	report.classList.remove('ok');
 	report.classList.remove('er');
-	if (this.check(e.target)) {
+
+	let errors = this.check(e.target);
+	if (errors[0]) {
 		report.classList.add('er');
-		report.innerHTML = 'Заполните необходимые поля';
+		if (errors[0] == 1)
+			report.innerHTML = errors[1][0];
+		else
+			report.innerHTML = this.messages.emptyReqField;
 		return;
 	}
+	else report.innerHTML = '';
+
 	let formData = new FormData(e.target);
 	formData.append('form', e.target.getAttribute('name'));
 	// Add elems that ignored by new FormData 
 	this.addCustomInputs(e, formData, 'input-range');
 	// /
 
-	this.log(formData); // check the correctness
+	this.log(formData); // Console log to check the correctness
 
 	e.target.classList.add('_sending');
-	let response = await fetch('php/sendmail.php', {
-		method: 'POST',
-		body: formData
-	});
+	let response;
+
+	if (this.demo) { // demo code
+		response = await new Promise(function(resolve, reject) {
+			setTimeout(() => resolve(), 2000);
+		});
+		response = {ok: true};
+	}
+	else {
+		response = await fetch('php/sendmail.php', {
+			method: 'POST',
+			body: formData
+		});
+	}
 	if (response.ok) {
 		report.classList.add('ok');
-		report.innerHTML = 'Сообщение отправлено';
-		this.clean(e.target);
+		if (this.demo) report.innerHTML = this.messages.okDemo;
+		else report.innerHTML = this.messages.ok;
+		this.clean(e.target, false);
 	}
 	else {
 		report.classList.add('er');
-		report.innerHTML = 'Ошибка при отправке формы';
+		report.innerHTML = this.messages.error;
 	}
 	e.target.classList.remove('_sending');
 }
 formToEmail.check = function(form) {
-	let errors = 0;
+	let errors = [];
 	let inputs = form.querySelectorAll('input, textarea');
 	for (let i = 0; i < inputs.length; i++) {
 		inputs[i].classList.remove('_error');
 		if (inputs[i].classList.contains('_req') && inputs[i].value == '') {
 			inputs[i].classList.add('_error');
-			errors++;
+			errors.push(this.messages.emptyReqField);
 			continue;
 		}
 		switch (inputs[i].getAttribute('name')) {
 			case 'name':
 				if (inputs[i].value && /^.{2,}$/.test(inputs[i].value) == false) {
 					inputs[i].classList.add('_error');
-					errors++;
+					errors.push(this.messages.incorrectName);
 				}
 				break;
 			case 'email':
 				if (inputs[i].value && /^[a-zA-Z-.]{3,}@[a-z]{3,}\.[a-z]{2,5}$/.test(inputs[i].value) == false) {
 					inputs[i].classList.add('_error');
-					errors++;
+					errors.push(this.messages.incorrectEmail);
 				}
 				break;
 			case 'phone':
-				if (inputs[i].value && /^[0-9]{10,}$/.test(inputs[i].value) == false) {
+				// if (inputs[i].value && /^[0-9]{10,}$/.test(inputs[i].value) == false) {
+				if (inputs[i].value && /^\+\d\s\(\d{3}\)\s\d{3}(-\d\d){2}$/.test(inputs[i].value) == false) {
 					inputs[i].classList.add('_error');
-					errors++;
+					errors.push(this.messages.incorrectPhone);
 				}
 				break;
 		}
 	}
-	return errors;
+	// console.log(errors);
+	return [errors.length, errors];
 }
 formToEmail.log = function(formData) {
 	for (let pair of formData.entries()) {
@@ -77,13 +113,54 @@ formToEmail.addCustomInputs = function(e, form, elemName) {
 		form.append(elem[i].getAttribute('name'), elem[i].getAttribute('value'));
 	}
 }
-formToEmail.clean = function(form) {
+formToEmail.clean = function(form, all = true) {
+	if (!form) return;
 	let inputs = form.querySelectorAll('input, textarea');
-	for (var i = 0; i < inputs.length; i++) {
+	for (let i = 0; i < inputs.length; i++) {
 		if (inputs[i].hasAttribute('name'))
 			inputs[i].value = '';
+		if (all) inputs[i].classList.remove('_error');
+	}
+	if (all) {
+		let report = form.querySelector('.contact-form__report');
+		report.classList.remove('ok');
+		report.classList.remove('er');
+		report.innerHTML = '';
 	}
 }
 for (let i = 0; i < document.forms.length; i++) {
 	document.forms[i].addEventListener('submit', formToEmail.send.bind(formToEmail));
+}
+
+// Phone mask
+formToEmail.editPhoneByMask = function(event) {
+	event.keyCode && (keyCode = event.keyCode);
+	var pos = this.selectionStart;
+	if (pos < 3) event.preventDefault();
+	var matrix = "+7 (___) ___-__-__",
+		i = 0,
+		def = matrix.replace(/\D/g, ""),
+		val = this.value.replace(/\D/g, ""),
+		new_value = matrix.replace(/[_\d]/g, function(a) {
+			return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+		});
+	i = new_value.indexOf("_");
+	if (i != -1) {
+		i < 5 && (i = 3);
+		new_value = new_value.slice(0, i)
+	}
+	var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+		function(a) {
+			return "\\d{1," + a.length + "}"
+		}).replace(/[+()]/g, "\\$&");
+	reg = new RegExp("^" + reg + "$");
+	if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+	if (event.type == "blur" && this.value.length < 5)  this.value = ""
+}
+formToEmail.phoneField = document.querySelector('.contact-form__phone');
+if (formToEmail.phoneField) {
+	formToEmail.phoneField.addEventListener("input", formToEmail.editPhoneByMask, false);
+	formToEmail.phoneField.addEventListener("focus", formToEmail.editPhoneByMask, false);
+	formToEmail.phoneField.addEventListener("blur", formToEmail.editPhoneByMask, false);
+	formToEmail.phoneField.addEventListener("keydown", formToEmail.editPhoneByMask, false)
 }
