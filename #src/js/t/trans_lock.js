@@ -1,4 +1,4 @@
-let transitionLock = {
+const transitionLock = {
 	locked: false,
 	check: function(timeout = 0) {
 		let that = this,

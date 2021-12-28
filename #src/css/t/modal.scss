@@ -5,7 +5,7 @@
 	z-index: 99;
 	width: 100%;
 	height: 100%;
-	background-color: #52575FE6;//#52575F
+	background-color: rgba(0, 0, 0, 0.7);
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity $timer-modal, visibility $timer-modal;
@@ -17,10 +17,8 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		// background-color: #eee;
 		width: 100%;
 		height: 100%;
-		// background-color: orange;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -41,33 +39,23 @@
 		display: flex;
 		max-width: 500px;
 		max-height: 90%;
+		padding: 50px 4px 30px;
 		background-color: $color-1;
-		#modal-contact &, #modal-order & {
-			width: 100%;
-			max-width: 574px;
-		}
-		#modal-personal & {
-			max-width: 700px;
-			padding: 50px 4px 30px;
-		}
-		#modal-imgpreview & {
-			font-size: 0;
-			max-width: 1000px;
-			max-height: 700px;
-			background-color: transparent;
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: contain;
-			}
-		}
-		#modal-video & {
-			max-width: 800px;
-			max-height: 100%;
-		}
+		// #modal-imgpreview & { // example for different windows
+		// 	font-size: 0;
+		// 	max-width: 1000px;
+		// 	max-height: 700px;
+		// 	background-color: transparent;
+		// 	img {
+		// 		width: 100%;
+		// 		height: 100%;
+		// 		object-fit: contain;
+		// 	}
+		// }
 	}
 	&__content {
 		width: 100%;
+		padding: 0 20px;
 		overflow-y: auto;
 		overflow-x: hidden;
 		scrollbar-width: thin;
@@ -83,41 +71,20 @@
 			background: $color-2;
 			// border-radius: 5px;
 		}
-		#modal-imgpreview & {
-			scrollbar-color: $color-2 $color-1;
-			&::-webkit-scrollbar-thumb {
-				background: $color-2;
-			}
-		}
-		#modal-video & {
-			// max-width: 800px;
-			// padding-right: 0;
-			// background-color: $color-5;
-		}
 	}
 	&__close-button {
 		position: absolute;
-		top: 15px;
-		right: 15px;
-		width: 26px;
-		height: 26px;
-		// background-color: transparent;
-		// border: solid 1px $color-6;
-		cursor: pointer;
-		// overflow: hidden;
-		// text-align: center;
-		// font-family: Tahoma;
+		top: 10px;
+		right: 10px;
+		width: 30px;
+		height: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #ccc;
 		font-size: 26px;
-		color: orange;
-		// padding-top: 1px;
-		// padding-bottom: 3px;
-		// display: flex;
-		// justify-content: center;
-		// align-items: center;
-		// transform: rotate(45deg);
-		#modal-video &, #modal-imgpreview & {
-			z-index: 2;
-		}
+		color: blue;
+		cursor: pointer;
 	}
 }
 

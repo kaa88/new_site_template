@@ -11,6 +11,7 @@
 - simple slider
 - сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.snippet,
 	туда вставить код из snippet generator
+	pseudo, for, console.log...
 
 НОВОЕ ПОРТФОЛИО:
 - фоновая картинка с параллаксом
@@ -31,14 +32,14 @@
 ---
 
 ### Готовые шаблоны:
-- header (html, css, js)
-- footer (html, css)
-- modal (html, css, js)
-- scroll_lock (js)
-- transition_lock (js)
-- recounter (js)
-- random (js)
-- onload_counter (js)
+- recounter (js)							OK
+- transition_lock (js)					OK
+- scroll_lock (js)						OK
+- random (js)								OK
+- onload_counter (js)					OK
+- header (html, css, js)				OK
+- footer (html, css)						OK
+- modal (html, css, js)					OK
 - accordion_css (html, css)
 - accordion_js (html, css, js)
 - select (html, css, js)
@@ -46,7 +47,7 @@
 - input_radio (html, css)
 - input_range - (html, css, js)
 - input_range_jsv - (html, css, js)
-- form_to_email (html, css, js, php)
+- form_to_email (html, css, js, php) - добавить загрузку картинок
 - video_player (html, css, js) - сделать конструктор
 
 ### Папки:
@@ -68,6 +69,13 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 
 ### Changelog:
 
+#### v2.07
+- во многих скриптах изменена структура, добавлены проверки 
+- header, modal: таймер считывается сам из CSS (нужно установить переменную в элемент body)
+- header: добавлен блок Submenu
+- modal: обновлены стили
+- scroll_lock упрощен
+
 #### v2.06
 - gulp при сохранении копирует не все файлы, а измененный (кроме модулей)
 - gulp добавлена обработка картинок (ретинизация и сжатие)
@@ -81,6 +89,7 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 - phone mask для формы
 - select добавлен вызов функции при выборе
 - scroll_lock переделан toggle
+- footer упрощен
 - templates update
 - мелкие исправления
 

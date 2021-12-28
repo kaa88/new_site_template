@@ -8,6 +8,9 @@ body {
 		padding-top: $header-mobile-height;
 	}
 	&._locked {overflow: hidden;}
+	// Variables for JS transitions
+	--timer-menu: #{$timer-menu};
+	--timer-modal: #{$timer-modal};
 }
 .container {
 	width: 100%;
@@ -42,14 +45,14 @@ body {
 
 
 @import "t/footer";
-// @import "t/modal";
-// @import "t/form";
-// @import "t/select";
-// @import "t/accordion_css";
-// @import "t/accordion_js";
-// @import "t/input_checkbox";
-// @import "t/input_radio";
-// @import "t/input_range";
-// @import "t/input_range_jsv";
-// @import "t/video_player";
-// @import "t/loadscreen";
+@import "t/modal";
+@import "t/form";
+@import "t/select";
+@import "t/accordion_css";
+@import "t/accordion_js";
+@import "t/input_checkbox";
+@import "t/input_radio";
+@import "t/input_range";
+@import "t/input_range_jsv";
+@import "t/video_player";
+@import "t/loadscreen";

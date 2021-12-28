@@ -1,43 +1,64 @@
-// Some modules use this variable to check mobile or desktop view.
-const mobileSwitchWidth = 768;
+// Hello World!
 
-// Recounter (Checks window resizing and run funcs on breakpoints)
-let recounter = {
+
+// Some modules use this variable to check mobile or desktop view. Make sure it matches with CSS.
+const mobileSwitchWidth = 768
+
+
+// Recounter (checks window resizing and runs funcs on breakpoints)
+@@include('t/recounter.js')
+recounter.init({
 	breakpoints: {
 		568: () => {},
 		768: () => {
-			if (headerMenu.element.classList.contains('_active')) headerMenu.toggle();
-			hidingHeader.init();
-			// submenu.updateEvents();
+			header.menu.toggle();
+			header.hidingHeader.calc();
+			// header.submenu.updateEvents();
 		}, 
 		1228: () => {}
-	},
-}
-@@include('t/recounter.js')
-// /
+	}
+})
 
-// Transition lock (prevents double-clicking on transitions, e.g. when menu slides)
+
+/* Transition lock (prevents double-clicking on transitions, e.g. when menu slides)
+	Simple use from other module:
+	if (transitionLock.check( #timeout# )) return;
+*/
 @@include('t/trans_lock.js')
-// /
 
-// Scroll lock
+
+/* Scroll lock (prevents window scrolling with menu, modals etc.)
+	Use: 
+	scrollLock.lock()
+	scrollLock.unlock( #timeout# )
+*/
 @@include('t/scroll_lock.js')
-// /
+scrollLock.init()
 
-// Main menu
-let headerMenu = {timeout: 500};
+
+/* Header
+	Set transition timeout in CSS only
+	Params {obj}:
+	- menu - add menu block (default = true)
+	- submenu - add submenu block (default = true)
+	- hidingHeader - add hidingHeader block (default = true)
+*/
 @@include('t/header.js')
-// /
+header.init({
+	submenu: false,
+	hidingHeader: true
+})
 
-// Modal window
-// Params obj: 
-// - elem - element name (default = 'modal'),
-// - linkName - modal link name (default = 'modal-link')
-// - timeout - transition duration (default = 500)
-// - on: {'modal-window': {open, close}} - events (default = none)
+
+/* Modal window
+	Set transition timeout in CSS only
+	Params {obj}: 
+	- elem - element name (default = 'modal'),
+	- linkName - modal link name (default = 'modal-link')
+	- on: {'modal-window': {open, close}} - events
+*/
 @@include('t/modal.js')
 modal.init({
-	timeout: 700,
 	on: {
 		// 'modal-contact': {
 		// 	close: function() {setTimeout(() => {formToEmail.clean(document.querySelector('.question-form'))}, 700)}
@@ -62,56 +83,74 @@ modal.init({
 		// 	close: function() {videoPlayer.play(0, 'pause')}
 		// }
 	}
-});
-// /
+})
 
-// Send mail
-// Params: demo - demo mode: all checks and response messages, but disabled php
-let formToEmail = {demo: true};
+
+/* Send form to email
+	Params:
+	1) demo - demo mode: all checks and response messages, but disabled php
+*/
+const formToEmail = {demo: true};
 @@include('t/form_to_email.js')
-// /
 
-// Select
-// Params: 1) element name (default = 'select'), 2) chooseFirstOpt (default = true)
+
+/* Select
+	Params:
+	1) element name (default = 'select')
+	2) chooseFirstOpt (default = true)
+*/
 @@include('t/select.js')
 let form_select = new Select('form__select', false);
 form_select.onselect = function(selection) {console.log(selection)};
-// /
 
-// Accordion (js version)
-// Params: 1) element name (default = 'accordion'), 2) isOpened (default = false)
+
+/* Accordion (js version)
+	Params:
+	1) element name (default = 'accordion')
+	2) isOpened (default = false)
+*/
 @@include('t/accordion_js.js')
 let accordion = new Accordion('js__accordion', true);
-// /
 
-// Random
-// function getRandom(min = 0, max = 99)
+
+/* Random
+	Use: function getRandom(min = 0, max = 99)
+*/
 @@include('t/random.js')
-// /
 
-// Onload counter
+
+/* Onload counter
+	Params:
+	1) goal number
+	2)	timeout in seconds
+	3)	result element class
+*/
 @@include('t/onload_counter.js')
-// /
+let onloadCounter1 = new OnloadCounter(51806, 1 , '.test-counter--1');
+let onloadCounter2 = new OnloadCounter(35704, 2 , '.test-counter--2');
 
-// Input range simple (script for input's track gradient filling)
-// Params: {}
-// - elemName - element name (default = 'input-range')
-// - trackColorStart - color of the left track part (default = 'var(--track-color-start)')
-// - trackColorEnd - color of the right track part (default = 'var(--track-color-end)')
+
+/* Input range simple (script for input's track gradient filling)
+	Params {obj}:
+	- elemName - element name (default = 'input-range')
+	- trackColorStart - color of the left track part (default = 'var(--track-color-start)')
+	- trackColorEnd - color of the right track part (default = 'var(--track-color-end)')
+*/
 @@include('t/input_range.js')
-iRange_simple = new InputRange({
+let iRange_simple = new InputRange({
 	elemName: 'input-range'
-});
-// /
+})
 
-// Input range (full js version, may have 2 thumbs, no vertical orientation)
-// Params: {}
-// - elem - element name (default = 'input-range-jsv')
-//	- start - track scale start (default = 0)
-// - end - track scale end (default = 100)
-// - thumbs [] - thumbs base position (default = [0])
-// - bubble - enable bubble (default = false)
-// - results [] - result element (no default)
+
+/* Input range (full js version, may have 2 thumbs, no vertical orientation)
+	Params {obj}:
+	- elem - element name (default = 'input-range-jsv')
+	- start - track scale start (default = 0)
+	- end - track scale end (default = 100)
+	- thumbs [] - thumbs base position (default = [0])
+	- bubble - enable bubble (default = false)
+	- results [] - result element (no default)
+*/
 @@include('t/input_range_jsv.js')
 let iRangeJSV = new InputRangeJsv({
 	elem: 'form__input-range-jsv',
@@ -120,8 +159,8 @@ let iRangeJSV = new InputRangeJsv({
 	thumbs: [250, 400],
 	bubble: true,
 	results: ['form__ir-result1', 'form__ir-result2']
-});
-// /
+})
+
 
 // Video player
 @@include('t/video_player.js')
@@ -132,13 +171,14 @@ let iRangeJSV = new InputRangeJsv({
 // iRange_volume = new InputRange({
 // 	elemName: 'video-controls__volume-bar'
 // });
-// /
+
 
 // Swiper
 @@include('t/swiper.js')
-// /
 
-// Module check & load
+
+// Module check & load (2 variants)
+document.addEventListener('DOMContentLoaded', () => {})
 window.addEventListener('load', () => {
 	let arr = [
 		['.gridslider__slider',()=> {gridSlider.init()}],
@@ -147,12 +187,11 @@ window.addEventListener('load', () => {
 	for (let i = 0; i < arr.length; i++) {
 		if (document.querySelector(arr[i][0])) arr[i][1]();
 	}
-});
-// /
+})
+
 
 // Loadscreen
 window.addEventListener('load', () => {
 	let ls = document.querySelector('.loadscreen');
 	if (ls) ls.classList.remove('_visible');
 })
-// /

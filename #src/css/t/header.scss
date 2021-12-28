@@ -67,6 +67,7 @@
 		font-size: 16px;
 		white-space: nowrap;
 		background-color: orange;
+		transition: all $timer-hover;
 		&:hover {
 			background-color: peachpuff;
 		}
