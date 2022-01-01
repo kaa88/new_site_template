@@ -2,12 +2,10 @@ body {
 	background-color: #BDE;
 	font-family: Arial;
 	color: #222;
+	&._locked {overflow: hidden;}
 	// if header is fixed there are it's heights in style.scss
 	padding-top: $header-desktop-height;
-	@media (max-width: $mobile+px) {
-		padding-top: $header-mobile-height;
-	}
-	&._locked {overflow: hidden;}
+	@media (max-width: $mobile+px) {padding-top: $header-mobile-height;}
 	// Variables for JS transitions
 	--timer-menu: #{$timer-menu};
 	--timer-modal: #{$timer-modal};
@@ -20,11 +18,11 @@ body {
 	padding: 0 15px;
 }
 
-@import "t/header";
-
 // #svg-map path {
 // 	transform: scale(0.00113378, 0.00192307);
 // }
+
+@import "t/header";
 
 .content {
 	// Example for block margins
@@ -45,14 +43,14 @@ body {
 
 
 @import "t/footer";
-@import "t/modal";
-@import "t/form";
-@import "t/select";
-@import "t/accordion_css";
-@import "t/accordion_js";
-@import "t/input_checkbox";
-@import "t/input_radio";
-@import "t/input_range";
-@import "t/input_range_jsv";
-@import "t/video_player";
-@import "t/loadscreen";
+// @import "t/modal";
+// @import "t/form";
+// @import "t/select";
+// @import "t/accordion_css";
+// @import "t/accordion_js";
+// @import "t/input_checkbox";
+// @import "t/input_radio";
+// @import "t/input_range_colored";
+// @import "t/input_range_double";
+// @import "t/video_player";
+// @import "t/loadscreen";

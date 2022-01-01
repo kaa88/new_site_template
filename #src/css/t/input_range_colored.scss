@@ -1,5 +1,5 @@
 .input-range {
-	// script uses these variables to paint over track parts
+	// script uses these variables as default to paint over track parts
 	--track-color-start: green; // use #{} with SCSS variables
 	--track-color-end: darkred;
 	// transform: rotate(-90deg); // vertical orientation

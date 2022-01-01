@@ -1,7 +1,7 @@
 .checkbox {
 	input {
 		display: none;
-		&:checked + label span {
+		&:checked + label .label-box {
 			background-color: orange;
 			&:after {left: calc(40px - 18px - 3px);}
 		}
@@ -10,11 +10,13 @@
 		display: inline-flex;
 		align-items: center;
 		column-gap: 5px;
+	}
+	.label-text {
 		font-family: Arial;
 		font-size: 16px;
 		white-space: nowrap;
 	}
-	span {
+	.label-box {
 		width: 40px;
 		height: 24px;
 		position: relative;

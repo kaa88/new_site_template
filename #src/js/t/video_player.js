@@ -1,110 +1,165 @@
-let videoPlayer = {};
-// Functions are useful with swiper slides
-// To do: constructor.
-videoPlayer.create = function() {
-	videoPlayer.video = document.querySelector('.video-player video');
-	videoPlayer.window = document.querySelector('.video-controls');
-	videoPlayer.playArea = document.querySelector('.video-controls__area');
-	videoPlayer.playAreaBtn = document.querySelector('.video-controls__area-btn');
-	videoPlayer.panel = document.querySelector('.video-controls__panel');
-	videoPlayer.playBtn = document.querySelector('.video-controls__play-pause');
-	videoPlayer.seekBar = document.querySelector('.video-controls__seek-bar input');
-	videoPlayer.volBtn = document.querySelector('.video-controls__volume-btn');
-	videoPlayer.volBar = document.querySelector('.video-controls__volume-bar input');
+// To do:
+// для свайпера ввести класс "типа загружен" для тех, кто получил эвенты, и при свайпе делать проверку
 
-	videoPlayer.hidingTimeout = 0;
-	if (!videoPlayer.window) return;
+const videoPlayer = {
+	names: {},
+	init: function(volume = 70) {
+		let n = this.names;
+		n.player = '.video-player';
+		n.video = 'video';
+		n.controls = '.video-controls';
+		n.playArea = n.controls + '__area';
+		n.playAreaBtn = n.controls + '__area-btn';
+		n.panel = n.controls + '__panel';
+		n.playBtn = n.controls + '__play-pause';
+		n.seekBar = n.controls + '__seek-bar input';
+		n.volBtn = n.controls + '__volume-btn';
+		n.volBar = n.controls + '__volume-bar input';
 
-	videoPlayer.window.addEventListener('mousemove', videoPlayer.showOnMousemove);
+		this.volume = volume / 100;
+		this.muted = false;
+		this.players = document.querySelectorAll(n.player);
+		if (!this.players.length) return;
+		for (let i = 0; i < this.players.length; i++) {
+			this.create(this.players[i]);
+		}
+	},
 
-	videoPlayer.playArea.addEventListener("click", videoPlayer.play);
-	videoPlayer.playBtn.addEventListener("click", videoPlayer.play);
+	find: function(caller, target) {
+		if (target)
+			return caller.closest(this.names.player).querySelector(this.names[target]);
+		else
+			return caller.closest(this.names.player);
+	},
 
-	videoPlayer.video.addEventListener("timeupdate", videoPlayer.seekBarUpdate);
-	videoPlayer.seekBar.addEventListener("mousedown", videoPlayer.seekBarMousedown);
-	videoPlayer.seekBar.addEventListener("mouseup", videoPlayer.seekBarMouseup);
-	videoPlayer.seekBar.addEventListener("change", videoPlayer.seekBarChange);
+	// 'create' & 'destroy' funcs are useful with Swiper slides
+	create: function(player) {
+		if (!this.find(player)) return;
 
-	videoPlayer.video.volume = videoPlayer.volBar.value / 100;
-	videoPlayer.volBtn.addEventListener("click", videoPlayer.mute);
-	videoPlayer.volBar.addEventListener("input", videoPlayer.setVolume);
-}
-videoPlayer.destroy = function() {
-	if (!videoPlayer.window) return;
+		this.find(player,'controls').addEventListener('mousemove', this.showControls.bind(this));
 
-	videoPlayer.window.removeEventListener('mousemove', videoPlayer.showOnMousemove);
+		this.find(player,'playArea').addEventListener("click", this.playCheck.bind(this));
+		this.find(player,'playBtn').addEventListener("click", this.playCheck.bind(this));
 
-	videoPlayer.playArea.removeEventListener("click", videoPlayer.play);
-	videoPlayer.playBtn.removeEventListener("click", videoPlayer.play);
+		this.find(player,'video').addEventListener("timeupdate", this.seekBarUpdate.bind(this));
+		this.find(player,'seekBar').addEventListener("mousedown", this.seekBarMousedown.bind(this));
+		this.find(player,'seekBar').addEventListener("mouseup", this.seekBarMouseup.bind(this));
+		this.find(player,'seekBar').addEventListener("change", this.seekBarChange.bind(this));
 
-	videoPlayer.video.removeEventListener("timeupdate", videoPlayer.seekBarUpdate);
-	videoPlayer.seekBar.removeEventListener("mousedown", videoPlayer.seekBarMousedown);
-	videoPlayer.seekBar.removeEventListener("mouseup", videoPlayer.seekBarMouseup);
-	videoPlayer.seekBar.removeEventListener("change", videoPlayer.seekBarChange);
+		this.find(player,'volBtn').addEventListener("click", this.muteCheck.bind(this));
+		this.find(player,'volBar').addEventListener("input", this.setVolume.bind(this));
+	},
 
-	videoPlayer.volBtn.removeEventListener("click", videoPlayer.mute);
-	videoPlayer.volBar.removeEventListener("input", videoPlayer.setVolume);
-}
+	destroy: function(player) {
+		if (!this.find(player)) return;
 
-videoPlayer.showOnMousemove = function() {
-	if (!videoPlayer.video) return;
-	videoPlayer.panel.classList.remove('_hidden');
-	clearTimeout(videoPlayer.hidingTimeout);
-	if (videoPlayer.video.paused == false){// && videoPlayer.seekBar.value != 0) {
-		videoPlayer.hidingTimeout = setTimeout(function() {
-			if (videoPlayer.panel) videoPlayer.panel.classList.add('_hidden');
-		}, 2000);
+		this.find(player,'controls').removeEventListener('mousemove', this.showControls);
+
+		this.find(player,'playArea').removeEventListener("click", this.playCheck);
+		this.find(player,'playBtn').removeEventListener("click", this.playCheck);
+
+		this.find(player,'video').removeEventListener("timeupdate", this.seekBarUpdate);
+		this.find(player,'seekBar').removeEventListener("mousedown", this.seekBarMousedown);
+		this.find(player,'seekBar').removeEventListener("mouseup", this.seekBarMouseup);
+		this.find(player,'seekBar').removeEventListener("change", this.seekBarChange);
+
+		this.find(player,'volBtn').removeEventListener("click", this.muteCheck);
+		this.find(player,'volBar').removeEventListener("input", this.setVolume);
+	},
+
+	playCheck: function(e) {
+		if (this.find(e.target,'video').paused) this.play(e.target);
+		else this.pause(e.target);
+	},
+
+	play: function(caller) {
+		if (!caller) return;
+		if (this.players.length > 1) this.pause(); // stop other players
+
+		this.find(caller,'video').volume = this.volume;
+		this.find(caller,'volBar').value = this.volume * 100;
+		if (this.muted) this.mute(caller);
+		else this.unmute(caller);
+
+		this.find(caller,'video').play();
+		this.find(caller,'playAreaBtn').classList.add('_hidden');
+		this.showControls(0, caller);
+	},
+
+	pause: function(caller) {
+		function p(that, elem) {
+			that.find(elem,'video').pause();
+			that.find(elem,'playAreaBtn').classList.remove('_hidden');
+			that.showControls(0, elem);
+		}
+		if (caller) p(this, caller);
+		else {
+			for (let i = 0; i < this.players.length; i++) {
+				p(this, this.players[i]);
+			}
+		}
+	},
+
+	showControls: function(e, caller) {
+		let elem = e ? e.target : caller;
+		let panel = this.find(elem,'panel');
+		if (!panel) return;
+		panel.classList.remove('_hidden');
+		clearTimeout(this.find(elem,'controls').dataset.timer);
+		if (!this.find(elem,'video').paused){
+			this.find(elem,'controls').dataset.timer = setTimeout(function() {
+				panel.classList.add('_hidden');
+			}, 2000);
+		}
+	},
+
+	seekBarUpdate: function(e) {
+		let value = (100 / this.find(e.target,'video').duration) * this.find(e.target,'video').currentTime;
+		this.find(e.target,'seekBar').value = value;
+		// для установки цвета сикбара специально вызываю эвент 'oninput'
+		this.find(e.target,'seekBar').dispatchEvent(new Event('input'));
+	},
+
+	seekBarMousedown: function(e) {
+		this.find(e.target,'video').removeEventListener("timeupdate", this.seekBarUpdate);
+	},
+
+	seekBarMouseup: function(e) {
+		this.find(e.target,'video').addEventListener("timeupdate", this.seekBarUpdate.bind(this));
+	},
+
+	seekBarChange: function(e) {
+		let time = this.find(e.target,'video').duration * (this.find(e.target,'seekBar').value / 100);
+		this.find(e.target,'video').currentTime = time;
+	},
+
+	setVolume: function(e) {
+		this.volume = this.find(e.target,'volBar').value / 100;
+		this.find(e.target,'video').volume = this.volume;
+	},
+
+	muteCheck: function(e) {
+		if (this.muted) {
+			this.muted = false;
+			this.unmute(e.target);
+		}
+		else {
+			this.muted = true;
+			this.mute(e.target);
+		}
+	},
+
+	mute: function(caller) {
+		this.find(caller,'video').muted = true;
+		this.find(caller,'volBtn').classList.add('_muted');
+		this.find(caller,'volBar').value = 0;
+		this.find(caller,'volBar').dispatchEvent(new Event('change'));
+	},
+
+	unmute: function(caller) {
+		this.find(caller,'video').muted = false;
+		this.find(caller,'volBtn').classList.remove('_muted');
+		this.find(caller,'volBar').value = this.volume * 100;
+		this.find(caller,'volBar').dispatchEvent(new Event('change'));
 	}
 }
-videoPlayer.play = function(e, command) {
-	if (!videoPlayer.video) return;
-	function play() {
-		videoPlayer.video.play();
-		videoPlayer.playAreaBtn.classList.add('_hidden');
-	}
-	function pause() {
-		videoPlayer.video.pause();
-		videoPlayer.playAreaBtn.classList.remove('_hidden');
-	}
-	if (command) {
-		if (command == 'play') play();
-		if (command == 'pause') pause();
-	}
-	else {
-		if (videoPlayer.video.paused == true) play();
-		else pause();
-	}
-	videoPlayer.showOnMousemove();
-}
-videoPlayer.seekBarUpdate = function() {
-	let value = (100 / videoPlayer.video.duration) * videoPlayer.video.currentTime;
-	videoPlayer.seekBar.value = value;
-	videoPlayer.seekBar.dispatchEvent(new Event('input'));
-}
-videoPlayer.seekBarMousedown = function() {
-	videoPlayer.video.removeEventListener("timeupdate", videoPlayer.seekBarUpdate);
-}
-videoPlayer.seekBarMouseup = function() {
-	videoPlayer.video.addEventListener("timeupdate", videoPlayer.seekBarUpdate);
-}
-videoPlayer.seekBarChange = function() {
-	let time = videoPlayer.video.duration * (videoPlayer.seekBar.value / 100);
-	videoPlayer.video.currentTime = time;
-}
-videoPlayer.mute = function() {
-	if (videoPlayer.video.muted == false) {
-		videoPlayer.video.muted = true;
-		videoPlayer.volBtn.classList.add('_off');
-		videoPlayer.volBar.value = 0;
-		videoPlayer.volBar.dispatchEvent(new Event('change'));
-	} else {
-		videoPlayer.video.muted = false;
-		videoPlayer.volBtn.classList.remove('_off');
-		videoPlayer.volBar.value = videoPlayer.video.volume * 100;
-		videoPlayer.volBar.dispatchEvent(new Event('change'));
-	}
-}
-videoPlayer.setVolume = function() {
-	videoPlayer.video.volume = videoPlayer.volBar.value / 100;
-}
-videoPlayer.create();

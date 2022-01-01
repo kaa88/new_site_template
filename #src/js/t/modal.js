@@ -26,17 +26,26 @@ const modal = {
 	open: function(e){
 		if (this.refs.translock.check(this.timeout)) return;
 		e.preventDefault();
-		let modalName = e.currentTarget.getAttribute('href').replace('#','');
-		let currentModal = this.elem.querySelector('#' + modalName);
+		let currentModal = this.elem.querySelector(e.currentTarget.getAttribute('href'));
 		currentModal.classList.add('_open');
-		if (this.on[currentModal.id] && this.on[currentModal.id].open) this.on[currentModal.id].open(e);
+		if (this.on[currentModal.id] && this.on[currentModal.id].open)
+			this.on[currentModal.id].open(
+				e, 
+				currentModal.querySelector('.' + this.elemName + '__content > *:not(.' + this.elemName + '__close-button)'),
+				this.timeout
+			);
 		modal.check();
 	},
 	closeThis: function(e){
 		if (this.refs.translock.check(this.timeout)) return;
 		let currentModal = e.target.closest('.' + this.elemName + '__window');
 		currentModal.classList.remove('_open');
-		if (this.on[currentModal.id] && this.on[currentModal.id].close) this.on[currentModal.id].close(e);
+		if (this.on[currentModal.id] && this.on[currentModal.id].close)
+			this.on[currentModal.id].close(
+				e, 
+				currentModal.querySelector('.' + this.elemName + '__content > *:not(.' + this.elemName + '__close-button)'),
+				0
+			);
 		modal.check();
 	},
 	closeAll: function(){
@@ -44,7 +53,8 @@ const modal = {
 		for (let i = 0; i < this.windows.length; i++) {
 			if (this.windows[i].classList.contains('_open')) {
 				this.windows[i].classList.remove('_open');
-				if (this.on[this.windows[i].id] && this.on[this.windows[i].id].close) this.on[this.windows[i].id].close();
+				if (this.on[this.windows[i].id] && this.on[this.windows[i].id].close)
+					this.on[this.windows[i].id].close(0,0,0);
 			}
 		}
 		modal.check();

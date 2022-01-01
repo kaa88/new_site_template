@@ -65,7 +65,7 @@
 
 <!-- Форма с отправкой на почту -->
 <form class="contact-form" name="contact-form" action="#">
-	<div class="contact-form__report"></div>
+	<div class="form-report"></div>
 	<input class="contact-form__name _req" type="text" name="name" placeholder="Name">
 	<input class="contact-form__email _req" type="text" name="email" placeholder="Email">
 	<input class="contact-form__phone" type="text" name="phone" placeholder="Phone">
@@ -89,7 +89,7 @@
 		<span class="select__header-icon"><i class="icon-play"></i></span>
 	</div>
 	<div class="select__list-wrapper">
-		<!-- Scripted list -->
+		<!-- Script generated list -->
 	</div>
 	<select name="select">
 		<option value="none" selected disabled>Select...</option>
@@ -103,27 +103,36 @@
 <!-- Input_checkbox -->
 <div class="form__checkbox checkbox">
 	<input type="checkbox" id="checkbox1" name="checked" value="ok">
-	<label for="checkbox1"><span></span>Checkbox</label>
+	<label for="checkbox1">
+		<span class="label-box"></span>
+		<span class="label-text">Checkbox</span>
+	</label>
 </div>
 
 
 <!-- Input_radio -->
 <div class="form__radio radio">
 	<input type="radio" id="radio1" name="form-radio" value="radio 1" checked>
-	<label for="radio1"><span></span>Radio 1</label>
+	<label for="radio1">
+		<span class="label-box"></span>
+		<span>Radio 1</span>
+	</label>
 	<input type="radio" id="radio2" name="form-radio" value="radio 2">
-	<label for="radio2"><span></span>Radio 2</label>
+	<label for="radio2">
+		<span class="label-box"></span>
+		<span class="label-text">Radio 2</span>
+	</label>
 </div>
 
 
-<!-- Input_range (simple) -->
+<!-- Input_range_colored -->
 <div class="input-range">
 	<input type="range" name="range" value="20" min="0" max="100" step="1">
 </div>
 
 
-<!-- Input_range_2 (js version with 1 or 2 thumbs) -->
-<div class="form__input-range-jsv input-range-jsv" name="range"></div>
+<!-- Input_range_double (js version with 1 or 2 thumbs) -->
+<div class="form__input-range-dbl input-range-dbl" name="range"></div>
 <input class="form__ir-result1" type="number">
 <input class="form__ir-result2" type="number">
 
@@ -137,7 +146,7 @@
 
 
 <!-- Video player -->
-<div class="video-player">
+<div class="content__video-player video-player">
 	<video src="videosample.mp4" preload="metadata"></video>
 	<div class="video-controls">
 		<div class="video-controls__area">
@@ -151,7 +160,7 @@
 			<div class="video-controls__volume">
 				<div class="video-controls__wrapper">
 					<div class="video-controls__volume-bar">
-						<input type="range" value="70">
+						<input type="range">
 					</div>
 				</div>
 				<button class="video-controls__volume-btn">V</button>
@@ -178,6 +187,29 @@
 	<!-- Один тэг img тоже работает -->
 </picture>
 
+
+<!-- Шаблон заполнения данных из JSON (пример) -->
+<!-- This is a slide pattern -->
+<div id="news-data-pattern">
+	<div class="swiper-slide">
+		<div class="newsline__news-card news-card" data-pattern="elem">
+			<div class="news-card__img">
+				<img alt="" data-pattern="img">
+			</div>
+			<div class="news-card__content">
+				<div class="news-card__logo"><i class="icon-logo"></i></div>
+				<div class="news-card__video" data-pattern="video"><i class="icon-play"></i></div>
+				<div class="news-card__wrapper">
+					<p class="news-card__g-card-date g-card-date" data-pattern="date"></p>
+					<p class="news-card__g-header-h4 g-header-h4" data-pattern="title"></p>
+					<p class="news-card__g-card-text g-card-text" data-pattern="text"></p>
+				</div>
+				<a class="news-card__g-link g-link" href="#" data-pattern="link">learn more</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- / pattern -->
 
 
 <!-- ШАБЛОНЫ CSS ------------------------------------------>

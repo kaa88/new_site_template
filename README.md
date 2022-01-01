@@ -1,14 +1,11 @@
-# New site template v2.06
+# New site template v2.07
 
 ### TO DO:
 - раздел fonts в style.css для подключения шрифтов google fonts?
-- video player сделать конструктор
 - попап переработать
 - grid-slider
-- page_loader загрузчик (белый экран с анимацией или без)
 - кнопка "наверх" в разных вариантах
 - scrolling navigation (mogo)
-- simple slider
 - сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.snippet,
 	туда вставить код из snippet generator
 	pseudo, for, console.log...
@@ -32,23 +29,27 @@
 ---
 
 ### Готовые шаблоны:
-- recounter (js)							OK
-- transition_lock (js)					OK
-- scroll_lock (js)						OK
-- random (js)								OK
-- onload_counter (js)					OK
-- header (html, css, js)				OK
-- footer (html, css)						OK
-- modal (html, css, js)					OK
-- accordion_css (html, css)
-- accordion_js (html, css, js)
-- select (html, css, js)
-- input_checkbox (html, css)
-- input_radio (html, css)
-- input_range - (html, css, js)
-- input_range_jsv - (html, css, js)
-- form_to_email (html, css, js, php) - добавить загрузку картинок
-- video_player (html, css, js) - сделать конструктор
+- recounter (js)									OK
+- transition_lock (js)							OK
+- scroll_lock (js)								OK
+- random (js)										OK
+- onload_counter (js)							OK
+- header (html, css, js)						OK
+- footer (html, css)								OK
+- modal (html, css, js)							OK
+- accordion_css (html, css)					OK
+- accordion_js (html, css, js)				OK
+- select (html, css, js)						OK
+- input_checkbox (html, css)					OK
+- input_radio (html, css)						OK
+- input_range_colored (html, css, js)		OK
+- input_range_double (html, css, js)		OK
+- form_to_email (html, css, js, php)		OK, добавить загрузку картинок
+- video_player (html, css, js)				OK, в будущем сделать доп оптимизацию для свайпера
+- swiper_customs (js)							OK, в будущем переделать initVirtual в модуль
+- json_load (js)									OK
+- module_loader (js)								OK
+- loadscreen (html, css, js)					OK
 
 ### Папки:
 design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
@@ -70,11 +71,14 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 ### Changelog:
 
 #### v2.07
-- во многих скриптах изменена структура, добавлены проверки 
+- во многих скриптах изменена структура, добавлены проверки
+- конструкторы переделаны в классы
 - header, modal: таймер считывается сам из CSS (нужно установить переменную в элемент body)
 - header: добавлен блок Submenu
 - modal: обновлены стили
+- video_player: поддержка нескольких видео (играет только 1, уровень звука один для всех)
 - scroll_lock упрощен
+- мелкие исправления
 
 #### v2.06
 - gulp при сохранении копирует не все файлы, а измененный (кроме модулей)

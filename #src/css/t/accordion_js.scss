@@ -5,7 +5,7 @@
 	&__item {
 		height: 30px;
 		overflow: hidden;
-		transition: height .3s;
+		transition: height $timer-accordion;
 		&-header {
 			display: flex;
 			align-items: center;

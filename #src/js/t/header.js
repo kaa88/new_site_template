@@ -1,5 +1,5 @@
 const header = {
-	refs: {
+	refs: { // dependences
 		mobSwitchW: mobileSwitchWidth,
 		translock: transitionLock,
 		scrlock: scrollLock

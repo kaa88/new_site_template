@@ -1,18 +1,17 @@
 .contact-form {
-	margin-top: 30px;//
-	font-size: 0;
 	width: 200px;
+	font-size: 0;
 	input, textarea {
 		width: 100%;
 		height: 30px;
 		margin-bottom: 10px;
 		padding: 0 10px;
-		box-shadow: inset 0 1000px 0 lightgreen; // чтобы при автозаполнении не менялся цвет
+		box-shadow: inset 0 1000px 0 #eee; // чтобы при автозаполнении не менялся цвет
 		&::placeholder {
 			color: inherit;
 		}
 		&._error {
-			box-shadow: inset 0 1000px 0 0 #E9D8D9;
+			box-shadow: inset 0 1000px 0 0 #E5C6C8;
 		}
 	}
 	textarea {
@@ -24,7 +23,7 @@
 	&__button {
 		width: 200px;
 		height: 40px;
-		background-color: #eee;
+		background-color: lightgreen;
 		position: relative;
 		border-radius: 10px;
 		overflow: hidden;
@@ -32,18 +31,8 @@
 			position: absolute;
 			top: 0;
 			left: 0;
+			._sending & {display: flex;}
 		}
-	}
-	&__report {
-		display: inline-block;
-		width: 100%;
-		height: 18px;
-		font-size: 14px;
-		margin-bottom: 10px;
-		visibility: hidden;
-		&.ok, &.er {visibility: visible;}
-		&.ok {color: green}
-		&.er {color: red}
 	}
 }
 ._sending {
@@ -51,7 +40,7 @@
 	&:before {
 		content: "";
 		background-color: transparent;
-		display: inline-block;
+		display: block;
 		width: 100%;
 		height: 100%;
 		position: absolute;
@@ -59,7 +48,15 @@
 		left: 0;
 		z-index: 2;
 	}
-	.contact-form__button .progress {display: flex;}
+}
+.form-report {
+	height: 18px;
+	font-size: 12px;
+	margin-bottom: 10px;
+	visibility: hidden;
+	&.ok, &.er {visibility: visible;}
+	&.ok {color: green}
+	&.er {color: red}
 }
 @keyframes progress-animation {
 	from {transform: scale(1);}
