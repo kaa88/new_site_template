@@ -1,10 +1,9 @@
-# New site template v2.07
+# New site template v2.08
 
 ### TO DO:
 - раздел fonts в style.css для подключения шрифтов google fonts?
 - попап переработать
 - grid-slider
-- кнопка "наверх" в разных вариантах
 - scrolling navigation (mogo)
 - сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.snippet,
 	туда вставить код из snippet generator
@@ -50,6 +49,8 @@
 - json_load (js)									OK
 - module_loader (js)								OK
 - loadscreen (html, css, js)					OK
+- spoiler (html, css, js)						OK
+- up_button (html, css, js)					OK
 
 ### Папки:
 design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
@@ -69,6 +70,10 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 ---
 
 ### Changelog:
+
+#### v2.08
+- new spoiler module
+- исчезающая кнопка "наверх"
 
 #### v2.07
 - во многих скриптах изменена структура, добавлены проверки

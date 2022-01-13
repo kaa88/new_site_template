@@ -150,6 +150,7 @@ const header = {
 			if ((pageYOffset < (this.Y + this.diff) && this.Y > this.YPrev) || (pageYOffset > (this.Y + this.diff) && this.Y < this.YPrev)) {
 				this.diff = pageYOffset - this.Y;
 			}
+			
 			this.YPrev = this.Y;
 			this.Y = pageYOffset - this.diff;
 			this.currentPos -= this.Y - this.YPrev;

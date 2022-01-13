@@ -1,0 +1,22 @@
+.spoiler {
+	&__header {
+		padding: 10px;
+		font-weight: bold;
+		background-color: #aaa;
+		cursor: pointer;
+	}
+	&__content {
+		height: 0;
+		overflow: hidden;
+		background-color: #fff;
+		p {
+			margin: 10px;
+		}
+	}
+	&._visible &__header {
+		background-color: orange;
+	}
+	&._visible &__content {
+		height: 100%;
+	}
+}
