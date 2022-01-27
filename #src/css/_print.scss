@@ -20,3 +20,6 @@
 		position: relative;
 	}
 }
+// Перенос строк. Применяется к блочным эл-там. В Chrome работает только с body.children
+// page-break-before: always;
+// page-break-after: auto;

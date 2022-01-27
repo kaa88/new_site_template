@@ -1,8 +1,11 @@
-# New site template v2.08
+# New site template v2.09
 
 ### TO DO:
+- модуль динамического контента (проверка адреса, подгрузка json, заполнение)
+- getcommputedstyle поменять slice на parseint
 - раздел fonts в style.css для подключения шрифтов google fonts?
 - попап переработать
+- animated burger переделать px в em
 - grid-slider
 - scrolling navigation (mogo)
 - сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.snippet,
@@ -46,11 +49,13 @@
 - form_to_email (html, css, js, php)		OK, добавить загрузку картинок
 - video_player (html, css, js)				OK, в будущем сделать доп оптимизацию для свайпера
 - swiper_customs (js)							OK, в будущем переделать initVirtual в модуль
+- swiper_simple (js)								OK
 - json_load (js)									OK
 - module_loader (js)								OK
 - loadscreen (html, css, js)					OK
 - spoiler (html, css, js)						OK
 - up_button (html, css, js)					OK
+- tabs (html, css, js)							OK
 
 ### Папки:
 design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
@@ -66,10 +71,23 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 - css @media писать внутри каждого элемента
 - css ко всем ссылкам добавлять :visited
 - для retina изображения в src сохранять только в 2х (остальное нарежет gulp)
+- изображения, которые не нужно сжимать, помечать знаком '$'
 
 ---
 
 ### Changelog:
+
+#### v2.09
+- gulpfile: other stuff тоже обрабатывает только измененный файл; 
+	можно обозначить ($ в имени файла) изображения, которые не надо сжимать
+- mixin functions (rem, em) + sass_math
+- tabs module
+- swiper_simple module (script.js)
+- module check & load изменения в первой части (при мгновенной загрузке)
+- header.html добавлен шаблон "многоэтажного" меню
+- scroll_lock добавлен пересчет при рекаунте (script.js, scroll-lock.js)
+- select update (js, css)
+- мелкие исправления
 
 #### v2.08
 - new spoiler module

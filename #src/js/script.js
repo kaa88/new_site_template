@@ -6,17 +6,23 @@ const mobileSwitchWidth = 768
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-// Recounter (checks window resizing and runs funcs on breakpoints)
+/* Recounter (checks window resizing and runs funcs on breakpoints)
+	Useful output - recounter.stateIndex
+	There is 1 more index than number of breakpoints
+*/
 @@include('t/recounter.js')
 recounter.init({
 	breakpoints: {
 		568: () => {},
 		768: () => {
+			scrollLock.recalc();
 			header.menu.toggle();
 			header.hidingHeader.calc();
 			// header.submenu.updateEvents();
 		}, 
-		1228: () => {}
+		1228: () => {
+			// gridSlider.buildSlides();
+		}
 	}
 })
 
@@ -196,6 +202,28 @@ header.init({
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+// Swiper simple (Single Swiper in a project)
+// const swiper = new Swiper('.swiper', {
+// 	navigation: {
+// 		prevEl: '.swiper-button-prev',
+// 		nextEl: '.swiper-button-next'
+// 	},
+// 	loop: true,
+// 	loopAdditionalSlides: 2,
+// 	speed: 800,
+// 	spaceBetween: 15,
+// 	autoplay: {
+// 		delay: 5000,
+// 		disableOnInteraction: false,
+// 		pauseOnMouseEnter: true
+// 	},
+// 	breakpoints: {
+// 		600: {}
+// 	}
+// });
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
 /* Swiper Customs (Swiper options, launcher & JSON functions)
 	It is useful with many swipers in a project
 	Settings are inside module
@@ -213,25 +241,6 @@ header.init({
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-// Module check & load (2 variants)
-// document.addEventListener('DOMContentLoaded', () => {
-// 	let arr = [];
-// 	for (let i = 0; i < arr.length; i++) {
-// 		if (document.querySelector(arr[i][0])) arr[i][1]();
-// 	}
-// })
-// window.addEventListener('load', () => {
-// 	let arr = [
-// 		['.gridslider__slider',()=> {gridSlider.init()}],
-// 		// ['.banner__swiper',()=> {swiperCustoms.initNewSwiper('.banner__swiper')}],
-// 	];
-// 	for (let i = 0; i < arr.length; i++) {
-// 		if (document.querySelector(arr[i][0])) arr[i][1]();
-// 	}
-// })
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
 // Loadscreen
 // @ @include('t/loadscreen.js')
 
@@ -246,3 +255,31 @@ header.init({
 // Up-button
 // @ @include('t/up_button.js')
 // upButton.init();
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Tabs
+// @ @include('t/tabs.js')
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Module check & load (2 variants)
+// function moduleCheckAndLoad() {
+// 	// delayed loading
+// 	window.addEventListener('load', () => {
+// 		let delayed = [
+// 			['.gridslider__slider',()=> {gridSlider.init()}],
+// 		];
+// 		for (let i = 0; i < delayed.length; i++) {
+// 			if (document.querySelector(delayed[i][0])) delayed[i][1]();
+// 		}
+// 	})
+// 	// instant loading
+// 	let instant = [
+// 		['.side-menu',()=> {categoriesBtn.init()}]
+// 	];
+// 	for (let i = 0; i < instant.length; i++) {
+// 		if (document.querySelector(instant[i][0])) instant[i][1]();
+// 	}
+// }
+// moduleCheckAndLoad();

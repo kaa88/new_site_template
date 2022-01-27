@@ -39,8 +39,10 @@ const path = {
 		php: source_folder + '/php/**/*',
 		libs: source_folder + '/libs/**/*',
 		// img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		img: [source_folder + '/img/**/*', '!' + source_folder + '/img/**/*@2x.*'],
-		img2x: source_folder + '/img/**/*@2x.*',
+		img: [source_folder + '/img/**/*', '!' + source_folder + '/img/**/$*', '!' + source_folder + '/img/**/*@2x.*'],
+		// img2x: source_folder + '/img/**/*@2x.*',
+		img2x: [source_folder + '/img/**/*@2x.*', '!' + source_folder + '/img/**/$*@2x.*'],
+		img_original: source_folder + '/img/**/$*',
 		fonts: source_folder + '/fonts/*.ttf',
 		other_stuff: source_folder + '/other_stuff/**/*'
 	},
@@ -51,7 +53,8 @@ const path = {
 		php: source_folder + '/php/*.php',
 		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
 		fonts_otf: source_folder + '/fonts/otf/*.otf',
-		fonts_ttf: source_folder + '/fonts/*.ttf'
+		fonts_ttf: source_folder + '/fonts/*.ttf',
+		other_stuff: source_folder + '/other_stuff/**/*'
 	},
 	clean: './' + project_folder + '/'
 }
@@ -113,9 +116,11 @@ function libs() {
 	return src(path.src.libs)
 		.pipe(dest(path.build.libs));
 }
-function otherStuff() {
-	return src(path.src.other_stuff)
-		.pipe(dest(path.build.root));
+function otherStuff(f, file) {
+	let filepath = file ? file : path.src.other_stuff;
+	return src(filepath)
+		.pipe(dest(path.build.root))
+		.pipe(browsersync.stream());
 }
 
 const imagesScaleParams = (file, _, cb) => {
@@ -128,7 +133,7 @@ const imagesScaleParams = (file, _, cb) => {
 				maxHeight: Math.ceil(meta.height / 2)
 			}
 		}
-		else file.scale = {maxWidth: meta.width}
+		// else file.scale = {maxWidth: meta.width}
 		cb(null, file)
 	})
 }
@@ -139,9 +144,19 @@ const imagesFileName = (file, scale, cb) => {
 function images(f, filepath) {
 	let stream;
 	if (filepath) {
-		stream = src(filepath)
-			.pipe(through.obj(imagesScaleParams))
-			.pipe(imageresize(imagesFileName));
+		stream = src(filepath);
+		if (filepath.match(/@2x/)) {
+			stream = stream
+				.pipe(through.obj(imagesScaleParams))
+				.pipe(imageresize(imagesFileName))
+				.pipe(src(filepath));
+		}
+		if (filepath.match(/\/\$/)) {
+			return stream
+				.pipe(dest(path.build.img))
+				.pipe(browsersync.stream());
+		}
+		// else stream = src(filepath);
 	}
 	else {
 		stream = src(path.src.img2x)
@@ -150,11 +165,13 @@ function images(f, filepath) {
 			.pipe(src(path.src.img2x))
 			.pipe(src(path.src.img));
 	}
-	return stream
+	stream = stream
 		.pipe(imagemin([
-			imagemin.mozjpeg({quality: 75, progressive: true}),
+			imagemin.mozjpeg({quality: 80, progressive: true}),
 			imagemin.optipng({optimizationLevel: 5})
-		]))
+		]));
+	if (!filepath) stream = stream.pipe(src(path.src.img_original));
+	return stream		
 		.pipe(dest(path.build.img))
 		.pipe(browsersync.stream());
 }
@@ -228,6 +245,14 @@ function watchFiles() {
 	});
 	fontwatch.on('add', function(path, stats) {
 		fonts(undefined, normalizeFilePath(path));
+	});
+
+	let otherwatch = gulp.watch([path.watch.other_stuff]);
+	otherwatch.on('change', function(path, stats) {
+		otherStuff(undefined, normalizeFilePath(path));
+	});
+	otherwatch.on('add', function(path, stats) {
+		otherStuff(undefined, normalizeFilePath(path));
 	});
 }
 function browserSync() {

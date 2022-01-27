@@ -12,7 +12,7 @@ const formToEmail = {
 	
 	init: function(demo = false){
 		this.demo = demo;
-		this.inputs = document.querySelectorAll('form input');
+		this.inputs = document.querySelectorAll('form input, form textarea');
 		for (let i = 0; i < this.inputs.length; i++) {
 			this.inputs[i].addEventListener('input', function(){
 				this.classList.remove('_error');

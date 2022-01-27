@@ -1,7 +1,7 @@
 <!-- ШАБЛОНЫ HTML ----------------------------------------->
 
 <!-- Swiper -->
-<div class="box" style="width: 200px">
+<div class="swiper-box">
 	<div class="banner__swiper swiper">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">slide 1</div>
@@ -114,6 +114,23 @@
 		<option value="opt 2">option 2</option>
 		<option value="opt 3">option 3</option>
 	</select>
+</div>
+
+
+<!-- Закладки (tabs) -->
+<div class="catalog__tabs tabs">
+	<div class="tabs__buttons">
+		<div class="tabs__btn _active">Product Information</div>
+		<div class="tabs__btn">Other details</div>
+	</div>
+	<div class="tabs__content">
+		<p class="tabs__content-item _active">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit.
+		</p>
+		<p class="tabs__content-item">
+			Obcaecati corporis aliquid, vel provident ducimus dolorem.
+		</p>
+	</div>
 </div>
 
 
@@ -352,13 +369,14 @@
 </script>
 
 
-<!-- Для теста ------------------------------------------>
+<!-- Тестовые настройки ------------------------------------------>
 
 <a class="modal-link" href="#modal-info">MODAL</a>
 
 <style>
 	.test-block {max-width: 500px; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 30px; padding: 50px 0;}
 	/*.test-block button {width: 200px; height: 40px;}*/
+	.swiper-box, .swiper {width: 100%; position: relative;}
 	.form-test {
 		border: solid 2px #333;
 		width: 300px;

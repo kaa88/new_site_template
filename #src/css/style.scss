@@ -2,6 +2,7 @@
 
 */
 
+@use "sass:math"; // for sass functions
 @import "_reset";
 @import "_noscript";
 @import "_mixins";
@@ -38,7 +39,6 @@ $mobile: 768;
 
 $media-header: $mobile;
 $media-header2: 390;
-$media-menu: $mobile;
 
 $media-footer: 850;
 $media-footer2: 530;

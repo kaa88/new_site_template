@@ -28,9 +28,8 @@ class Select {
 		let that = this;
 		for (let i = 0; i < this.options.length; i++) {
 			this.options[i].addEventListener('click', function() {
-				that.setToSelected(event, that, i);
+				that.selectItem(event, that, i);
 			});
-			this.options[i].addEventListener('click', this.selectItem.bind(this));
 		};
 
 		if (params.firstOptSelected) {
@@ -56,7 +55,7 @@ class Select {
 		this.list.classList.add('_active');
 		window.addEventListener('click', this.hideList.bind(this), {once: true});
 	}
-	setToSelected(e, that, i) {
+	selectItem(e, that, i) {
 		for (let j = 0; j < e.target.parentElement.children.length; j++) {
 			e.target.parentElement.children[j].classList.remove('_selected');
 			that.basicSelect[j].removeAttribute('selected');
@@ -64,13 +63,6 @@ class Select {
 		e.target.classList.add('_selected');
 		that.basicSelect[i+1].setAttribute('selected', 'true');
 		that.onselect(that.basicSelect[i+1].value);
-	}
-	selectItem() {
-		for (let i = 0; i < this.options.length; i++) {
-			if (this.options[i].classList.contains('_selected')) {
-				this.header.innerHTML = this.options[i].innerHTML;
-				break;
-			}
-		}
+		that.header.innerHTML = e.target.innerHTML;
 	}
 }

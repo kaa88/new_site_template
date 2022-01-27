@@ -1,3 +1,21 @@
+@import "t/header";
+@import "t/footer";
+// @import "t/modal";
+// @import "t/form";
+// @import "t/select";
+// @import "t/accordion_css";
+// @import "t/accordion_js";
+// @import "t/input_checkbox";
+// @import "t/input_radio";
+// @import "t/input_range_colored";
+// @import "t/input_range_double";
+// @import "t/video_player";
+// @import "t/loadscreen";
+// @import "t/spoiler";
+// @import "t/tabs";
+// @import "t/up_button";
+
+
 body {
 	background-color: #BDE;
 	font-family: Arial;
@@ -22,8 +40,6 @@ body {
 // 	transform: scale(0.00113378, 0.00192307);
 // }
 
-@import "t/header";
-
 .content {
 	// Example for block margins
 	// padding-top: 70px;
@@ -37,22 +53,3 @@ body {
 	// 	.--page-about & {margin-top: 10px;}
 	// }
 }
-
-// Content styles here
-
-
-
-@import "t/footer";
-// @import "t/modal";
-// @import "t/form";
-// @import "t/select";
-// @import "t/accordion_css";
-// @import "t/accordion_js";
-// @import "t/input_checkbox";
-// @import "t/input_radio";
-// @import "t/input_range_colored";
-// @import "t/input_range_double";
-// @import "t/video_player";
-// @import "t/loadscreen";
-// @import "t/spoiler";
-// @import "t/up_button";
