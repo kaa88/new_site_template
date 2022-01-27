@@ -42,13 +42,14 @@ scrollLock.init()
 
 /* Header
 	Set transition timeout in CSS only
-	Params {obj}:
-	- menu - add menu block (default = true)
-	- submenu - add submenu block (default = true)
-	- hidingHeader - add hidingHeader block (default = true)
+	Params {obj}: (defaults = false)
+	- menu - add menu block
+	- submenu - add submenu block
+	- hidingHeader - add hidingHeader block
 */
 @@include('t/header.js')
 header.init({
+	menu: true,
 	submenu: false,
 	hidingHeader: true
 })

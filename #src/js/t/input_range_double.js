@@ -2,7 +2,7 @@ class InputRangeDouble {
 	constructor(params = {}) {
 		let names = {
 			elem: 'input-range-dbl',
-			devider: '__',
+			divider: '__',
 			track: 'track',
 			trackIn: 'track-inner',
 			trackPart: 'track-part',
@@ -34,7 +34,7 @@ class InputRangeDouble {
 
 		// Creating elements
 		let newTrack = document.createElement('div');
-		newTrack.classList.add(names.elem + names.devider + names.track);
+		newTrack.classList.add(names.elem + names.divider + names.track);
 		this.elem.appendChild(newTrack);
 		this.track.elem = newTrack;
 		this.track.start = options.start;
@@ -43,7 +43,7 @@ class InputRangeDouble {
 		window.addEventListener('resize', this.recalculateTrack.bind(this));
 
 		let newTrackIn = document.createElement('div');
-		newTrackIn.classList.add(names.elem + names.devider + names.trackIn);
+		newTrackIn.classList.add(names.elem + names.divider + names.trackIn);
 		newTrack.appendChild(newTrackIn);
 
 		let that = this;
@@ -52,25 +52,25 @@ class InputRangeDouble {
 			this.parts[i] = {position: {}};
 
 			let newTrackPart = document.createElement('div');
-			newTrackPart.classList.add(names.elem + names.devider + names.trackPart + (i + 1));
+			newTrackPart.classList.add(names.elem + names.divider + names.trackPart + (i + 1));
 			newTrackIn.appendChild(newTrackPart);
 			this.parts[i].trackPart = newTrackPart;
 			if (i === 0) this.parts[i].trackPart_reverse = false;
 			else this.parts[i].trackPart_reverse = true;
 
 			let newThumb = document.createElement('div');
-			newThumb.classList.add(names.elem + names.devider + names.thumb + (i + 1));
+			newThumb.classList.add(names.elem + names.divider + names.thumb + (i + 1));
 			newTrack.appendChild(newThumb);
 			this.parts[i].thumb = newThumb;
 		
 				let newThumbShape = document.createElement('div');
-				newThumbShape.classList.add(names.elem + names.devider + names.thumbShape);
+				newThumbShape.classList.add(names.elem + names.divider + names.thumbShape);
 				newThumb.appendChild(newThumbShape);
 				this.parts[i].thumbShape = newThumbShape;
 
 				if (options.bubble == true) {
 					let newBubble = document.createElement('div');
-					newBubble.classList.add(names.elem + names.devider + names.bubble);
+					newBubble.classList.add(names.elem + names.divider + names.bubble);
 					let newSpan = document.createElement('span');
 					newBubble.appendChild(newSpan);
 					newThumb.appendChild(newBubble);
