@@ -6,9 +6,9 @@
 			LOGO
 		</a>
 	</div>
-	<div class="menu-open-btn"><span>MENU</span></div>
+	<div class="hdr-menu-open-btn"><span>MENU</span></div>
 
-	<div class="header__hiding-menu">
+	<div class="header__menu-wrapper">
 		<div class="header-top">
 			<div class="container">
 				<div class="header-top__links">
@@ -47,35 +47,56 @@
 				LOGO
 			</a>
 		</div>
-
-		<nav class="header__menu menu">
-			<div class="menu-open-btn"><span>MENU</span></div>
-			<div class="menu__container">
-			<!-- если меню вне header, добавить класс container -->
-			<!-- если многоэтажка, обернуть всё в хедере в обертку и сделать дубль лого для адаптива -->
-				<div class="menu-close-btn"><span>X</span></div>
-				<ul class="menu__items">
-					<!-- список всех ссылок -->
-					<li class="menu__item" data-name="home">
-						<a class="menu__link" href="index.html">Home</a>
+		<div class="hdr-menu-open-btn"><span>MENU</span></div>
+		<!-- для Animated burger оставить span внутри -->
+		<!-- если многоэтажка, обернуть всё в хедере в wrapper и сделать дубль лого для адаптива -->
+		<nav class="header__hdr-menu hdr-menu">
+			<div class="hdr-menu__container">
+			<!-- если меню вне header, в hdr-menu__container добавить класс container -->
+				<div class="hdr-menu-close-btn"><span>X</span></div>
+				<ul class="hdr-menu-items">
+					<!-- список всех ссылок для сортировки скриптом -->
+					<li class="hdr-menu-item" data-name="home">
+						<a class="hdr-menu-link" href="index.html">Home</a>
+						<!-- submenu вставить сюда -->
+						<!-- в hdr-menu-link добавить класс submenu-drop-link -->
 					</li>
-					<li class="menu__item" data-name="products">
-						<a class="menu__link" href="#">Products</a>
+					<li class="hdr-menu-item" data-name="products">
+						<a class="hdr-menu-link" href="#">Products</a>
 					</li>
-					<li class="menu__item" data-name="about">
-						<a class="menu__link" href="#">About</a>
+					<li class="hdr-menu-item" data-name="about">
+						<a class="hdr-menu-link" href="#">About</a>
 					</li>
-					<li class="menu__item" data-name="contacts">
-						<a class="menu__link" href="#">Contacts</a>
+					<li class="hdr-menu-item" data-name="contacts">
+						<a class="hdr-menu-link" href="#">Contacts</a>
 					</li>
 				</ul>
 				<!-- drop общий тут или вставить в каждый пункт -->
-				<!-- <span class="menu__dropdown dropdown"></span> -->
+
+				<!-- <nav class="hdr-submenu">
+					<div class="hdr-submenu__container">
+						<div class="hdr-menu-back-btn"><span>&larr;</span></div>
+						<ul class="hdr-menu-items">
+							<li class="hdr-menu-item" data-name="round">
+								<a class="hdr-menu-link" href="#">Round</a>
+							</li>
+							<li class="hdr-menu-item" data-name="square">
+								<a class="hdr-menu-link" href="#">Square</a>
+							</li>
+							<li class="hdr-menu-item" data-name="triangle">
+								<a class="hdr-menu-link" href="#">Triangle</a>
+							</li>
+							<li class="hdr-menu-item" data-name="star">
+								<a class="hdr-menu-link" href="#">Star</a>
+							</li>
+						</ul>
+					</div>
+				</nav> -->
+				
 			</div>
 		</nav>
 
 	</div>
 	<div class="header__print-address">address.com</div>
+	<div class="hdr-menu-turn-off-area"></div>
 </header>
-<div class="menu-turn-off-area"></div>
-

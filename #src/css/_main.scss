@@ -1,55 +1,55 @@
-@import "t/header";
-@import "t/footer";
-// @import "t/modal";
-// @import "t/form";
-// @import "t/select";
-// @import "t/accordion_css";
-// @import "t/accordion_js";
-// @import "t/input_checkbox";
-// @import "t/input_radio";
-// @import "t/input_range_colored";
-// @import "t/input_range_double";
-// @import "t/video_player";
-// @import "t/loadscreen";
-// @import "t/spoiler";
-// @import "t/tabs";
-// @import "t/up_button";
-
-
-body {
-	background-color: #BDE;
-	font-family: Arial;
-	color: #222;
-	&._locked {overflow: hidden;}
-	// if header is fixed there are it's heights in style.scss
-	padding-top: $header-desktop-height;
-	@media (max-width: $mobile+px) {padding-top: $header-mobile-height;}
-	// Variables for JS transitions
-	--timer-menu: #{$timer-menu};
-	--timer-modal: #{$timer-modal};
-}
-.container {
-	width: 100%;
-	max-width: 1200px;
-	min-width: calc(320px - (100vw - 100%));
-	margin: 0 auto;
-	padding: 0 15px;
-}
+@import "front/header";
+@import "front/footer";
+// @import "front/modal";
+// @import "front/form";
+// @import "front/select";
+// @import "front/accordion_css";
+// @import "front/accordion_js";
+// @import "front/input_checkbox";
+// @import "front/input_radio";
+// @import "front/input_range_colored";
+// @import "front/input_range_double";
+// @import "front/video_player";
+// @import "front/loadscreen";
+// @import "front/spoiler";
+// @import "front/tabs";
+// @import "front/up_button";
 
 // #svg-map path {
 // 	transform: scale(0.00113378, 0.00192307);
 // }
 
+body {
+	font-family: Arial;
+	font-size: $font-size-default;
+	color: $color-text-dark;
+	background-color: $color-bg-page;
+	max-width: $page-max-width+px;
+	margin: 0 auto;
+	&._locked {overflow: hidden;}
+
+	// Variables for JS manipulations
+	--header-height: unset;
+	--timer-menu: #{$timer-menu};
+	--timer-modal: #{$timer-modal};
+
+}
+.container {
+	width: 100%;
+	max-width: $container-width+px;
+	min-width: calc($page-min-width - (100vw - 100%));
+	margin: 0 auto;
+	padding: 0 $container-padding+px;
+}
+
 .content {
-	// Example for block margins
-	// padding-top: 70px;
-	// padding-bottom: 80px;
-	// &__catalog {
-	// 	.--page-about & {margin-top: 67px;}
-	// 	.--page-activity & {margin-top: 10px;}
-	// }
-	// &__about {
-	// 	.--page-main & {margin-top: 110px;}
+	padding-top: 10px;
+	padding-bottom: 20px;
+	// Section margins Example
+	// &__main-content {
+	// 	.--page-home & {margin-top: 67px;}
 	// 	.--page-about & {margin-top: 10px;}
 	// }
 }
+
+// Place other styles here

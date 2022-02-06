@@ -20,43 +20,41 @@ const {src, dest} = require('gulp'),
 	through = require('through2'), // for gulp-scale-images
 	imagemin = require('gulp-imagemin-changba');
 
-const project_folder = 'dist';
-const source_folder = '#src';
+const $project = 'dist';
+const $source = '#src';
 const path = {
 	build: {
-		root: project_folder + '/',
-		css: project_folder + '/css/',
-		js: project_folder + '/js/',
-		php: project_folder + '/php/',
-		libs: project_folder + '/libs/',
-		img: project_folder + '/img/',
-		fonts: project_folder + '/fonts/'
+		root: $project + '/',
+		css: $project + '/css/',
+		js: $project + '/js/',
+		php: $project + '/php/',
+		libs: $project + '/libs/',
+		img: $project + '/img/',
+		fonts: $project + '/fonts/'
 	},
 	src: {
-		html: [source_folder + '/*.html', '!' + source_folder + '/[_#]*.html'],
-		scss: source_folder + '/css/style.scss',
-		js: source_folder + '/js/*.js',
-		php: source_folder + '/php/**/*',
-		libs: source_folder + '/libs/**/*',
-		// img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		img: [source_folder + '/img/**/*', '!' + source_folder + '/img/**/$*', '!' + source_folder + '/img/**/*@2x.*'],
-		// img2x: source_folder + '/img/**/*@2x.*',
-		img2x: [source_folder + '/img/**/*@2x.*', '!' + source_folder + '/img/**/$*@2x.*'],
-		img_original: source_folder + '/img/**/$*',
-		fonts: source_folder + '/fonts/*.ttf',
-		other_stuff: source_folder + '/other_stuff/**/*'
+		html: [$source + '/*.html', '!' + $source + '/[_#]*.html'],
+		scss: $source + '/css/style.scss',
+		js: $source + '/js/*.js',
+		php: $source + '/php/**/*',
+		libs: $source + '/libs/**/*',
+		img: [$source + '/img/**/*', '!' + $source + '/img/**/$*', '!' + $source + '/img/**/*@2x.*'],
+		img2x: [$source + '/img/**/*@2x.*', '!' + $source + '/img/**/$*@2x.*'],
+		img_original: $source + '/img/**/$*',
+		fonts: $source + '/fonts/*.ttf',
+		other_stuff: $source + '/other_stuff/**/*'
 	},
 	watch: {
-		html: source_folder + '/**/*.html',
-		scss: source_folder + '/css/**/*.scss',
-		js: source_folder + '/js/**/*.js',
-		php: source_folder + '/php/*.php',
-		img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts_otf: source_folder + '/fonts/otf/*.otf',
-		fonts_ttf: source_folder + '/fonts/*.ttf',
-		other_stuff: source_folder + '/other_stuff/**/*'
+		html: $source + '/**/*.html',
+		scss: $source + '/css/**/*.scss',
+		js: $source + '/js/**/*.js',
+		php: $source + '/php/*.php',
+		img: $source + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
+		fonts_otf: $source + '/fonts/otf/*.otf',
+		fonts_ttf: $source + '/fonts/*.ttf',
+		other_stuff: $source + '/other_stuff/**/*'
 	},
-	clean: './' + project_folder + '/'
+	clean: './' + $project + '/'
 }
 
 function cb() {}
@@ -65,7 +63,6 @@ function clean() {
 	return del(path.clean);
 }
 
-// let html_menu_links = require('./include.json');
 function html(f, file) {
 	let filepath;
 	if (file && !file.match(/\/[_#]/)) filepath = file;
@@ -73,11 +70,11 @@ function html(f, file) {
 	return src(filepath)
 		.pipe(fileinclude({
 			indent: true,
-			// context: html_menu_links
 		}))
 		.pipe(dest(path.build.root))
 		.pipe(browsersync.stream());
 }
+
 function css() {
 	return src(path.src.scss)
 		.pipe(scss({
@@ -96,6 +93,7 @@ function css() {
 		.pipe(dest(path.build.css))
 		.pipe(browsersync.stream());
 }
+
 function js() {
 	return src(path.src.js)
 		.pipe(fileinclude())
@@ -107,15 +105,18 @@ function js() {
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream());
 }
+
 function php() {
 	return src(path.src.php)
 		.pipe(dest(path.build.php))
 		.pipe(browsersync.stream());
 }
+
 function libs() {
 	return src(path.src.libs)
 		.pipe(dest(path.build.libs));
 }
+
 function otherStuff(f, file) {
 	let filepath = file ? file : path.src.other_stuff;
 	return src(filepath)
@@ -133,7 +134,6 @@ const imagesScaleParams = (file, _, cb) => {
 				maxHeight: Math.ceil(meta.height / 2)
 			}
 		}
-		// else file.scale = {maxWidth: meta.width}
 		cb(null, file)
 	})
 }
@@ -156,7 +156,6 @@ function images(f, filepath) {
 				.pipe(dest(path.build.img))
 				.pipe(browsersync.stream());
 		}
-		// else stream = src(filepath);
 	}
 	else {
 		stream = src(path.src.img2x)
@@ -175,6 +174,7 @@ function images(f, filepath) {
 		.pipe(dest(path.build.img))
 		.pipe(browsersync.stream());
 }
+
 function fonts(f, file) {
 	let filepath = file ? file : path.src.fonts;
 	return src(filepath)
@@ -186,16 +186,16 @@ function fonts(f, file) {
 		.pipe(dest(path.build.fonts));
 }
 function otf2ttf() {
-	return src([source_folder + '/fonts/otf/*.otf'])
+	return src([$source + '/fonts/otf/*.otf'])
 		.pipe(fonter({
 			formats: ['ttf']
 		}))
-		.pipe(dest([source_folder + '/fonts/']));
+		.pipe(dest([$source + '/fonts/']));
 }
 function fontsStyle() {
-	let file_content = fs.readFileSync(source_folder + '/css/fontscript.scss');
+	let file_content = fs.readFileSync($source + '/css/fontscript.scss');
 	if (file_content == '') {
-		fs.writeFile(source_folder + '/css/fontscript.scss', '', cb);
+		fs.writeFile($source + '/css/fontscript.scss', '', cb);
 		return fs.readdir(path.build.fonts, function (err, items) {
 			if (items) {
 				let c_fontname;
@@ -203,7 +203,7 @@ function fontsStyle() {
 					let fontname = items[i].split('.');
 					fontname = fontname[0];
 					if (c_fontname != fontname) {
-						fs.appendFile(source_folder + '/css/fontscript.scss', '@include font("' + fontname + '", "' + fontname + '", "400", "normal");\r\n', cb);
+						fs.appendFile($source + '/css/fontscript.scss', '@include font("' + fontname + '", "' + fontname + '", "400", "normal");\r\n', cb);
 					}
 					c_fontname = fontname;
 				}
@@ -211,6 +211,7 @@ function fontsStyle() {
 		})
 	}
 }
+
 function normalizeFilePath(p) {
 	return p.replace(/\\/g, "/");
 }
@@ -255,10 +256,11 @@ function watchFiles() {
 		otherStuff(undefined, normalizeFilePath(path));
 	});
 }
+
 function browserSync() {
 	browsersync.init({
 		server: {
-			baseDir: './' + project_folder + '/'
+			baseDir: './' + $project + '/'
 		},
 		port: 3000,
 		notify: false

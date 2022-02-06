@@ -4,19 +4,20 @@
 		font-weight: bold;
 		background-color: #aaa;
 		cursor: pointer;
+		user-select: none;
+		transition: all $timer-spoiler;
 	}
 	&__content {
 		height: 0;
 		overflow: hidden;
 		background-color: #fff;
-		p {
-			margin: 10px;
+		transition: all $timer-spoiler;
+		&-wrapper {
+			padding: 10px;
 		}
 	}
 	&._visible &__header {
 		background-color: orange;
 	}
-	&._visible &__content {
-		height: 100%;
-	}
+	&._visible &__content {}
 }

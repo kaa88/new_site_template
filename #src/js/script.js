@@ -1,24 +1,20 @@
 // Hello World!
 
-
-// Some modules use this variable to check mobile or desktop view. Make sure it matches with CSS.
-const mobileSwitchWidth = 768
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/* Recounter (checks window resizing and runs funcs on breakpoints)
-	Useful output - recounter.stateIndex
-	There is 1 more index than number of breakpoints
+/* JS Media Queries (checks window resizing and runs funcs on breakpoints)
+	Useful output - jsMediaQueries.stateIndex
+	Params {obj}:
+		mobile - some modules use this variable to check mobile or desktop view, make sure it matches with CSS.
+		breakpoints - there is 1 more index than number of breakpoints (from 0px to 1st breakpoint)
 */
-@@include('t/recounter.js')
-recounter.init({
+@@include('front/js_media_queries.js')
+jsMediaQueries.init({
+	mobile: 768,
 	breakpoints: {
 		568: () => {},
 		768: () => {
-			scrollLock.recalc();
-			header.menu.toggle();
-			header.hidingHeader.calc();
-			// header.submenu.updateEvents();
+			header.mobileViewService(); // this function makes header work properly
 		}, 
 		1228: () => {
 			// gridSlider.buildSlides();
@@ -28,21 +24,23 @@ recounter.init({
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/* Transition lock (prevents double-clicking on transitions, e.g. when menu slides)
-	Simple use from other module:
-	if (transitionLock.check( #timeout# )) return;
-*/
-@@include('t/trans_lock.js')
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
-/* Scroll lock (prevents window scrolling with menu, modals etc.)
+/* Scroll lock (prevents window scrolling with menu, modals, etc.).
+	By default script will find all body.children and set padding-right to them.
+	If you want to add more items to list (if position: fixed / absolute), 
+	add 'scroll-lock-item' class to them. They will get a margin-right property.
 	Use: 
 		scrollLock.lock()
 		scrollLock.unlock( #timeout# )
 */
-@@include('t/scroll_lock.js')
-scrollLock.init()
+@@include('front/scroll_lock.js')
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/* Transition lock (prevents double-clicking on transitions, e.g. when menu slides)
+	Use:
+		if (transitionLock.check( #timeout# )) return;
+*/
+@@include('front/trans_lock.js')
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -53,10 +51,10 @@ scrollLock.init()
 	- submenu - add submenu block
 	- hidingHeader - add hidingHeader block
 */
-@@include('t/header.js')
+@@include('front/header.js')
 header.init({
 	menu: true,
-	submenu: false,
+	// submenu: true,
 	hidingHeader: true
 })
 
@@ -69,42 +67,33 @@ header.init({
 	- linkName - modal link name (default = 'modal-link')
 	- on: {'modal-window': {open, close}} - event function(event, content, timeout){}
 */
-// @ @include('t/modal.js')
+// @ @include('front/modal.js')
 // modal.init({
-// 	on: {
-		// 'modal-contact': {
-		// 	close: function(event, content, timeout) {setTimeout(() => {formToEmail.clean(document.querySelector('.question-form'))}, 700)}
-		// },
-		// 'modal-imgpreview': {
-		// 	open: function(event, content, timeout) {
-		// 		let source = event.currentTarget.children[event.currentTarget.children.length-1];
-		// 		let img = document.querySelector('#modal-imgpreview img');
-		// 		img.src = source.getAttribute('src').replace('.','-preview.');
-		// 		if (source.srcset) img.srcset = source.srcset.replace('@2x.','-preview@2x.');
-		// 		else img.srcset = '';
-		// 	},
-		// 	close: function(event, content) {
-		// 		let img = document.querySelector('#modal-imgpreview img');
-		// 		setTimeout(() => {
-		// 			img.src = img.srcset = '';
-		// 		}, modal.timeout)
-		// 	},
-		// },
-		// 'modal-video': {
-		// 	open: function(event, content, timeout) {setTimeout(() => {videoPlayer.play(content)}, timeout)},
-		// 	close: function(event, content, timeout) {videoPlayer.pause(content)}
-		// }
-// 	}
+	// on: {
+	// 	'modal-contact': {
+	// 		close: function(event, content, timeout) {setTimeout(() => {formToEmail.clean(document.querySelector('.question-form'))}, 700)}
+	// 	},
+	// 	'modal-imgpreview': {
+	// 		open: function(event, content, timeout) {
+	// 			let source = event.currentTarget.children[event.currentTarget.children.length-1];
+	// 			let img = document.querySelector('#modal-imgpreview img');
+	// 			img.src = source.getAttribute('src').replace('.','-preview.');
+	// 			if (source.srcset) img.srcset = source.srcset.replace('@2x.','-preview@2x.');
+	// 			else img.srcset = '';
+	// 		},
+	// 		close: function(event, content) {
+	// 			let img = document.querySelector('#modal-imgpreview img');
+	// 			setTimeout(() => {
+	// 				img.src = img.srcset = '';
+	// 			}, modal.timeout)
+	// 		},
+	// 	},
+	// 	'modal-video': {
+	// 		open: function(event, content, timeout) {setTimeout(() => {videoPlayer.play(content)}, timeout)},
+	// 		close: function(event, content, timeout) {videoPlayer.pause(content)}
+	// 	}
+	// }
 // })
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
-/* Send form to email
-	Params:
-	1) demo mode: all checks and response messages, but disabled php (default = false)
-*/
-// @ @include('t/form_to_email.js')
-// formToEmail.init(true);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -114,7 +103,7 @@ header.init({
 	- firstOptSelected (default = false)
 	- onselect - event
 */
-// @ @include('t/select.js')
+// @ @include('front/select.js')
 // let form_select = new Select({
 // 	elem: 'form__select', 
 // 	firstOptSelected: true,
@@ -128,15 +117,17 @@ header.init({
 	1) element name (default = 'accordion')
 	2) isOpened (default = false)
 */
-// @ @include('t/accordion_js.js')
+// @ @include('front/accordion_js.js')
 // let accordion = new Accordion('js__accordion', true);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 /* Random
-	Use: getRandom(min = 0, max = 99)
+	Use: 
+		getRandomNumber(min, max) (default = 0, 99)
+		getRandomId(length) (default = 10)
 */
-// @ @include('t/random.js')
+// @ @include('front/random.js')
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -146,7 +137,7 @@ header.init({
 	2)	timeout in seconds
 	3)	result element name
 */
-// @ @include('t/onload_counter.js')
+// @ @include('front/onload_counter.js')
 // let onloadCounter1 = new OnloadCounter(51806, 1 , 'test-counter--1');
 // let onloadCounter2 = new OnloadCounter(35704, 2 , 'test-counter--2');
 
@@ -158,7 +149,7 @@ header.init({
 	- trackColorStart - color of the left track part (default = 'var(--track-color-start)')
 	- trackColorEnd - color of the right track part (default = 'var(--track-color-end)')
 */
-// @ @include('t/input_range_colored.js')
+// @ @include('front/input_range_colored.js')
 // let iRangeClr = new InputRangeColored({
 // 	elem: 'input-range'
 // })
@@ -174,7 +165,7 @@ header.init({
 	- bubble - enable bubble (default = false)
 	- results [] - result element (no default)
 */
-// @ @include('t/input_range_double.js')
+// @ @include('front/input_range_double.js')
 // let iRangeDbl = new InputRangeDouble({
 // 	elem: 'form__input-range-dbl',
 // 	start: 200,
@@ -190,7 +181,7 @@ header.init({
 	Params:
 	1) volume (default = 70)
 */
-// @ @include('t/video_player.js')
+// @ @include('front/video_player.js')
 // Include "Input range colored" script if track colored progress is required.
 // iRange_seek = new InputRangeColored({
 // 	elem: 'video-controls__seek-bar'
@@ -228,58 +219,69 @@ header.init({
 	It is useful with many swipers in a project
 	Settings are inside module
 */
-// @ @include('t/swiper_customs.js')
+// @ @include('front/swiper_customs.js')
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/* JSON Load (loads data from .json file & returns Promise)
-	Params:
-	1) file path (example: 'content/news.json')
+/* Loadscreen
+	Params {obj}:
+	- timeout - timeout between document is loaded and loadscreen begins to fade (default = 0)
+	- scrollToTop - force scroll document to top (default = false)
 */
-// @ @include('t/json_load.js')
-// jsonLoad('news.json').then((result) => console.log(result)) // example
-
-///////////////////////////////////////////////////////////////////////////////////////////
-
-// Loadscreen
-// @ @include('t/loadscreen.js')
+// @ @include('front/loadscreen.js')
+// loadscreen.init({
+// 	timeout: 1000,
+// 	scrollToTop: true
+// })
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Spoiler
-// @ @include('t/spoiler.js')
+// @ @include('front/spoiler.js')
 // spoiler.init();
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Up-button
-// @ @include('t/up_button.js')
+// @ @include('front/up_button.js')
 // upButton.init();
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Tabs
-// @ @include('t/tabs.js')
+// @ @include('front/tabs.js')
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/* Send form to email
+	Params:
+	1) demo mode: all checks and response messages, but disabled php (default = false)
+*/
+// @ @include('back/form_to_email.js')
+// formToEmail.init(true);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-// Module check & load (2 variants)
-// function moduleCheckAndLoad() {
-// 	// delayed loading
-// 	window.addEventListener('load', () => {
-// 		let delayed = [
-// 			['.gridslider__slider',()=> {gridSlider.init()}],
-// 		];
-// 		for (let i = 0; i < delayed.length; i++) {
-// 			if (document.querySelector(delayed[i][0])) delayed[i][1]();
-// 		}
-// 	})
-// 	// instant loading
-// 	let instant = [
-// 		['.side-menu',()=> {categoriesBtn.init()}]
-// 	];
-// 	for (let i = 0; i < instant.length; i++) {
-// 		if (document.querySelector(instant[i][0])) instant[i][1]();
-// 	}
-// }
-// moduleCheckAndLoad();
+/* JSON Load (loads data from .json file & returns Promise)
+	Params:
+	1) file path (example: 'contenfront/news.json')
+*/
+// @ @include('back/json_load.js')
+// jsonLoad('news.json').then((result) => console.log(result)) // example
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/* Module check & load (2 variants)
+	instant / delayed Arrays must contain 2 things: 
+	1) DOM query name, 2) callback
+*/
+@@include('front/module_check_and_load.js')
+moduleCheckAndLoad.init({
+	instant: [
+		// ['.side-menu', sideMenu.init],
+	],
+	delayed: [
+		// ['.gridslider__slider', gridSlider.init],
+	]
+});

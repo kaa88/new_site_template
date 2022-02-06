@@ -69,13 +69,15 @@
 		<p>Spoiler</p>
 	</div>
 	<div class="spoiler__content">
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quis non sunt odit eos at neque eligendi, corrupti repellat vero id quos praesentium illum, quisquam aliquam minima inventore error placeat!</p>
+		<div class="spoiler__content-wrapper">
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quis non sunt odit eos at neque eligendi, corrupti repellat vero id quos praesentium illum, quisquam aliquam minima inventore error placeat!</p>
+		</div>
 	</div>
 </div>
 
 
 <!-- Наверх (исчезающая кнопка) -->
-<div class="up-button">
+<div class="up-button scroll-lock-item">
 	<i class="icon-up">UP</i>
 </div>
 
@@ -89,7 +91,7 @@
 	<textarea class="contact-form__message" name="message" placeholder="Message"></textarea>
 	<button class="contact-form__button" type="submit">
 		Submit
-		<!-- Sending progress bar inside button -->
+		<!-- Sending progress bar inside the button -->
 		<span class="progress">
 			<span class="progress__box">
 				<i></i><i></i><i></i>
@@ -103,10 +105,10 @@
 <div class="form__select select">
 	<div class="select__header">
 		<span class="select__header-text"></span>
-		<span class="select__header-icon"><i class="icon-play"></i></span>
+		<span class="select__header-icon"><i class="icon-play">#</i></span>
 	</div>
 	<div class="select__list-wrapper">
-		<!-- Script generated list -->
+		<!-- Script-generated list -->
 	</div>
 	<select name="select">
 		<option value="none" selected disabled>Select...</option>
@@ -117,7 +119,7 @@
 </div>
 
 
-<!-- Закладки (tabs) -->
+<!-- Tabs (закладки) -->
 <div class="catalog__tabs tabs">
 	<div class="tabs__buttons">
 		<div class="tabs__btn _active">Product Information</div>
@@ -204,7 +206,7 @@
 </div>
 
 
-<!-- Хлебные крошки -->
+<!-- Breadcrumbs (хлебные крошки) -->
 <nav class="banner__breadcrumbs breadcrumbs">
 	<a class="breadcrumbs__link" href="index.html">Home</a>
 	<span class="breadcrumbs__devider">></span>
@@ -371,20 +373,9 @@
 
 <!-- Тестовые настройки ------------------------------------------>
 
-<a class="modal-link" href="#modal-info">MODAL</a>
-
 <style>
-	.test-block {max-width: 500px; margin: 0 auto; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 30px; padding: 50px 0;}
-	/*.test-block button {width: 200px; height: 40px;}*/
+	.test-block .container {max-width: 500px; display: flex; align-items: center; flex-direction: column; gap: 30px; padding: 50px 0 100px;}
 	.swiper-box, .swiper {width: 100%; position: relative;}
-	.form-test {
-		border: solid 2px #333;
-		width: 300px;
-		padding: 20px;
-	}
-	.form-test > * {margin-bottom: 10px;}
 </style>
 
-<form class="form-test" name="form-test" action="#">
-	<h1>Form test</h1>
-</form>
+<a class="modal-link" href="#modal-info">MODAL</a>

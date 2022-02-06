@@ -8,10 +8,11 @@
 <!-- @@include('_loadscreen.html') -->
 
 @@include('_header.html')
-<script id="headerMenuOptions">
+<script id="header-menu-options">
 	// список пунктов меню в _header.html
 	// наличие и порядок устанавливаются в массиве 'links'
 	// 'activeLink' добавляет класс 'this-page'
+	// тег 'script' можно удалить
 	
 	// let headerMenuOptions = {
 	// 	links: ['home','products','about','contacts'],
@@ -21,18 +22,24 @@
 
 <main class="content --page-home">
 
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
-	<h1 class="g-h1">content sections</h1>
+	<section class="content__main-content main-content">
+		<div class="main-content__container container">
+
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+			<h1 class="g-h1">content section</h1>
+
+		</div>
+	</section>
 	
 </main>
 
@@ -44,7 +51,7 @@
 
 <!-- @@include('_svg.html') -->
 
-<!-- <div class="test-block">@@include('#templates.html')</div> -->
+<!-- <div class="test-block"><div class="container">@@include('#templates.html')</div></div> -->
 
 @@include('_script.html')
 </body>

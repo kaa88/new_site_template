@@ -7,7 +7,7 @@ const modal = {
 		this.elemName = params.elem || 'modal';
 		this.elem = document.querySelector('.' + this.elemName);
 		if (!this.elem) return;
-		this.timeout = getComputedStyle(document.body).getPropertyValue('--timer-modal').slice(0,-1)*1000 || 0;
+		this.timeout = parseFloat(getComputedStyle(document.body).getPropertyValue('--timer-modal'))*1000 || 0;
 		this.windows = this.elem.querySelectorAll('.' + this.elemName + '__window');
 		this.links = document.querySelectorAll(params.linkName ? '.' + params.linkName : '.modal-link');
 		let that = this;

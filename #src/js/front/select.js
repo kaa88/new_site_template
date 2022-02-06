@@ -23,7 +23,6 @@ class Select {
 
 		this.options = this.elem.querySelectorAll('.select__option');
 		this.listMaxHeight = this.elem.querySelector('.select__list').offsetHeight;
-		this.listMinHeight = 0;
 		this.hideList();
 		let that = this;
 		for (let i = 0; i < this.options.length; i++) {
@@ -43,7 +42,7 @@ class Select {
 		this.onselect = params.onselect || function(selection){};
 	}
 	hideList(e) {
-		this.list.style.height = this.listMinHeight + 'px';
+		this.list.style.height = '';
 		this.header.classList.remove('_active');
 		this.list.classList.remove('_active');
 		this.header.parentElement.addEventListener('click', this.showList.bind(this), {once: true});

@@ -6,7 +6,9 @@ const upButton = {
 		this.prevPos = pageYOffset;
 		this.visible = false;
 		window.addEventListener('scroll', this.showButton.bind(this))
-		this.elem.addEventListener('click', this.goToTop);
+		this.elem.addEventListener('click', () => {
+			window.scrollTo({top: 0, behavior: 'smooth'});
+		});
 	},
 	showButton: function() {
 		function show(that, show) {
@@ -30,8 +32,5 @@ const upButton = {
 			if (this.visible == true) show(this, false);
 		}
 		this.prevPos = pageYOffset;
-	},
-	goToTop: function() {
-		window.scrollTo({top: 0, behavior: 'smooth'});
 	}
 }

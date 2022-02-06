@@ -40,7 +40,7 @@
 		max-width: 500px;
 		max-height: 90%;
 		padding: 50px 4px 30px;
-		background-color: $color-1;
+		background-color: #fff;
 		// #modal-imgpreview & { // example for different windows
 		// 	font-size: 0;
 		// 	max-width: 1000px;
@@ -59,7 +59,7 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		scrollbar-width: thin;
-		scrollbar-color: $color-2 $color-1;
+		scrollbar-color: #000 #fff;
 		&::-webkit-scrollbar {
 			width: 5px;
 		}
@@ -68,7 +68,7 @@
 			// border-radius: 5px;
 		}
 		&::-webkit-scrollbar-thumb {
-			background: $color-2;
+			background: #000;
 			// border-radius: 5px;
 		}
 	}

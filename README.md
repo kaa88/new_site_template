@@ -1,18 +1,29 @@
-# New site template v2.09
+# New site template v2.10
 
 ### TO DO:
-- модуль динамического контента (проверка адреса, подгрузка json, заполнение)
-- getcommputedstyle поменять slice на parseint
+- сниппеты!!!
+- сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.sublime-snippet,
+	туда вставить код из snippet generator
+	pseudo, for, console.log...
+- browser detect
+- pagination module
+- параллакс
+- подгрузка секциями
+- css scroll snap спецификация
+- mobileSwitchWidth переделать на css-переменную и получить ее скриптом
+- html pattern fill module. модуль динамического контента (проверка адреса, подгрузка json, заполнение)
+- getcommputedstyle поменять slice на parseint (parsefloat)
 - раздел fonts в style.css для подключения шрифтов google fonts?
 - попап переработать
 - animated burger переделать px в em
 - grid-slider
 - scrolling navigation (mogo)
-- сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.snippet,
-	туда вставить код из snippet generator
-	pseudo, for, console.log...
+- проверка сайта на MacOS (Safari или эмулятор MacOS)
+- VS Code попробовать (+ы: консоль, подключение шрифтов с googlefonts через плагин...)
 
 НОВОЕ ПОРТФОЛИО:
+- добавить кнопку "наверх"
+- на мобилке добавить подвал с контактами
 - фоновая картинка с параллаксом
 - профиль инфо приклеено слева как aside
 - работы крупнее раза в 2-3
@@ -31,37 +42,39 @@
 ---
 
 ### Готовые шаблоны:
-- recounter (js)									OK
-- transition_lock (js)							OK
-- scroll_lock (js)								OK
-- random (js)										OK
-- onload_counter (js)							OK
-- header (html, css, js)						OK
-- footer (html, css)								OK
-- modal (html, css, js)							OK
-- accordion_css (html, css)					OK
-- accordion_js (html, css, js)				OK
-- select (html, css, js)						OK
-- input_checkbox (html, css)					OK
-- input_radio (html, css)						OK
-- input_range_colored (html, css, js)		OK
-- input_range_double (html, css, js)		OK
-- form_to_email (html, css, js, php)		OK, добавить загрузку картинок
-- video_player (html, css, js)				OK, в будущем сделать доп оптимизацию для свайпера
-- swiper_customs (js)							OK, в будущем переделать initVirtual в модуль
-- swiper_simple (js)								OK
-- json_load (js)									OK
-- module_loader (js)								OK
-- loadscreen (html, css, js)					OK
-- spoiler (html, css, js)						OK
-- up_button (html, css, js)					OK
-- tabs (html, css, js)							OK
+front:
+- js_media_queries (js)							|
+- transition_lock (js)							|
+- scroll_lock (js)								|
+- random (js)										|
+- onload_counter (js)							|
+- header (html, css, js)						|
+- footer (html, css)								|
+- modal (html, css, js)							|
+- accordion_css (html, css)					|
+- accordion_js (html, css, js)				|
+- select (html, css, js)						|
+- input_checkbox (html, css)					|
+- input_radio (html, css)						|
+- input_range_colored (html, css, js)		|
+- input_range_double (html, css, js)		|
+- video_player (html, css, js)				| сделать доп оптимизацию для свайпера
+- swiper_customs (js)							| переделать initVirtual в модуль
+- swiper_simple (js)								|
+- module_loader (js)								|
+- loadscreen (html, css, js)					|
+- spoiler (html, css, js)						|
+- up_button (html, css, js)					|
+- tabs (html, css, js)							|
+back:
+- form_to_email (html, css, js, php)		| добавить загрузку картинок
+- json_load (js)									|
 
 ### Папки:
 design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 
-### Комментарии по работе:
-- скопировать все файлы в новый репозиторий
+### Начало работы:
+- скопировать все файлы в новый репозиторий (кроме readme.md)
 - в коммандной строке прописать "npm i" для установки gulp
 - удалить название у файла .gitignore
 
@@ -76,6 +89,19 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 ---
 
 ### Changelog:
+
+#### v2.10
+- recounter переделан в js_media_queries, в нее убрана mobileSwitchWidth
+- scroll_lock: можно добавить дополнительные эл-ты к выборке путем добавления класса; исправлены баги
+- новая функция getRandomId
+- module check & load выделен в отдельный модуль
+- обновлены: select, loadscreen, spoiler
+- header: 
+	- полная (наверное) поддержка submenu, можно делать один общий или несколько в каждом пункте меню, поддержка нескольких уровней вложенности
+	- header.js взаимодействует с css переменной, сам считает высоту menu
+- исправления для повышения удобства разработки: css переменные, noscript, reset, style.css
+- project-note.md для текущих записей по проекту
+- мелкие исправления
 
 #### v2.09
 - gulpfile: other stuff тоже обрабатывает только измененный файл; 

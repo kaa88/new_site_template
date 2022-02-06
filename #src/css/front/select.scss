@@ -1,0 +1,57 @@
+.select {
+	position: relative;
+	z-index: 9;
+	width: 182px;
+	height: 32px;
+	cursor: pointer;
+	select {display: none;}
+	&__header {
+		height: 100%;
+		padding: 0 10px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		background-color: orange;
+		border: solid 1px #555;
+		overflow: hidden;
+		user-select: none;
+		&-text {
+			flex: 1 1 auto;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+		&-icon {
+			flex: 0 0 auto;
+			display: flex;
+			align-items: center;
+		}
+	}
+	&__list-wrapper { // нужен для скрытия списка с толстой рамкой
+		position: absolute;
+		top: calc(100% - 2px);
+		left: 0;
+		width: 100%;
+		z-index: -1;
+		height: 0;
+		overflow: hidden;
+		border: solid 1px #555;
+		transition: all $timer-select;
+		// visibility: hidden;
+		&._active {
+			// visibility: visible;
+		}
+	}
+	&__list {}
+	&__option {
+		display: flex;
+		align-items: center;
+		background-color: #fff;
+		height: 28px;
+		padding: 0 10px;
+		white-space: nowrap;
+		overflow: hidden;
+		&._selected, &:hover {
+			background-color: #ddd;
+		}
+	}
+}

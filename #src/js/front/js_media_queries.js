@@ -1,5 +1,6 @@
-const recounter = {
+const jsMediaQueries = {
 	init: function(params = {}) {
+		this.mobile = params.mobile || 768;
 		this.breakpoints = params.breakpoints || null;
 		if (!this.breakpoints) return;
 		this.breakpoints.keys = Object.keys(this.breakpoints);
