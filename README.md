@@ -1,6 +1,8 @@
 # New site template v2.10
 
 ### TO DO:
+Дополнительно настроить шаблоны для сжимания картинок и для разминирования css и js
+
 - сниппеты!!!
 - сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.sublime-snippet,
 	туда вставить код из snippet generator

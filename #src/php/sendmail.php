@@ -1,23 +1,24 @@
 <?php
+// if using SMTP -> uncomment 'use', 'require' and 'server settings', then edit settings
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\SMTP;
 require '../libs/phpmailer/src/PHPMailer.php';
 require '../libs/phpmailer/src/Exception.php';
-require '../libs/phpmailer/src/SMTP.php';
+// require '../libs/phpmailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
 
 try {
-	//Server settings
-	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
-	$mail->isSMTP();
-	$mail->Host = 'smtp.yandex.ru';
-	$mail->SMTPAuth = true;
-	$mail->Username = 'troll-sbor';
-	$mail->Password = 'pfhwddtrekxvwcwz';
-	$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-	$mail->Port = 465;
+	// Server settings (only if using SMTP)
+	// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+	// $mail->isSMTP();
+	// $mail->Host = 'smtp.yandex.ru';
+	// $mail->SMTPAuth = true;
+	// $mail->Username = 'login';
+	// $mail->Password = 'password';
+	// $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+	// $mail->Port = 465;
 
 	//Mail settings
 	$mail->CharSet = 'UTF-8';
@@ -25,11 +26,11 @@ try {
 	$mail->IsHTML(true);
 
 	//Recipients
-	$mail->setFrom('troll-sbor@yandex.ru', 'Site subscriber');
-	// $mail->addAddress('dre021088@gmail.com');
-	$mail->addCC('troll-sbor@yandex.ru');
-	// $mail->addBCC('bcc@example.com');
-	// $mail->addReplyTo('info@example.com', 'Information');
+	$mail->setFrom('from@example.com', 'Subscriber'); // from (address, name)
+	$mail->addAddress('to@example.com'); // to (address)
+	// $mail->addCC('cc@example.com'); // copy
+	// $mail->addBCC('bcc@example.com'); // hidden copy
+	// $mail->addReplyTo('reply@example.com', 'Information');
 
 	//Content
 	$subj = 'Subject';
