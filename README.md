@@ -3,11 +3,12 @@
 ### TO DO:
 Дополнительно настроить шаблоны для сжимания картинок и для разминирования css и js
 
-- form-to-email переделать шаблоны regexp для email и др
 - сниппеты!!!
 - сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.sublime-snippet,
 	туда вставить код из snippet generator
 	pseudo, for, console.log...
+- form-to-email переделать шаблоны regexp для email и др
+- QR-код для принт версии
 - browser detect
 - pagination module
 - параллакс
