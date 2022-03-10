@@ -23,6 +23,28 @@ const {src, dest} = require('gulp'),
 const $project = 'dist';
 const $source = '#src';
 const path = {
+	watch: {
+		html: $source + '/html/**/*.html',
+		scss: $source + '/css/**/*.scss',
+		js: $source + '/js/**/*.js',
+		php: $source + '/php/**/*.php',
+		img: $source + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
+		fonts_otf: $source + '/fonts/otf/*.otf',
+		fonts_ttf: $source + '/fonts/*.ttf',
+		other_stuff: $source + '/other_stuff/**/*'
+	},
+	src: {
+		html: [$source + '/html/**/*.html', '!' + $source + '/html/**/[_#]*.html'],
+		scss: $source + '/css/style.scss',
+		js: $source + '/js/script.js',
+		php: $source + '/php/**/*.php',
+		libs: $source + '/libs/**/*',
+		img: [$source + '/img/**/*', '!' + $source + '/img/**/$*', '!' + $source + '/img/**/*@2x.*'],
+		img2x: [$source + '/img/**/*@2x.*', '!' + $source + '/img/**/$*@2x.*'],
+		img_original: $source + '/img/**/$*',
+		fonts: $source + '/fonts/*.ttf',
+		other_stuff: [$source + '/other_stuff/**/*', $source + '/other_stuff/.htaccess']
+	},
 	build: {
 		root: $project + '/',
 		css: $project + '/css/',
@@ -31,28 +53,6 @@ const path = {
 		libs: $project + '/libs/',
 		img: $project + '/img/',
 		fonts: $project + '/fonts/'
-	},
-	src: {
-		html: [$source + '/*.html', '!' + $source + '/[_#]*.html'],
-		scss: $source + '/css/style.scss',
-		js: $source + '/js/*.js',
-		php: $source + '/php/**/*',
-		libs: $source + '/libs/**/*',
-		img: [$source + '/img/**/*', '!' + $source + '/img/**/$*', '!' + $source + '/img/**/*@2x.*'],
-		img2x: [$source + '/img/**/*@2x.*', '!' + $source + '/img/**/$*@2x.*'],
-		img_original: $source + '/img/**/$*',
-		fonts: $source + '/fonts/*.ttf',
-		other_stuff: $source + '/other_stuff/**/*'
-	},
-	watch: {
-		html: $source + '/**/*.html',
-		scss: $source + '/css/**/*.scss',
-		js: $source + '/js/**/*.js',
-		php: $source + '/php/*.php',
-		img: $source + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts_otf: $source + '/fonts/otf/*.otf',
-		fonts_ttf: $source + '/fonts/*.ttf',
-		other_stuff: $source + '/other_stuff/**/*'
 	},
 	clean: './' + $project + '/'
 }

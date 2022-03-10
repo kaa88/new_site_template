@@ -1,8 +1,11 @@
-.footer {
-	background-color: $color-bg-footer;
+.footer {}
+.footer-top {
+	background-color: #999;
 	&__container {}
-	&__top {}
-	&__bottom {
+}
+.footer-bottom {
+	background-color: #888;
+	&__container {
 		display: flex;
 		justify-content: center;
 		align-items: center;

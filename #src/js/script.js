@@ -24,15 +24,25 @@ jsMediaQueries.init({
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/* Scroll lock (prevents window scrolling with menu, modals, etc.).
-	By default script will find all body.children and set padding-right to them.
-	If you want to add more items to list (if position: fixed / absolute), 
-	add 'scroll-lock-item' class to them. They will get a margin-right property.
-	Use: 
+/* Scroll lock (prevents window scrolling with menu, modals, etc. and
+	prevents content jumps when scrollbar fades out).
+	Script will find elements in default groups (main, footer) and 
+	set 'padding-right' property to them.
+	You can exclude them by setting 'useDefaultGroups' to 'false'.
+	Header is not a default group, these elems must be added manually.
+	Set an additional elems to list by setting classes to HTML:
+	- 'scroll-lock-item-p' class - for static elems ('padding-right' prop.)
+	- 'scroll-lock-item-m' class - for fixed elems ('margin-right' prop.)
+	- 'scroll-lock-item-pd' class - for static elems that will be hidden in menu
+		(they will get a 'padding-right' prop. only on desktop width)
+	Usable functions: 
 		scrollLock.lock()
 		scrollLock.unlock( #timeout# )
 */
 @@include('front/scroll_lock.js')
+scrollLock.init({
+	useDefaultGroups: true
+})
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -54,7 +64,7 @@ jsMediaQueries.init({
 @@include('front/header.js')
 header.init({
 	menu: true,
-	// submenu: true,
+	submenu: true,
 	hidingHeader: true
 })
 
@@ -272,8 +282,10 @@ header.init({
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-/* Module check & load (2 variants)
-	instant / delayed Arrays must contain 2 things: 
+/* Module check & load (2 variants: instant / delayed)
+	This module scans the DOM and loads js-module if DOM-element exists.
+	Delayed items will load after 'window.load' event.
+	Arrays must contain 2 things: 
 	1) DOM query name, 2) callback
 */
 @@include('front/module_check_and_load.js')
@@ -285,3 +297,12 @@ moduleCheckAndLoad.init({
 		// ['.gridslider__slider', gridSlider.init],
 	]
 });
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Print version QR-code
+function printQRcode() {
+	let str = '<img src="https://chart.googleapis.com/chart?cht=qr&chs=100x100&choe=UTF-8&chld=H|0&chl=' + window.location.href + '" alt="">';
+	document.querySelector('.header__print-address-qr').innerHTML = str;
+}
+// printQRcode();

@@ -6,15 +6,15 @@ const header = {
 	},
 	names: {
 		header: '.header',
-		menu: '.hdr-menu',
-		menuItems: '.hdr-menu-items',
-		menuItem: '.hdr-menu-item',
-		menuOpenBtn: '.hdr-menu-open-btn',
-		menuCloseBtn: '.hdr-menu-close-btn',
-		menuBackBtn: '.hdr-menu-back-btn',
-		menuArea: '.hdr-menu-turn-off-area',
+		menu: '.header-menu-hide-wrapper',
+		menuItems: '.header-menu__items',
+		menuItem: '.header-menu__item',
+		menuOpenBtn: '.header-menu-open-btn',
+		menuCloseBtn: '.header-menu-close-btn',
+		menuBackBtn: '.header-submenu-back-btn',
+		menuArea: '.header-menu-turn-off-area',
 		menuOptions: '#header-menu-options',
-		submenu: '.hdr-submenu',
+		submenu: '.header-submenu-hide-wrapper',
 		submenuDropLink: '.submenu-drop-link',
 		thisPageClass: 'this-page',
 		varTimer: '--timer-menu',
@@ -33,11 +33,13 @@ const header = {
 	},
 	setCssHeaderHeight: function() {
 		// This func controls the mobile menu height variable in css
-		document.body.style.setProperty(this.names.varHeight, getComputedStyle(this.headerElem).height);
+		let hh = getComputedStyle(this.headerElem).height;
+		document.body.style.setProperty(this.names.varHeight, hh);
+		this.headerHeight = parseFloat(hh);
 	},
 	mobileViewService: function() {
 		this.menu.toggle();
-		this.submenu.hideOnViewChange();
+		this.menu.hideOnViewChange();
 		this.hidingHeader.calc();
 	},
 
@@ -100,6 +102,16 @@ const header = {
 					this.root.hidingHeader.scroll(0, true); // hidingHeader reference
 				}
 			}
+		},
+		hideOnViewChange: function() {
+			// this func prevents menu blinking on mobile view switch
+			if (this.isLoaded) {
+				let that = this;
+				this.menuElem.style.display = 'none';
+				setTimeout(() => {
+					that.menuElem.style.display = '';
+				}, that.timeout)
+			}
 		}
 	},
 	// /Menu
@@ -112,7 +124,10 @@ const header = {
 			this.root = that;
 			this.timeout = timeout;
 			this.sMenuElems = this.root.headerElem.querySelectorAll(names.submenu);
-			if (this.sMenuElems.length == 0) console.log('Error: No submenu detected');
+			if (this.sMenuElems.length == 0) {
+				console.log('Error: No submenu detected');
+				return;
+			}
 			this.links = this.root.headerElem.querySelectorAll(names.submenuDropLink);
 			this.backButtons = this.root.headerElem.querySelectorAll(names.menuBackBtn);
 			// if menu-item contains submenu
@@ -184,7 +199,7 @@ const header = {
 				}
 			}
 			else {
-				let parent = e.currentTarget.closest(this.root.names.menuItem);
+				let parent = e.currentTarget.closest(this.root.names.submenu).parentElement;
 				for (let i = 0; i < parent.children.length; i++) {
 					parent.children[i].classList.remove('_active');
 				}
@@ -199,20 +214,6 @@ const header = {
 					this.sMenuElems[i].classList.remove('_active');
 				}
 			}
-		},
-		hideOnViewChange: function() {
-			// this func prevents submenu blinking on mobile view switch 
-			if (this.isLoaded) {
-				let that = this;
-				for (let i = 0; i < this.sMenuElems.length; i++) {
-					this.sMenuElems[i].style.display = 'none';
-				}
-				setTimeout(() => {
-					for (let i = 0; i < that.sMenuElems.length; i++) {
-						that.sMenuElems[i].style.display = '';
-					}
-				}, that.timeout)
-			}
 		}
 	},
 	// /SubMenu
@@ -223,8 +224,8 @@ const header = {
 		init: function(that) {
 			this.isLoaded = true;
 			this.root = that;
+			this.hiddenPositionOffset = 0; // set this one if you want to move header by value that differs it's height
 			this.visiblePosition = parseFloat(getComputedStyle(this.root.headerElem).top);
-			this.hiddenPosition = this.root.headerElem.offsetHeight * -1;
 			this.calc();
 			window.addEventListener('scroll', this.scroll.bind(this));
 		},
@@ -251,6 +252,7 @@ const header = {
 			this.YPrev = this.Y;
 			this.Y = pageYOffset - this.diff;
 			this.currentPos -= this.Y - this.YPrev;
+			this.hiddenPosition = (this.root.headerHeight + this.hiddenPositionOffset) * -1;
 			if (this.currentPos > this.visiblePosition) this.currentPos = this.visiblePosition;
 			if (this.currentPos < this.hiddenPosition) this.currentPos = this.hiddenPosition;
 			this.root.headerElem.style.top = this.currentPos + 'px';

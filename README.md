@@ -1,32 +1,29 @@
-# New site template v2.10
+# New site template v2.11
 
 ### TO DO:
 Дополнительно настроить шаблоны для сжимания картинок и для разминирования css и js
 
-- сниппеты!!!
-- сниппеты sublime: appdata>roaming>sublimetext3>packages>user здесь создать файл имя.sublime-snippet,
-	туда вставить код из snippet generator
-	pseudo, for, console.log...
+- swiper: переработать html теги по бэму
+- input checkbox убрать css модуль, а копировать в текущий код (можно внести в сниппет)
+- в аккордион добавить пересчет высот на лету и возможность применить max-height; у спойлера тоже
 - form-to-email переделать шаблоны regexp для email и др
-- QR-код для принт версии
+- микроразметка контактной информации
 - browser detect
 - pagination module
+- tabs добавить on-func ?
 - параллакс
 - подгрузка секциями
 - css scroll snap спецификация
 - mobileSwitchWidth переделать на css-переменную и получить ее скриптом
 - html pattern fill module. модуль динамического контента (проверка адреса, подгрузка json, заполнение)
-- getcommputedstyle поменять slice на parseint (parsefloat)
-- раздел fonts в style.css для подключения шрифтов google fonts?
 - попап переработать
 - animated burger переделать px в em
-- grid-slider
+- grid-slider ?
 - scrolling navigation (mogo)
 - проверка сайта на MacOS (Safari или эмулятор MacOS)
 - VS Code попробовать (+ы: консоль, подключение шрифтов с googlefonts через плагин...)
 
 НОВОЕ ПОРТФОЛИО:
-- добавить кнопку "наверх"
 - на мобилке добавить подвал с контактами
 - фоновая картинка с параллаксом
 - профиль инфо приклеено слева как aside
@@ -36,11 +33,7 @@
 - load-анимация (возможно раскрывающиеся шторки на весь экран с приветствием)
 
 ### Навыки:
-- js: избавиться от undefined значений; использовать const и let; объекты, прототипы
-- использовать стили для a:visited
-- для отмены работы ссылки (нпр на текущей странице) исп. в css - pointer-events: none;
-
-Учить горячие клавиши, создавать сниппеты, искать полезные плагины.<br>
+Учить горячие клавиши, создавать сниппеты, искать полезные плагины.
 При выключенном JS применять деградацию: замена скриптованных элементов прямыми ссылками (?)
 
 ---
@@ -70,12 +63,13 @@ front:
 - spoiler (html, css, js)						|
 - up_button (html, css, js)					|
 - tabs (html, css, js)							|
+- qr-code (js)										|
 back:
 - form_to_email (html, css, js, php)		| добавить загрузку картинок
 - json_load (js)									|
 
 ### Папки:
-design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
+design, #src (css, fonts(otf), html, img, js, libs, other_stuff, php, temp)
 
 ### Начало работы:
 - скопировать все файлы в новый репозиторий (кроме readme.md)
@@ -93,6 +87,19 @@ design, #src (css, js, php, libs, fonts(otf), img, other_stuff, temp)
 ---
 
 ### Changelog:
+
+#### v2.11
+- header: переработана структура (многоэтажка), теги, стили, скрипт, исправлены баги
+- select: исправлены баги при взамодействии нескольких селектов
+- scroll-lock: переработан, поддерживает несколько вариантов работы (scroll-lock-item-)
+- modal.js добавлена проверка открыто ли меню
+- добавлены формулы в миксины (расчет размеров)
+- QR-код для print версии
+- страница 404 (html, css, .htaccess)
+- переменные цветов и шрифтов переделаны обратно (упрощены): style, header, footer, main
+- templates обновлен
+- gulpfile: добавил папку html
+- мелкие исправления
 
 #### v2.10
 - recounter переделан в js_media_queries, в нее убрана mobileSwitchWidth

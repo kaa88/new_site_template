@@ -9,29 +9,17 @@
 // roboto
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap');
 @import "fontscript";
-$font-size-default: rem(16);
-$font-family: Roboto, Arial, sans-serif;
-
-$font-main: $font-family;
-$font-headers: $font-family;
-$font-links: $font-family;
+$font-1: Roboto, Arial, sans-serif;
 
 
 // Colors
-$color-theme1: #B54967;
-$color-theme2: #0CBF51;
-$color-theme3: #4799B7;
-$color-bg-page: #BDE;
-$color-bg-header: #fff;
-$color-bg-footer: #999;
-$color-bg-section: #ccc;
-$color-text-dark: #222;
-$color-text-light: #eee;
-$color-button: $color-theme2;
+$color-1: #000;
+$color-2: #fff;
 
 
 // Page sizes
-$page-min-width: 320px;
+$font-size-default: 16px; //px
+$page-min-width: 320px; //px
 $page-max-width: 1920;
 $container-base-width: 1200;
 $container-padding: 15;
@@ -59,8 +47,10 @@ $timer-select: 0.2s;
 $timer-spoiler: 0.2s;
 $timer-slider: 0.5s;
 $timer-accordion: 0.3s;
+$timer-tabs: 0.8s;
 
 
 @import "_globs";
 @import "_main";
 @import "_print";
+@import "_404";

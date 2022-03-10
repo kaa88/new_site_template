@@ -1,24 +1,34 @@
 @media print {
 	* {
-		color: black !important;
+		color: #000 !important;
 		background: none !important;
 	}
 	.container {padding: 0;}
 
-	.header__print-address {
-		display: block;
-		font-family: Arial;
-		font-size: 26px;
+	.header {
+		position: relative;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		&__print-address, &__print-address-qr {
+			display: block;
+			font-family: Arial;
+			font-size: 26px;
+		}
 	}
 
 	.noscript-alert,
-	.menu,
-	.button
+	.header-menu-turn-off-area,
+	.header-menu-open-btn,
+	.header-menu-close-btn,
+	.header-submenu-back-btn,
+	.header-menu-hide-wrapper,
+	.header-submenu-hide-wrapper,
+	.breadcrumbs,
+	.form,
+	.up-button
 		{display: none;}
 
-	.header {
-		position: relative;
-	}
 }
 // Перенос строк. Применяется к блочным эл-там. В Chrome работает только с body.children
 // page-break-before: always;
