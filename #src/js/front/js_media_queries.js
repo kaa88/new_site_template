@@ -1,6 +1,18 @@
+/* 
+	Module checks window resizing and runs funcs on breakpoints.
+	There is 1 more index than number of breakpoints (from 0px to 1st breakpoint).
+	Some modules use 'mobile' variable to check mobile or desktop view, 
+	make sure it matches with CSS.
+
+	Useful output:
+	- jsMediaQueries.mobile
+	- jsMediaQueries.stateIndex
+	
+	Init params {obj}: breakpoints - {obj}
+*/
 const jsMediaQueries = {
 	init: function(params = {}) {
-		this.mobile = params.mobile || 768;
+		this.mobile = parseFloat(getComputedStyle(document.body).getPropertyValue('--media-mobile')) || 768;
 		this.breakpoints = params.breakpoints || null;
 		if (!this.breakpoints) return;
 		this.breakpoints.keys = Object.keys(this.breakpoints);

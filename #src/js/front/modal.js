@@ -1,3 +1,39 @@
+/* 
+	Set transition timeout in CSS only.
+	
+	Init params {obj}: 
+	- elem - element name (default = 'modal'),
+	- linkName - modal link name (default = 'modal-link')
+	- on: {'modal-window': {open, close}} - event function(event, content, timeout){}
+
+	On-func example:
+	modal.init({
+		on: {
+			'modal-contact': {
+				close: function(event, content, timeout) {setTimeout(() => {formToEmail.clean(document.querySelector('.question-form'))}, 700)}
+			},
+			'modal-imgpreview': {
+				open: function(event, content, timeout) {
+					let source = event.currentTarget.children[event.currentTarget.children.length-1];
+					let img = document.querySelector('#modal-imgpreview img');
+					img.src = source.getAttribute('src').replace('.','-preview.');
+					if (source.srcset) img.srcset = source.srcset.replace('@2x.','-preview@2x.');
+					else img.srcset = '';
+				},
+				close: function(event, content) {
+					let img = document.querySelector('#modal-imgpreview img');
+					setTimeout(() => {
+						img.src = img.srcset = '';
+					}, modal.timeout)
+				},
+			},
+			'modal-video': {
+				open: function(event, content, timeout) {setTimeout(() => {videoPlayer.play(content)}, timeout)},
+				close: function(event, content, timeout) {videoPlayer.pause(content)}
+			}
+		}
+	})
+*/
 const modal = {
 	refs: {
 		translock: transitionLock,

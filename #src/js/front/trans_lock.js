@@ -1,3 +1,7 @@
+/* 
+	Module prevents double-clicking on transitions, e.g. when menu slides.
+	Use: if (transitionLock.check( #timeout# )) return;
+*/
 const transitionLock = {
 	locked: false,
 	check: function(timeout = 0) {

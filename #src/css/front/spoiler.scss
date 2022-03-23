@@ -1,4 +1,6 @@
 .spoiler {
+	overflow: hidden;
+	transition: all $timer-spoiler;
 	&__header {
 		padding: 10px;
 		font-weight: bold;
@@ -8,13 +10,8 @@
 		transition: all $timer-spoiler;
 	}
 	&__content {
-		height: 0;
-		overflow: hidden;
+		padding: 10px;
 		background-color: #fff;
-		transition: all $timer-spoiler;
-		&-wrapper {
-			padding: 10px;
-		}
 	}
 	&._visible &__header {
 		background-color: orange;

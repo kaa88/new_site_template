@@ -1,3 +1,9 @@
+/*	
+	Init params {obj}:
+	- elem - element name (default = 'select')
+	- firstOptSelected (default = false)
+	- onselect - f(selection)
+*/
 class Select {
 	constructor(params = {}) {
 		this.elemName = params.elem || 'select';

@@ -1,3 +1,7 @@
+/*
+	Init params:
+	1) demo mode: all checks and response messages, but disabled php (default = false)
+*/
 const formToEmail = {
 
 	messages: {
@@ -94,19 +98,18 @@ const formToEmail = {
 			}
 			switch (inputs[i].getAttribute('name')) {
 				case 'name':
-					if (inputs[i].value && /^.{2,}$/.test(inputs[i].value) == false) {
+					if (inputs[i].value && /^.{2,99}$/.test(inputs[i].value) == false) {
 						inputs[i].classList.add('_error');
 						errors.push(this.messages.incorrectName);
 					}
 					break;
 				case 'email':
-					if (inputs[i].value && /^[a-zA-Z-.]{3,}@[a-z]{3,}\.[a-z]{2,5}$/.test(inputs[i].value) == false) {
+					if (inputs[i].value && /^.{2,99}@.{2,99}\..{2,20}$/.test(inputs[i].value) == false) {
 						inputs[i].classList.add('_error');
 						errors.push(this.messages.incorrectEmail);
 					}
 					break;
 				case 'phone':
-					// if (inputs[i].value && /^[0-9]{10,}$/.test(inputs[i].value) == false) {
 					if (inputs[i].value && /^\+\d\s\(\d{3}\)\s\d{3}(-\d\d){2}$/.test(inputs[i].value) == false) {
 						inputs[i].classList.add('_error');
 						errors.push(this.messages.incorrectPhone);

@@ -1,27 +1,12 @@
-# New site template v2.11
+# New site template v2.12
 
 ### TO DO:
-Дополнительно настроить шаблоны для сжимания картинок и для разминирования css и js
-
-- picture snippet
-- swiper: переработать html теги по бэму
-- input checkbox убрать css модуль, а копировать в текущий код (можно внести в сниппет)
-- в аккордион добавить пересчет высот на лету и возможность применить max-height; у спойлера тоже
-- form-to-email переделать шаблоны regexp для email и др
-- микроразметка контактной информации
-- browser detect
-- pagination module
 - tabs добавить on-func ?
-- параллакс
-- подгрузка секциями
-- css scroll snap спецификация
-- mobileSwitchWidth переделать на css-переменную и получить ее скриптом
-- html pattern fill module. модуль динамического контента (проверка адреса, подгрузка json, заполнение)
-- попап переработать
-- animated burger переделать px в em
-- grid-slider ?
 - scrolling navigation (mogo)
-- проверка сайта на MacOS (Safari или эмулятор MacOS)
+- swiper: переработать html теги по бэму
+- попап
+- css scroll snap спецификация
+- MacOS Safari
 - VS Code попробовать (+ы: консоль, подключение шрифтов с googlefonts через плагин...)
 - лого АА
 
@@ -43,29 +28,29 @@
 ### Готовые шаблоны:
 front:
 - js_media_queries (js)							|
-- transition_lock (js)							|
 - scroll_lock (js)								|
+- transition_lock (js)							|
 - random (js)										|
-- onload_counter (js)							|
 - header (html, css, js)						|
 - footer (html, css)								|
 - modal (html, css, js)							|
 - accordion_css (html, css)					|
 - accordion_js (html, css, js)				|
 - select (html, css, js)						|
+- simple_counter (js)							|
 - input_checkbox (html, css)					|
 - input_radio (html, css)						|
 - input_range_colored (html, css, js)		|
 - input_range_double (html, css, js)		|
 - video_player (html, css, js)				| сделать доп оптимизацию для свайпера
-- swiper_customs (js)							| переделать initVirtual в модуль
-- swiper_simple (js)								|
-- module_loader (js)								|
 - loadscreen (html, css, js)					|
 - spoiler (html, css, js)						|
 - up_button (html, css, js)					|
 - tabs (html, css, js)							|
 - qr-code (js)										|
+- parallax (html, js)							|
+- intersection (js)								|
+- pagination (html, css, js)					|
 back:
 - form_to_email (html, css, js, php)		| добавить загрузку картинок
 - json_load (js)									|
@@ -89,6 +74,20 @@ design, #src (css, fonts(otf), html, img, js, libs, other_stuff, php, temp)
 ---
 
 ### Changelog:
+
+#### v2.12
+- parallax module
+- intersection module - подгрузка секциями
+- pagination module
+- counter обновлен (теперь simple_counter)
+- accordion / spoiler: добавлен пересчет высот при ресайзе
+- удалены: swiper_customs, module_check_and_load
+- mobileSwitchWidth (jmq.mobile) переделан в css-переменную и считывается скриптом
+- form email RegExp обновлен
+- template обновлен
+- script.js убрал описание модулей внутрь
+- jQuery вставил ссылку на CDN вместо папки libs
+- мелкие исправления
 
 #### v2.11
 - header: переработана структура (многоэтажка), теги, стили, скрипт, исправлены баги

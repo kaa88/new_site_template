@@ -1,19 +1,43 @@
+/* 
+	Module prevents window scrolling with menu, modals, etc. and
+	prevents content jumps when scrollbar fades out.
+	Script will find elements in default groups (main, footer) and 
+	set 'padding-right' property to them.
+	You can exclude them by setting a 'useDefaultGroups' param to 'false'.
+	Header is not a default group, these elems must be added manually.
+	
+	Set an additional elems to list by setting classes to HTML:
+	- 'scroll-lock-item-p' class - for static elems ('padding-right' prop.)
+	- 'scroll-lock-item-m' class - for fixed elems ('margin-right' prop.)
+	- 'scroll-lock-item-pm' class - for static elems that will be hidden in menu
+		(they will get a 'padding-right' prop. only on desktop width)
+
+	Usable functions: 
+		scrollLock.lock()
+		scrollLock.unlock( #timeout# )
+
+	Init params {obj}: useDefaultGroups (default = true)
+*/
 const scrollLock = {
 	refs: {
 		mobile: jsMediaQueries.mobile
 	},
 	defaultElems: ['main', 'footer'],
 	paddingItemClassName: 'scroll-lock-item-p',
-	paddingDesktopItemClassName: 'scroll-lock-item-pd',
+	paddingMenuItemClassName: 'scroll-lock-item-pm',
 	marginItemClassName: 'scroll-lock-item-m',
 	lockedClassName: '_locked',
 
 	init: function(params = {}) {
 		this.paddingItems = document.querySelectorAll('.' + this.paddingItemClassName);
-		this.paddingDesktopItems = document.querySelectorAll('.' + this.paddingDesktopItemClassName);
+		this.paddingMenuItems = document.querySelectorAll('.' + this.paddingMenuItemClassName);
 		this.marginItems = document.querySelectorAll('.' + this.marginItemClassName);
 
-		if (params.useDefaultGroups) {
+		if (params.useDefaultGroups === false || params.useDefaultGroups === 'false')
+			this.useDefaultGroups = false;
+		else this.useDefaultGroups = true;
+
+		if (this.useDefaultGroups) {
 			let selector = '';
 			for (let i = 0; i < this.defaultElems.length; i++) {
 				selector += '.' + this.defaultElems[i] + '>*';
@@ -43,7 +67,7 @@ const scrollLock = {
 			}
 		}
 		if (window.innerWidth > this.refs.mobile)
-			f(this.paddingDesktopItems, 'paddingRight');
+			f(this.paddingMenuItems, 'paddingRight');
 		f(this.paddingItems, 'paddingRight');
 		f(this.marginItems, 'marginRight');
 		document.body.classList.add(this.lockedClassName);
@@ -57,7 +81,7 @@ const scrollLock = {
 					items[i].style[prop] = '';
 				}
 			}
-			f(this.paddingDesktopItems, 'paddingRight');
+			f(this.paddingMenuItems, 'paddingRight');
 			f(this.paddingItems, 'paddingRight');
 			f(this.marginItems, 'marginRight');
 			document.body.classList.remove(that.lockedClassName);

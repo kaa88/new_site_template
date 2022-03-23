@@ -14,6 +14,7 @@
 // @import "front/spoiler";
 // @import "front/tabs";
 // @import "front/up_button";
+// @import "front/pagination";
 
 body {
 	margin: 0 auto;
@@ -26,6 +27,7 @@ body {
 
 	// Variables for JS manipulations
 	--header-height: unset;
+	--media-mobile: #{$mobile};
 	--timer-menu: #{$timer-menu};
 	--timer-modal: #{$timer-modal};
 

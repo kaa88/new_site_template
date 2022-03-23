@@ -1,9 +1,7 @@
 // версия с разными размерами текста
 .accordion {
-	width: 200px;
 	border: solid 1px silver;
 	&__item {
-		height: 30px;
 		overflow: hidden;
 		transition: height $timer-accordion;
 		&-header {
@@ -14,9 +12,13 @@
 			font-weight: bold;
 			cursor: pointer;
 			user-select: none;
+			transition: all $timer-accordion;
+		}
+		&._active &-header {
+			background-color: lightgreen;
 		}
 		&-content {
-			background-color: silver;
+			background-color: #ddd;
 		}
 	}
 }

@@ -1,3 +1,11 @@
+/* 
+	Set transition timeout in CSS only
+	
+	Init params {obj}: (defaults = false)
+	- menu - add menu block
+	- submenu - add submenu block
+	- hidingHeader - add hidingHeader block
+*/
 const header = {
 	refs: { // dependences
 		mobile: jsMediaQueries.mobile,

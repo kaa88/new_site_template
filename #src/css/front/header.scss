@@ -39,24 +39,25 @@
 }
 // Animated Burger
 // .header-menu-open-btn {
-// 	width: 30px;
-// 	height: 30px;
+// 	font-size: 16px;
+// 	width: em(30);
+// 	height: em(30);
 // 	overflow: hidden;
 // 	position: relative;
 // 	cursor: pointer;
 // 	&:before, &:after, & span {
 // 		content: '';
 // 		width: 150%;
-// 		height: 6px;
+// 		height: em(6);
 // 		background-color: black;
 // 		position: absolute;
-// 		left: -1px;
-// 		transform-origin: 4px;
+// 		left: em(-1);
+// 		transform-origin: em(4);
 // 		transition: transform $timer-menu;
 // 	}
 // 	&:before {top: 0;}
 // 	&:after {bottom: 0;}
-// 	& span {top: 12px;}
+// 	& span {top: calc(50% - em(3));}
 // 	&._active {
 // 		&:before {transform: rotate(45deg);}
 // 		&:after {transform: rotate(-45deg);}

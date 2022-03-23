@@ -115,18 +115,66 @@
 <input class="form__ir-result2" type="number">
 
 
-<!-- Onload counter -->
-<div class="onload-counter">
-	<button class="test-button" onclick="onloadCounter1.startCounter(); onloadCounter2.startCounter()">Onload counter</button>
-	<p class="test-counter test-counter--1">0</p>
-	<p class="test-counter test-counter--2">0</p>
+<!-- Microformats hCard (микроразметка для поисковиков - контакты, пример Яндекса) -->
+<div class="vcard">
+	<div>
+		<span class="category">Кафе</span>
+		<span class="fn org">Ромашка</span>
+	</div>
+	<div class="adr">
+		<span class="locality">г. Солнечный</span>,
+		<span class="street-address">просп. Романтиков, д. 21</span>
+	</div>
+	<div>Телефон: <span class="tel">+7 (890) 123-45-67</span></div>
+	<div>Мы работаем <span class="workhours">ежедневно с 11:00 до 24:00</span>
+		<span class="url">
+			<span class="value-title" title="http://www.romashka-cafe.ru"> </span>
+		</span>
+	</div>
 </div>
+
+
+<!-- Simple counter -->
+<div class="simple-counter">
+	<button class="test-counter-button">Counter</button>
+	<p class="test-counter">0</p>
+</div>
+
+
+<!-- Pagination -->
+<div class="pagination" data-active="5" data-total="15"></div>
+
+
+<!-- Parallax -->
+<div class="some-container">
+	<div class="parallax">
+		<img src="img/1x1.png" alt="">
+	</div>
+	<div class="some-container__scrolling-content">
+		<p>Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Voluptas laborum ipsum eaque, voluptatem amet magni earum consectetur vel alias temporibus odio incidunt quia exercitationem, consequatur labore iusto quo nostrum soluta. Nostrum, non ducimus sapiente quis perspiciatis in velit eius dolor ipsa minima voluptatibus deserunt autem est excepturi neque perferendis obcaecati corporis ipsum, veritatis, aperiam enim optio vel numquam? Atque dolorum, ad harum voluptates repellat reiciendis vero labore at ipsum, ratione eveniet. Consequatur laborum odio illo pariatur voluptate non temporibus eaque numquam corporis inventore vel maxime recusandae ipsam mollitia consectetur ipsa et harum magni suscipit, obcaecati! Eius animi tempora repellendus cum quae eaque quo cumque itaque provident aliquid consectetur, error. Ipsum in, error perferendis consequuntur quas repellat sequi ea deleniti aut voluptates optio soluta laudantium earum, quo? Cum quos quas veniam magni doloremque, consectetur impedit. Natus exercitationem velit totam, praesentium? Animi minima eaque, sint ad provident hic dolorum, perspiciatis quaerat tempore aut corporis. Nam a, dolore omnis laudantium modi vero consectetur asperiores, voluptas voluptates temporibus numquam. Aspernatur inventore dolores pariatur sunt minima dignissimos in facilis soluta odit. Minima, sed exercitationem, ducimus fugit nihil sint adipisci corporis enim voluptatum quo perferendis odio voluptatem deleniti libero laboriosam quos commodi quibusdam, ab ullam tempore!</p>
+	</div>
+</div>
+<style>
+/*.parallax {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	height: 1400px;
+	width: 100%;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}*/
+</style>
 
 
 <!-- Picture -->
 <picture>
-	<source media="(max-width: 910px)" srcset="img/banner-s.jpg, img/banner-s@2x.jpg 2x">
-	<img src="img/banner.jpg" srcset="img/banner@2x.jpg 2x" alt="" loading="lazy">
+	<source media="(max-width: 910px)" srcset="img/image-s.jpg, img/image-s@2x.jpg 2x">
+	<img src="img/image.jpg" srcset="img/image@2x.jpg 2x" alt="" loading="lazy">
 	<!-- Один тэг img тоже работает -->
 </picture>
 
@@ -153,9 +201,7 @@
 		<p>Spoiler</p>
 	</div>
 	<div class="spoiler__content">
-		<div class="spoiler__content-wrapper">
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quis non sunt odit eos at neque eligendi, corrupti repellat vero id quos praesentium illum, quisquam aliquam minima inventore error placeat!</p>
-		</div>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quis non sunt odit eos at neque eligendi, corrupti repellat vero id quos praesentium illum, quisquam aliquam minima inventore error placeat!</p>
 	</div>
 </div>
 
@@ -238,7 +284,7 @@
 					<p class="news-card__g-header-h4 g-header-h4" data-pattern="title"></p>
 					<p class="news-card__g-card-text g-card-text" data-pattern="text"></p>
 				</div>
-				<a class="news-card__g-link g-link" href="#" data-pattern="link">learn more</a>
+				<a class="news-card__g-link g-link" href="#" data-pattern="link"></a>
 			</div>
 		</div>
 	</div>
@@ -369,8 +415,21 @@
 
 <!-- ШАБЛОНЫ JS ------------------------------------------>
 <script>
-	// Сортировка массива
+// Сортировка массива
 	// array.sort((a,b) => {return a - b});
+
+
+// User Agent
+	// console.log(navigator.userAgent)
+	// console.log(navigator.platform)
+	// if (navigator.userAgent.includes('Firefox')) console.log('Firefox');
+
+		// Ключевые слова по браузерам:
+		// Chrome / Safari - Chrome Safari
+		// Firefox - Firefox
+		// Opera - Chrome Safari OPR
+		// Edge - Chrome Safari Edg
+		// Yandex - Chrome Safari YaBrowser Yowser
 </script>
 
 

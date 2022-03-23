@@ -1,3 +1,14 @@
+/* 
+	Full js version, may have 2 thumbs, no vertical orientation
+
+	Init params {obj}:
+	- elem - element name (default = 'input-range-dbl')
+	- start - track scale start (default = 0)
+	- end - track scale end (default = 100)
+	- thumbs [] - thumbs base position (default = [0])
+	- bubble - enable bubble (default = false)
+	- results [] - result element (no default)
+*/
 class InputRangeDouble {
 	constructor(params = {}) {
 		let names = {

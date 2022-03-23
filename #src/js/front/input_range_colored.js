@@ -1,3 +1,11 @@
+/* 
+	Script for input's track gradient filling
+
+	Init params {obj}:
+	- elem - element name (default = 'input-range')
+	- trackColorStart - color of the left track part (default = 'var(--track-color-start)')
+	- trackColorEnd - color of the right track part (default = 'var(--track-color-end)')
+*/
 class InputRangeColored {
 	constructor(params = {}) {
 		this.elemName = params.elem || 'input-range';

@@ -1,3 +1,17 @@
+/*	
+	Init params:
+	1) volume (default = 70)
+
+	Include "Input range colored" script if track colored progress is required.
+	Example:
+		iRange_seek = new InputRangeColored({
+			elem: 'video-controls__seek-bar'
+		});
+		iRange_volume = new InputRangeColored({
+			elem: 'video-controls__volume-bar'
+		});
+*/
+
 // To do:
 // для свайпера ввести класс "типа загружен" для тех, кто получил эвенты, и при свайпе делать проверку
 
