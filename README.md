@@ -1,12 +1,17 @@
 # New site template v2.12
 
 ### TO DO:
+Для WordPress:
+- тему создать
+- переделать new_site_template для совместимости с ВП, сделать папку WP theme
+
+
+
 - popup
 - tabs добавить on-func ?
 - scrolling navigation (mogo)
 - swiper: переработать html теги по бэму
 - css scroll snap спецификация
-- MacOS Safari
 - VS Code попробовать (+ы: консоль, подключение шрифтов с googlefonts через плагин...)
 - лого АА
 
