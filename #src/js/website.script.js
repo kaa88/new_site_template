@@ -21,7 +21,7 @@
 jsMediaQueries.init({
 	breakpoints: {
 		568: () => {},
-		768: () => {
+		782: () => {
 			header.mobileViewService(); // required by Header module
 		}, 
 		1228: () => {},
@@ -177,7 +177,7 @@ header.init({
 // 		pauseOnMouseEnter: true,
 // 	},
 // 	breakpoints: {
-// 		768: {}
+// 		782: {}
 // 	},
 // })
 

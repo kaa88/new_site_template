@@ -19,7 +19,8 @@
     "gulp-ttf2woff": "^1.1.1",
     "gulp-ttf2woff2": "^4.0.1",
     "gulp-uglify-es": "^3.0.0",
-    "sass": "^1.35.2"
+    "sass": "^1.35.2",
+    "streamqueue": "^1.1.2"
   },
   "dependencies": {
     "save-dev": "0.0.1-security"

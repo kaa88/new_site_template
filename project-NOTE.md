@@ -1,4 +1,4 @@
-Used: New site template v2.12
+Used: New site template v2.13
 
 # Project NOTE
 

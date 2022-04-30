@@ -1,8 +1,20 @@
 // npm i --save-dev *plugin*
 
+
+// Basic settings:
+const isLiteBuild = true
+const load = {
+	// service: true,
+	// libs: true,
+	// media: true,
+}
+
+/////////////////////////////////////////////////////////////////
+
 const {src, dest} = require('gulp'),
 	gulp = require('gulp'),
 	fs = require('fs'),
+	streamqueue = require('streamqueue'),
 	browsersync = require('browser-sync').create(),
 	del = require('del'),
 	rename = require('gulp-rename'),
@@ -20,63 +32,94 @@ const {src, dest} = require('gulp'),
 	through = require('through2'), // for gulp-scale-images
 	imagemin = require('gulp-imagemin-changba');
 
-const $project = 'dist';
+/////////////////////////////////////////////////////////////////
+
 const $source = '#src';
+const $baseDir = {
+	html: $source + '/html/',
+	css: $source + '/css/',
+	js: $source + '/js/',
+	data: $source + '/data/',
+	service: $source + '/service/',
+	libs: $source + '/libs/',
+	media: $source + '/media/',
+	img: $source + '/media/img/',
+	fonts: $source + '/fonts/',
+}
+const $project = isLiteBuild ? 'dist_light_build' : 'dist';
 const path = {
+	clean: ['./dist_light_build/', './dist/'],
 	watch: {
-		html: $source + '/html/**/*.html',
-		scss: $source + '/css/**/*.scss',
-		js: $source + '/js/**/*.js',
-		php: $source + '/php/**/*.php',
-		img: $source + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
-		fonts_otf: $source + '/fonts/otf/*.otf',
-		fonts_ttf: $source + '/fonts/*.ttf',
-		other_stuff: $source + '/other_stuff/**/*'
+		html: $source + '/**/*.html',
+		css: $baseDir.css + '**/*.scss',
+		js: $baseDir.js + '**/*.js',
+		data: $baseDir.data + '**/*',
+		service: $baseDir.service + '**/*',
+		media: $baseDir.media + '**/*.{mp4,avi,webm,ogg,mp3,pdf,txt,doc,docx,xls,xlsx,ppt,pptx,rtf}',
+		img: $baseDir.img + '**/*.{jpg,png,svg,gif,ico,webp}',
+		fonts_otf: $baseDir.fonts + 'otf/*.otf',
+		fonts_ttf: $baseDir.fonts + '*.ttf',
 	},
 	src: {
-		html: [$source + '/html/**/*.html', '!' + $source + '/html/**/[_#]*.html'],
-		scss: $source + '/css/style.scss',
-		js: $source + '/js/script.js',
-		php: $source + '/php/**/*.php',
-		libs: $source + '/libs/**/*',
-		img: [$source + '/img/**/*', '!' + $source + '/img/**/$*', '!' + $source + '/img/**/*@2x.*'],
-		img2x: [$source + '/img/**/*@2x.*', '!' + $source + '/img/**/$*@2x.*'],
-		img_original: $source + '/img/**/$*',
-		fonts: $source + '/fonts/*.ttf',
-		other_stuff: [$source + '/other_stuff/**/*', $source + '/other_stuff/.htaccess']
+		html: [$baseDir.html + '**/*.html', '!' + $baseDir.html + '**/[_#]*.html'],
+		css: $baseDir.css + '*style.scss',
+		js: $baseDir.js + '*script.js',
+		data: $baseDir.data + '**/*',
+		service: [$baseDir.service + '**/*', $baseDir.service + '.htaccess'],
+		libs: $baseDir.libs + '**/*',
+		media: [$baseDir.media + '**/*', '!' + $baseDir.media + 'img/**/*'],
+		img: $baseDir.img + '**/*',
+		img2x: $baseDir.img + '**/*@2x.*',
+		img_uncompressed: $baseDir.img + '**/$*',
+		img_favicon: $baseDir.img + 'favicon.png',
+		fonts_otf: $baseDir.fonts + 'otf/*.otf',
+		fonts_ttf: $baseDir.fonts + '*.ttf',
 	},
 	build: {
 		root: $project + '/',
 		css: $project + '/css/',
 		js: $project + '/js/',
-		php: $project + '/php/',
+		data: $project + '/data/',
 		libs: $project + '/libs/',
-		img: $project + '/img/',
-		fonts: $project + '/fonts/'
-	},
-	clean: './' + $project + '/'
+		media: $project + '/media/',
+		img: $project + '/media/img/',
+		fonts: $project + '/fonts/',
+	}
 }
 
+/////////////////////////////////////////////////////////////////
+
 function cb() {}
+
+function getExtendedDir(name, dir) {
+	dir = dir.replace($baseDir[name], '');
+	let arr = dir.split('/').slice(0,-1);
+	dir = arr.join('/') + '/';
+	return dir;
+}
 
 function clean() {
 	return del(path.clean);
 }
 
-function html(f, file) {
-	let filepath;
-	if (file && !file.match(/\/[_#]/)) filepath = file;
-	else filepath = path.src.html;
+/////////////////////////////////////////////////////////////////
+
+function html(cb, file) {
+	let filepath = path.src.html, extDir = '';
+	if (file && !file.match(/\/[_#]/)) {
+		filepath = file;
+		extDir = getExtendedDir('html', file);
+	}
 	return src(filepath)
 		.pipe(fileinclude({
-			indent: true,
+			indent: true
 		}))
-		.pipe(dest(path.build.root))
+		.pipe(dest(path.build.root + extDir))
 		.pipe(browsersync.stream());
 }
 
 function css() {
-	return src(path.src.scss)
+	let stream = src(path.src.css)
 		.pipe(scss({
 			outputStyle: 'expanded'
 		}))
@@ -84,114 +127,229 @@ function css() {
 			overrideBrowserslist: ['last 5 versions'],
 			cascade: true
 		}))
-		.pipe(css_media_queries())
-		.pipe(dest(path.build.css))
-		.pipe(clean_css())
-		.pipe(rename({
-			extname: '.min.css'
-		}))
+		.pipe(css_media_queries());
+
+	if (!isLiteBuild)
+		stream = stream
+			.pipe(dest(path.build.css))
+			.pipe(clean_css())
+			.pipe(rename({
+				extname: '.min.css'
+			}));
+
+	return stream
 		.pipe(dest(path.build.css))
 		.pipe(browsersync.stream());
 }
 
 function js() {
-	return src(path.src.js)
-		.pipe(fileinclude())
-		.pipe(dest(path.build.js))
-		.pipe(uglify())
-		.pipe(rename({
-			extname: '.min.js'
-		}))
+	let stream = src(path.src.js)
+		.pipe(fileinclude());
+
+	if (!isLiteBuild)
+		stream = stream
+			.pipe(dest(path.build.js))
+			.pipe(uglify())
+			.pipe(rename({
+				extname: '.min.js'
+			}));
+
+	return stream
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream());
 }
 
-function php() {
-	return src(path.src.php)
-		.pipe(dest(path.build.php))
-		.pipe(browsersync.stream());
-}
-
-function libs() {
-	return src(path.src.libs)
-		.pipe(dest(path.build.libs));
-}
-
-function otherStuff(f, file) {
-	let filepath = file ? file : path.src.other_stuff;
+function data(cb, file) {
+	let filepath = file ? file : path.src.data;
+	let extDir = file ? getExtendedDir('data', file) : '';
 	return src(filepath)
-		.pipe(dest(path.build.root))
+		.pipe(dest(path.build.data + extDir))
 		.pipe(browsersync.stream());
 }
 
-const imagesScaleParams = (file, _, cb) => {
+function service(cb, file) {
+	if (!isLiteBuild || load.service) {
+		let filepath = file ? file : path.src.service;
+		let extDir = file ? getExtendedDir('service', file) : '';
+		return src(filepath)
+			.pipe(dest(path.build.root + extDir))
+			.pipe(browsersync.stream());
+	}
+	else cb();
+}
+
+function libs(cb) {
+	if (!isLiteBuild || load.libs)
+		return src(path.src.libs)
+			.pipe(dest(path.build.libs));
+	else cb();
+}
+
+function media(cb, file) {
+	if (!isLiteBuild || load.media) {
+		let filepath = file ? file : path.src.media;
+		let extDir = file ? getExtendedDir('media', file) : '';
+		return src(filepath)
+			.pipe(dest(path.build.media + extDir))
+			.pipe(browsersync.stream());
+	}
+	else cb();
+}
+
+/////////////////////////////////////////////////////////////////
+
+const faviconSizes = {L: 270, M: 180, S: 32}
+
+function scaleFavicon(file, size) {
+	file = file.clone();
+	file.scale = {
+		maxWidth: size,
+		maxHeight: size
+	}
+	return file;
+}
+function scaleFaviconL(file, _, cb) {
+	file = scaleFavicon(file, faviconSizes.L)
+	cb(null, file)
+}
+function scaleFaviconM(file, _, cb) {
+	file = scaleFavicon(file, faviconSizes.M)
+	cb(null, file)
+}
+function scaleFaviconS(file, _, cb) {
+	file = scaleFavicon(file, faviconSizes.S)
+	cb(null, file)
+}
+function renameFaviconL(file, _, cb) {
+	let fileName = file.basename.replace('.', '-' + faviconSizes.L + '.')
+	cb(null, fileName)
+}
+function renameFaviconM(file, _, cb) {
+	let fileName = file.basename.replace('.', '-' + faviconSizes.M + '.')
+	cb(null, fileName)
+}
+function renameFaviconS(file, _, cb) {
+	let fileName = file.basename.replace('.', '-' + faviconSizes.S + '.')
+	cb(null, fileName)
+}
+function scaleImage2x(file, _, cb) {
 	readMetadata(file, (err, meta) => {
 		if (err) return cb(err)
 		file = file.clone()
-		if (file.basename.match(/@2x/)) {
-			file.scale = {
-				maxWidth: Math.ceil(meta.width / 2),
-				maxHeight: Math.ceil(meta.height / 2)
-			}
+		file.scale = {
+			maxWidth: Math.ceil(meta.width / 2),
+			maxHeight: Math.ceil(meta.height / 2)
 		}
 		cb(null, file)
 	})
 }
-const imagesFileName = (file, scale, cb) => {
+function renameImage2x(file, _, cb) {
 	let fileName = file.basename.replace('@2x.','.')
 	cb(null, fileName)
 }
-function images(f, filepath) {
-	let stream;
+
+function images(cb, filepath) {
+	let images = [path.src.img, '!' + path.src.img2x, '!' + path.src.img_uncompressed, '!' + path.src.img_favicon];
+	let images2x = [path.src.img2x, '!' + path.src.img_uncompressed];
+	let uncompressed = path.src.img_uncompressed;
+	let favicon = path.src.img_favicon;
+
+	function getFaviconStream(filepath = favicon) {
+		if (isLiteBuild)
+			return src(filepath)
+				.pipe(through.obj(scaleFaviconS))
+				.pipe(imageresize(renameFaviconS));
+		else
+			return streamqueue(
+				{objectMode: true},
+				src(filepath)
+					.pipe(through.obj(scaleFaviconL))
+					.pipe(imageresize(renameFaviconL)),
+				src(filepath)
+					.pipe(through.obj(scaleFaviconM))
+					.pipe(imageresize(renameFaviconM)),
+				src(filepath)
+					.pipe(through.obj(scaleFaviconS))
+					.pipe(imageresize(renameFaviconS))
+			);
+	}
+
+	let stream, extDir = '';
+	// если 1 файл
 	if (filepath) {
+		extDir = getExtendedDir('img', filepath);
+		// 1x
 		stream = src(filepath);
-		if (filepath.match(/@2x/)) {
+		// 2x
+		if (filepath.match(/@2x/))
 			stream = stream
-				.pipe(through.obj(imagesScaleParams))
-				.pipe(imageresize(imagesFileName))
+				.pipe(through.obj(scaleImage2x))
+				.pipe(imageresize(renameImage2x))
 				.pipe(src(filepath));
-		}
-		if (filepath.match(/\/\$/)) {
+		// uncomp
+		if (filepath.match(/\/\$/))
 			return stream
-				.pipe(dest(path.build.img))
+				.pipe(dest(path.build.img + extDir))
 				.pipe(browsersync.stream());
-		}
+		// favicon
+		if (filepath.match(/favicon\.png/))
+			stream = getFaviconStream(filepath);
 	}
+	// если все файлы
 	else {
-		stream = src(path.src.img2x)
-			.pipe(through.obj(imagesScaleParams))
-			.pipe(imageresize(imagesFileName))
-			.pipe(src(path.src.img2x))
-			.pipe(src(path.src.img));
+		stream = streamqueue(
+			{objectMode: true},
+			src(images2x)
+				.pipe(through.obj(scaleImage2x))
+				.pipe(imageresize(renameImage2x)),
+			src(images2x),
+			src(images),
+			getFaviconStream()
+		)
 	}
-	stream = stream
-		.pipe(imagemin([
-			imagemin.mozjpeg({quality: 80, progressive: true}),
-			imagemin.optipng({optimizationLevel: 5})
-		]));
-	if (!filepath) stream = stream.pipe(src(path.src.img_original));
-	return stream		
-		.pipe(dest(path.build.img))
+	// общее
+	if (!isLiteBuild)
+		stream = stream
+			.pipe(imagemin([
+				imagemin.mozjpeg({quality: 80, progressive: true}),
+				imagemin.optipng({optimizationLevel: 5})
+			]));
+	// если все файлы, добавляем $
+	if (!filepath) stream = stream.pipe(src(uncompressed));
+	return stream
+		.pipe(dest(path.build.img + extDir))
 		.pipe(browsersync.stream());
 }
 
-function fonts(f, file) {
-	let filepath = file ? file : path.src.fonts;
-	return src(filepath)
-		.pipe(ttf2woff({
-			clone: true
-		}))
+/////////////////////////////////////////////////////////////////
+
+function fonts(cb, filepath = path.src.fonts_ttf) {
+	let stream;
+	if (!isLiteBuild)
+		stream = streamqueue(
+			{objectMode: true},
+			src(filepath)
+				.pipe(ttf2woff({
+					clone: true
+				})),
+			src(filepath)
+				.pipe(ttf2woff2())
+		)
+	else stream = src(filepath);
+
+	return stream
 		.pipe(dest(path.build.fonts))
-		.pipe(ttf2woff2())
-		.pipe(dest(path.build.fonts));
+		.pipe(browsersync.stream());
 }
-function otf2ttf() {
-	return src([$source + '/fonts/otf/*.otf'])
+
+function otf(cb, filepath = path.src.fonts_otf) {
+	return src(filepath)
 		.pipe(fonter({
 			formats: ['ttf']
 		}))
 		.pipe(dest([$source + '/fonts/']));
 }
+
 function fontsStyle() {
 	let file_content = fs.readFileSync($source + '/css/fontscript.scss');
 	if (file_content == '') {
@@ -199,9 +357,10 @@ function fontsStyle() {
 		return fs.readdir(path.build.fonts, function (err, items) {
 			if (items) {
 				let c_fontname;
-				for (var i = 0; i < items.length; i++) {
+				for (let i = 0; i < items.length; i++) {
 					let fontname = items[i].split('.');
 					fontname = fontname[0];
+					if (fontname.match(/icon/i)) continue;
 					if (c_fontname != fontname) {
 						fs.appendFile($source + '/css/fontscript.scss', '@include font("' + fontname + '", "' + fontname + '", "400", "normal");\r\n', cb);
 					}
@@ -212,79 +371,62 @@ function fontsStyle() {
 	}
 }
 
-function normalizeFilePath(p) {
-	return p.replace(/\\/g, "/");
+/////////////////////////////////////////////////////////////////
+
+function browserSyncInit() {
+	setTimeout(() => {
+		browsersync.init({
+			server: {
+				baseDir: './' + $project + '/'
+			},
+			port: 3000,
+			notify: false
+		})
+	},2000)
 }
+
 function watchFiles() {
-	// gulp.watch([path.watch.html], html);
-	gulp.watch([path.watch.scss], css).on('change', browsersync.reload);
+	function fixPath(path) {return path.replace(/\\/g, "/")}
+	function conditionalWatch(item, f) {
+		item.on('change', function(path, stats) {
+			f(undefined, fixPath(path));
+		});
+		item.on('add', function(path, stats) {
+			f(undefined, fixPath(path));
+		});
+	}
+	gulp.watch([path.watch.css], css);//.on('change', browsersync.reload);
 	gulp.watch([path.watch.js], js);
-	gulp.watch([path.watch.php], php);
-	gulp.watch([path.watch.fonts_otf], otf2ttf);
-	// gulp.watch([path.watch.img], images);
-	// gulp.watch([path.watch.fonts_ttf], fonts);
-	
-	let htmlwatch = gulp.watch([path.watch.html]);
-	htmlwatch.on('change', function(path, stats) {
-		html(undefined, normalizeFilePath(path));
-	});
-	htmlwatch.on('add', function(path, stats) {
-		html(undefined, normalizeFilePath(path));
-	});
-
-	let imgwatch = gulp.watch([path.watch.img]);
-	imgwatch.on('change', function(path, stats) {
-		images(undefined, normalizeFilePath(path));
-	});
-	imgwatch.on('add', function(path, stats) {
-		images(undefined, normalizeFilePath(path));
-	});
-
-	let fontwatch = gulp.watch([path.watch.fonts_ttf]);
-	fontwatch.on('change', function(path, stats) {
-		fonts(undefined, normalizeFilePath(path));
-	});
-	fontwatch.on('add', function(path, stats) {
-		fonts(undefined, normalizeFilePath(path));
-	});
-
-	let otherwatch = gulp.watch([path.watch.other_stuff]);
-	otherwatch.on('change', function(path, stats) {
-		otherStuff(undefined, normalizeFilePath(path));
-	});
-	otherwatch.on('add', function(path, stats) {
-		otherStuff(undefined, normalizeFilePath(path));
-	});
+	conditionalWatch(gulp.watch([path.watch.html]), html);
+	conditionalWatch(gulp.watch([path.watch.data]), data);
+	conditionalWatch(gulp.watch([path.watch.service]), service);
+	conditionalWatch(gulp.watch([path.watch.media]), media);
+	conditionalWatch(gulp.watch([path.watch.img]), images);
+	conditionalWatch(gulp.watch([path.watch.fonts_ttf]), fonts);
+	conditionalWatch(gulp.watch([path.watch.fonts_otf]), otf);
 }
 
-function browserSync() {
-	browsersync.init({
-		server: {
-			baseDir: './' + $project + '/'
-		},
-		port: 3000,
-		notify: false
-	})
-}
-
-let build = gulp.series(
-	clean, 
-	otf2ttf, 
-	gulp.parallel(html, css, js, php, libs, otherStuff, images, fonts), 
-	fontsStyle
+let start = gulp.parallel(
+	watchFiles,
+	gulp.series(
+		clean,
+		otf,
+		fonts,
+		gulp.parallel(html, css, js, data, service, libs, media, images),
+		gulp.parallel(fontsStyle, browserSyncInit),
+	)
 );
-let watch = gulp.parallel(build, watchFiles, browserSync);
 
-exports.fontsStyle = fontsStyle;
-exports.otf2ttf = otf2ttf;
+exports.otf = otf;
 exports.fonts = fonts;
+exports.fontsStyle = fontsStyle;
 exports.images = images;
-exports.otherStuff = otherStuff;
+exports.media = media;
 exports.libs = libs;
-exports.php = php;
+exports.service = service;
+exports.data = data;
 exports.js = js;
 exports.css = css;
 exports.html = html;
-exports.build = build;
-exports.watch = watch;
-exports.default = watch;
+exports.start = start;
+exports.default = start;
