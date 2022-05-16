@@ -23,7 +23,7 @@ jsMediaQueries.init({
 		568: () => {},
 		782: () => {
 			header.mobileViewService(); // required by Header module
-		}, 
+		},
 		1228: () => {},
 	}
 })
@@ -46,7 +46,8 @@ scrollLock.init()
 header.init({
 	menu: true,
 	submenu: true,
-	hidingHeader: true
+	hidingHeader: true,
+	elemAboveHeader: true
 })
 
 ////////////////////////////////////////////////////////////////////
@@ -60,7 +61,7 @@ header.init({
 // Select
 // @ @include('front/select.js')
 // const form_select = new Select({
-// 	elem: 'form__select', 
+// 	elem: 'form__select',
 // 	firstOptSelected: true,
 // 	onselect: (selection) => {console.log(selection)}
 // })
@@ -70,7 +71,7 @@ header.init({
 // Accordion
 // @ @include('front/accordion_js.js')
 // const accordion = new Accordion({
-// 	elem: '.js__accordion', 
+// 	elem: '.js__accordion',
 // 	isOpened: true
 // });
 

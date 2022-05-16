@@ -2,9 +2,10 @@
 	Set transition timeout in CSS only
 	
 	Init params {obj}: (defaults = false)
-	- menu - add menu block
-	- submenu - add submenu block
-	- hidingHeader - add hidingHeader block
+	- menu - add menu module
+	- submenu - add submenu module
+	- hidingHeader - add hidingHeader module
+	- elemAboveHeader - if there is something above the header, e.g. WordPress adminbar, set 'true' to calculate it as well
 */
 const header = {
 	refs: { // dependences
@@ -13,6 +14,7 @@ const header = {
 		scrlock: scrollLock
 	},
 	names: {
+		elemAboveHeader: '#wpadminbar',
 		header: '.header',
 		menu: '.header-menu-hide-wrapper',
 		menuItems: '.header-menu__items',
@@ -27,28 +29,60 @@ const header = {
 		thisPageClass: 'this-page',
 		varTimer: '--timer-menu',
 		varHeight: '--header-height',
+		varTop: '--header-offset-top',
+		varTopDef: '--header-offset-top-default',
 	},
 	init: function(params = {}) {
 		this.headerElem = document.querySelector(this.names.header);
 		let timeout = parseFloat(getComputedStyle(document.body).getPropertyValue(this.names.varTimer))*1000 || 0;
-		this.setCssHeaderHeight();
-		window.addEventListener('resize', this.setCssHeaderHeight.bind(this));
+
+		this.headerHeight =
+		this.headerHeightPrev =
+		this.headerOffsetTop =
+		this.headerOffsetTopPrev =
+		this.headerOffsetTopDefault =
+		this.headerOffsetTopDefaultPrev = 0;
+
+		let elemAboveHeader = document.querySelector(this.names.elemAboveHeader);
+		if (params.elemAboveHeader && elemAboveHeader)
+			this.elemAboveHeader = elemAboveHeader;
+		else this.elemAboveHeader = false;
+
+		this.calcHeaderHeight();
+		window.addEventListener('resize', this.calcHeaderHeight.bind(this));
 
 		if (params.menu) this.menu.init(this, timeout, this.names);
 		if (params.submenu) this.submenu.init(this, timeout, this.names);
 		if (params.hidingHeader) window.addEventListener('load', () => this.hidingHeader.init(this));
-
 	},
-	setCssHeaderHeight: function() {
+	calcHeaderHeight: function() {
 		// This func controls the mobile menu height variable in css
-		let hh = getComputedStyle(this.headerElem).height;
-		document.body.style.setProperty(this.names.varHeight, hh);
-		this.headerHeight = parseFloat(hh);
+		this.headerHeight = parseFloat(getComputedStyle(this.headerElem).height);
+		if (this.elemAboveHeader) {
+			this.headerOffsetTopDefault = this.headerOffsetTop = parseFloat(getComputedStyle(this.elemAboveHeader).height);
+		}
+		else this.headerOffsetTopDefault = this.headerOffsetTop = 0;
+		this.setCssVar();
+		this.hidingHeader.calc();
+	},
+	setCssVar: function() {
+		if (this.headerHeight != this.headerHeightPrev) {
+			document.body.style.setProperty(this.names.varHeight, this.headerHeight + 'px');
+			this.headerHeightPrev = this.headerHeight;
+		}
+		if (this.headerOffsetTop != this.headerOffsetTopPrev) {
+			document.body.style.setProperty(this.names.varTop, this.headerOffsetTop + 'px');
+			this.headerOffsetTopPrev = this.headerOffsetTop;
+		}
+		if (this.headerOffsetTopDefault != this.headerOffsetTopDefaultPrev) {
+			document.body.style.setProperty(this.names.varTopDef, this.headerOffsetTopDefault + 'px');
+			this.headerOffsetTopDefaultPrev = this.headerOffsetTopDefault;
+		}
 	},
 	mobileViewService: function() {
 		this.menu.toggle();
 		this.menu.hideOnViewChange();
-		this.hidingHeader.calc();
+		// this.hidingHeader.calc();
 	},
 
 	// Menu
@@ -118,6 +152,7 @@ const header = {
 				this.menuElem.style.display = 'none';
 				setTimeout(() => {
 					that.menuElem.style.display = '';
+					that.root.calcHeaderHeight();
 				}, that.timeout)
 			}
 		}
@@ -233,37 +268,46 @@ const header = {
 			this.isLoaded = true;
 			this.root = that;
 			this.hiddenPositionOffset = 0; // set this one if you want to move header by value that differs it's height
-			this.visiblePosition = parseFloat(getComputedStyle(this.root.headerElem).top);
-			this.calc();
+			this.firstScroll = true;
 			window.addEventListener('scroll', this.scroll.bind(this));
 		},
 		calc: function() {
 			if (!this.isLoaded) return;
 			this.Y = this.YPrev = pageYOffset;
 			this.diff = 0;
-			this.currentPos = this.visiblePosition;
-			this.root.headerElem.style.top = this.currentPos + 'px';
+			this.currentPos = this.root.headerOffsetTopDefault;
 		},
 		scroll: function(e, click) {
 			if (!this.isLoaded) return;
 			if (window.innerWidth > this.root.refs.mobile) return;
+
+			// this 'if' prevents header's jump after page reloading in the middle of the content
+			if (this.firstScroll) {
+				this.firstScroll = false;
+				this.calc();
+				return;
+			}
+			// click-move
 			if (click) {
-				this.root.headerElem.style.top = this.visiblePosition + 'px';
-				this.currentPos = this.visiblePosition;
+				this.currentPos = this.root.headerOffsetTop = this.root.headerOffsetTopDefault;
+				this.root.setCssVar();
 				return;
 			}
 			// lazyLoad check
 			if ((pageYOffset < (this.Y + this.diff) && this.Y > this.YPrev) || (pageYOffset > (this.Y + this.diff) && this.Y < this.YPrev)) {
 				this.diff = pageYOffset - this.Y;
 			}
-			
+			// scroll-move
+			let currentPos = this.root.headerOffsetTop;
+			let visiblePos = this.root.headerOffsetTopDefault;
+			let hiddenPos = visiblePos - this.root.headerHeight - this.hiddenPositionOffset;
 			this.YPrev = this.Y;
 			this.Y = pageYOffset - this.diff;
-			this.currentPos -= this.Y - this.YPrev;
-			this.hiddenPosition = (this.root.headerHeight + this.hiddenPositionOffset) * -1;
-			if (this.currentPos > this.visiblePosition) this.currentPos = this.visiblePosition;
-			if (this.currentPos < this.hiddenPosition) this.currentPos = this.hiddenPosition;
-			this.root.headerElem.style.top = this.currentPos + 'px';
+			currentPos -= this.Y - this.YPrev;
+			if (currentPos > visiblePos) currentPos = visiblePos;
+			if (currentPos < hiddenPos) currentPos = hiddenPos;
+			this.root.headerOffsetTop = currentPos;
+			this.root.setCssVar();
 		}
 	},
 	// /Hiding Header
