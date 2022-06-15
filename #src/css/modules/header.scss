@@ -1,27 +1,29 @@
 .header {
-	position: fixed;
-	top: var(--header-offset-top);
-	left: 0;
-	z-index: 49;
-	width: 100%;
+	// Set position absolute if header is static, else set fixed
+	position: fixed; //REQ!
+	// position: absolute; //REQ!
+	top: var(--header-position); //REQ!
+	left: 0; //REQ!
+	z-index: 49; //REQ!
+	width: 100%; //REQ!
 	padding: 10px 0;
 	// font-size: 0;
 	background-color: lightseagreen;
-	&__print-address, &__print-address-qr {display: none;}
+	&__print-address, &__print-address-qr {display: none;} //REQ!
 }
 
 .header-menu-turn-off-area {
-	position: fixed;
-	top: calc(var(--header-height) + var(--header-offset-top));
-	left: 0;
-	z-index: -1;
-	width: 100vw;
-	height: calc(100vh - var(--header-height) - var(--header-offset-top));
+	position: fixed; //REQ!
+	top: calc(var(--header-height) + var(--header-position)); //REQ!
+	left: 0; //REQ!
+	z-index: -1; //REQ!
+	width: 100vw; //REQ!
+	height: calc(100vh - var(--header-height) - var(--header-position)); //REQ!
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(2px);
 	cursor: pointer;
-	opacity: 0;
-	visibility: hidden;
+	opacity: 0; //REQ!
+	visibility: hidden; //REQ!
 	transition: opacity $timer-menu, visibility $timer-menu;
 	&._active {
 		opacity: 1;
@@ -31,10 +33,10 @@
 
 .header-menu-open-btn {
 	font-size: 20px;
-	cursor: pointer;
-	user-select: none;
+	cursor: pointer; //REQ!
+	user-select: none; //REQ!
 	@media (min-width: $media-header+1+px) {
-		display: none;
+		display: none; //REQ!
 	}
 }
 // Animated Burger
@@ -80,10 +82,10 @@
 	background-color: darkred;
 	color: #fff;
 	font-size: 20px;
-	cursor: pointer;
-	user-select: none;
+	cursor: pointer; //REQ!
+	user-select: none; //REQ!
 	@media (min-width: $media-header+1+px) {
-		display: none;
+		display: none; //REQ!
 	}
 }
 
@@ -99,10 +101,10 @@
 	background-color: blue;
 	color: #fff;
 	font-size: 20px;
-	cursor: pointer;
-	user-select: none;
+	cursor: pointer; //REQ!
+	user-select: none; //REQ!
 	@media (min-width: $media-header+1+px) {
-		display: none;
+		display: none; //REQ!
 	}
 }
 
@@ -110,11 +112,11 @@
 	position: relative;
 	background-color: darkslategrey;
 	@media (max-width: $media-header+px) {
-		position: fixed;
-		top: calc(var(--header-height) + var(--header-offset-top));
+		position: fixed; //REQ!
+		top: calc(var(--header-height) + var(--header-position)); //REQ! if relative to header
 		right: -301px;
 		width: 300px;
-		height: calc(100% - var(--header-height) - var(--header-offset-top));
+		height: calc(100% - var(--header-height) - var(--header-position)); //REQ! if relative to header
 		transition: right $timer-menu;
 		&._active {
 			right: 0;
@@ -125,7 +127,7 @@
 .header-submenu-hide-wrapper {
 	background-color: darkslateblue;
 	@media (min-width: $media-header+px) {
-		position: absolute;
+		position: absolute; //REQ!
 		top: 150%;
 		left: 0;
 		width: 100%;
@@ -144,11 +146,11 @@
 }
 
 .header-level {
-	.container {
-		// display: flex;
-		// justify-content: space-between;
-		// align-items: center;
-	}
+	// .container {
+	// 	display: flex;
+	// 	justify-content: space-between;
+	// 	align-items: center;
+	// }
 	&--mobile {
 		background-color: #fff;
 		.container {
@@ -218,7 +220,7 @@
 		}
 	}
 	&__link, &__link:visited {
-		display: inline-block;
+		display: inline-block; //REQ!
 		height: 50px;
 		line-height: 50px;
 		padding: 0 20px;

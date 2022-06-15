@@ -1,19 +1,17 @@
-# New site template v3.00
+# New site template v3.01
 
 ### TO DO:
+- CSS пометить важные свойства, из-за которых сломается модуль, комментом //REQ!
+
 Для WordPress:
 - мой шаблон меню поменять, чтобы можно было легко встроить в ВП
 - некоторые иконки, которые предполагается менять, делать не шрифтом, а svg
 - robots.txt для ВП
-- убрать meta name=robots и link rel=icon из head, т.к. их ставит ВП
 - всегда хранить копии медиафайлов, т.к. ВП их иногда 'теряет'
 - список плагинов
-
-- gulpfile сделать настройку в какую папку делать билд (в dist или в текущую с галпом, если делаю для себя, например профиль и портфолио)... папку design переим. в #design
-- попробовать компилировать ВП через галп (и опция buildWP)
+- уметь настраивать поля через ACF (если захочет заказчик), сделать шаблон с настройками ACF
 
 
-- popup
 - tabs добавить on-func ?
 - scrolling navigation (mogo)
 - swiper: переработать html теги по бэму
@@ -36,14 +34,14 @@
 -----
 
 ### Начало работы:
-- создать папку проекта в 'projects'
-- скопировать все файлы, кроме файлов git и readme.md
-- поместить макет в папку 'design'
+- создать папку проекта
+- скопировать все файлы, кроме readme.md и папки '.git'
 - в коммандной строке прописать "npm i" для установки gulp
+- поместить макет в папку '#design'
 
 ### Правила:
 - использовать БЭМ нейминг
-- html делать отдельный файл для одинаковых модулей
+- html делать отдельный файл для модулей
 - css @media писать внутри каждого элемента
 - css ко всем ссылкам добавлять :visited
 - для retina изображения в src сохранять только в 2х (остальное нарежет gulp)
@@ -58,7 +56,7 @@ front:
 - transition_lock (js)							|
 - random (js)										|
 - header (html, css, js)						|
-- footer (html, css)								|
+- footer (html, css, js)						|
 - modal (html, css, js)							|
 - accordion_css (html, css)					|
 - accordion_js (html, css, js)				|
@@ -77,18 +75,20 @@ front:
 - parallax (html, js)							|
 - intersection (js)								|
 - pagination (html, css, js)					|
+- cookies (js)										|
+- popup (html, css, js)							|
 back:
 - form_to_email (html, css, js, php)		| добавить загрузку картинок
 - json_load (js)									|
 
 ### Папки:
 #src →
+	#design
 	css →
-		front
+		modules
 	data
 	fonts →
 		otf
-	html
 	js →
 		back
 		front
@@ -98,14 +98,26 @@ back:
 		doc
 		img
 		video
+	parts
 	service
 	temp
-	wp_custom_theme → ...
-design
-
+	wp_custom_theme →
+		functions
 ---
 
 ### Changelog:
+
+#### v3.01
+- cookies module
+- popup module
+- footer: добавлен расчет css-переменной для блока main, чтобы он занимал весь экран (как при body display flex, только не ограничивает высоту body)
+- spoiler: переделан расчет высоты (через wrapper), добавлена отложенная загрузка (неправильно расчитывал размер контента, если еще не подгружен шрифт)
+- настройки gulp для WP: автозамена расширения с html на php, замена dist на assets
+- изменено расположение html файлов для совместимости с WP, куски php кода уже в html
+- light build изменена проверка: теперь папка без light, а в верстке появляется предупреждение внизу страницы
+- тест шрифтов в базовом h1 (в style.scss)
+- тест svg в index.html
+- мелкие исправления
 
 #### v3.00 - WordPress
 - перестройка шаблона под Wordpress

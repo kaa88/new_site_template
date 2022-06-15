@@ -148,7 +148,7 @@
 <!-- Parallax -->
 <div class="some-container">
 	<div class="parallax">
-		<img src="img/1x1.png" alt="">
+		<img src="media/img/$1.png" alt="">
 	</div>
 	<div class="some-container__scrolling-content">
 		<p>Lorem, ipsum dolor sit amet consectetur, adipisicing elit. Voluptas laborum ipsum eaque, voluptatem amet magni earum consectetur vel alias temporibus odio incidunt quia exercitationem, consequatur labore iusto quo nostrum soluta. Nostrum, non ducimus sapiente quis perspiciatis in velit eius dolor ipsa minima voluptatibus deserunt autem est excepturi neque perferendis obcaecati corporis ipsum, veritatis, aperiam enim optio vel numquam? Atque dolorum, ad harum voluptates repellat reiciendis vero labore at ipsum, ratione eveniet. Consequatur laborum odio illo pariatur voluptate non temporibus eaque numquam corporis inventore vel maxime recusandae ipsam mollitia consectetur ipsa et harum magni suscipit, obcaecati! Eius animi tempora repellendus cum quae eaque quo cumque itaque provident aliquid consectetur, error. Ipsum in, error perferendis consequuntur quas repellat sequi ea deleniti aut voluptates optio soluta laudantium earum, quo? Cum quos quas veniam magni doloremque, consectetur impedit. Natus exercitationem velit totam, praesentium? Animi minima eaque, sint ad provident hic dolorum, perspiciatis quaerat tempore aut corporis. Nam a, dolore omnis laudantium modi vero consectetur asperiores, voluptas voluptates temporibus numquam. Aspernatur inventore dolores pariatur sunt minima dignissimos in facilis soluta odit. Minima, sed exercitationem, ducimus fugit nihil sint adipisci corporis enim voluptatum quo perferendis odio voluptatem deleniti libero laboriosam quos commodi quibusdam, ab ullam tempore!</p>
@@ -179,6 +179,13 @@
 </picture>
 
 
+<!-- Popup -->
+<div class="popup scroll-lock-item-m">
+	<div class="popup__close-btn">x</div>
+	<div class="popup__content">popup</div> <!-- можно заменить на другой контейнер -->
+</div>
+
+
 <!-- Select -->
 <div class="form__select select">
 	<div class="select__header">
@@ -200,8 +207,10 @@
 	<div class="spoiler__header">
 		<p>Spoiler</p>
 	</div>
-	<div class="spoiler__content">
-		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quis non sunt odit eos at neque eligendi, corrupti repellat vero id quos praesentium illum, quisquam aliquam minima inventore error placeat!</p>
+	<div class="spoiler__wrapper">
+		<div class="spoiler__content">
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quis non sunt odit eos at neque eligendi, corrupti repellat vero id quos praesentium illum, quisquam aliquam minima inventore error placeat!</p>
+		</div>
 	</div>
 </div>
 
@@ -239,7 +248,7 @@
 
 <!-- Video player -->
 <div class="content__video-player video-player">
-	<video src="videosample.mp4" preload="metadata"></video>
+	<video src="media/video/videosample.mp4" preload="metadata"></video>
 	<div class="video-controls">
 		<div class="video-controls__area">
 			<div class="video-controls__area-btn">P</div>
@@ -433,11 +442,17 @@
 </script>
 
 
-<!-- Тестовые настройки ------------------------------------------>
+<!-- Тестовые настройки ---------------------------------->
 
 <style>
 	.template-test-block .container {max-width: 500px; display: flex; align-items: center; flex-direction: column; gap: 30px; padding: 50px 0 100px;}
 	.swiper-test-box, .swiper {width: 100%; position: relative;}
+
+	#wpadminbar {position: fixed; top: 0; left: 0; height: 32px; width: 100%; z-index: 999; background-color: #333; color: white;}
+	@media (max-width: 782px) {#wpadminbar {height: 46px;}}
+	@media (max-width: 500px) {#wpadminbar {height: 50px;}}
 </style>
 
+<div id="wpadminbar">wpadminbar</div>
 <a class="modal-link" href="#modal-info">MODAL</a>
+<button onclick="test_popup.open()">POPUP</button>

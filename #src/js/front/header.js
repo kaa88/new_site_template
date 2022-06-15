@@ -29,8 +29,8 @@ const header = {
 		thisPageClass: 'this-page',
 		varTimer: '--timer-menu',
 		varHeight: '--header-height',
-		varTop: '--header-offset-top',
-		varTopDef: '--header-offset-top-default',
+		varPos: '--header-position',
+		varOffset: '--header-offset',
 	},
 	init: function(params = {}) {
 		this.headerElem = document.querySelector(this.names.header);
@@ -38,10 +38,10 @@ const header = {
 
 		this.headerHeight =
 		this.headerHeightPrev =
-		this.headerOffsetTop =
-		this.headerOffsetTopPrev =
-		this.headerOffsetTopDefault =
-		this.headerOffsetTopDefaultPrev = 0;
+		this.headerPosition =
+		this.headerPositionPrev =
+		this.headerOffset =
+		this.headerOffsetPrev = 0;
 
 		let elemAboveHeader = document.querySelector(this.names.elemAboveHeader);
 		if (params.elemAboveHeader && elemAboveHeader)
@@ -57,11 +57,11 @@ const header = {
 	},
 	calcHeaderHeight: function() {
 		// This func controls the mobile menu height variable in css
-		this.headerHeight = parseFloat(getComputedStyle(this.headerElem).height);
+		this.headerHeight = this.headerElem.offsetHeight;
 		if (this.elemAboveHeader) {
-			this.headerOffsetTopDefault = this.headerOffsetTop = parseFloat(getComputedStyle(this.elemAboveHeader).height);
+			this.headerOffset = this.headerPosition = this.elemAboveHeader.offsetHeight;
 		}
-		else this.headerOffsetTopDefault = this.headerOffsetTop = 0;
+		else this.headerOffset = this.headerPosition = 0;
 		this.setCssVar();
 		this.hidingHeader.calc();
 	},
@@ -70,13 +70,13 @@ const header = {
 			document.body.style.setProperty(this.names.varHeight, this.headerHeight + 'px');
 			this.headerHeightPrev = this.headerHeight;
 		}
-		if (this.headerOffsetTop != this.headerOffsetTopPrev) {
-			document.body.style.setProperty(this.names.varTop, this.headerOffsetTop + 'px');
-			this.headerOffsetTopPrev = this.headerOffsetTop;
+		if (this.headerPosition != this.headerPositionPrev) {
+			document.body.style.setProperty(this.names.varPos, this.headerPosition + 'px');
+			this.headerPositionPrev = this.headerPosition;
 		}
-		if (this.headerOffsetTopDefault != this.headerOffsetTopDefaultPrev) {
-			document.body.style.setProperty(this.names.varTopDef, this.headerOffsetTopDefault + 'px');
-			this.headerOffsetTopDefaultPrev = this.headerOffsetTopDefault;
+		if (this.headerOffset != this.headerOffsetPrev) {
+			document.body.style.setProperty(this.names.varOffset, this.headerOffset + 'px');
+			this.headerOffsetPrev = this.headerOffset;
 		}
 	},
 	mobileViewService: function() {
@@ -95,28 +95,32 @@ const header = {
 			this.menuElem = this.root.headerElem.querySelector(names.menu);
 			this.buttons = this.root.headerElem.querySelectorAll(`${names.menuOpenBtn}, ${names.menuCloseBtn}, ${names.menuArea}`);
 			let newMenu = this.menuElem.querySelector(names.menuItems);
-			let options = {};
-			if (typeof headerMenuOptions !== 'undefined') options = headerMenuOptions;
-			if (options.links) {
-				let clone = {};
-				for (let i = 0; i < newMenu.children.length; i++) {
-					clone[newMenu.children[i].dataset.name] = newMenu.children[i];
-				}
-				newMenu.innerHTML = '';
-				for (let i = 0; i < options.links.length; i++) {
-					newMenu.appendChild(clone[options.links[i]]);
-				}
-			}
-			if (options.activeLink) {
-				for (let i = 0; i < newMenu.children.length; i++) {
-					if (newMenu.children[i].dataset.name == options.activeLink) {
-						newMenu.children[i].firstElementChild.classList.add(names.thisPageClass);
-						break;
+
+			// headerMenuOptions handler
+			let headerMenuOptionsElem = document.querySelector(names.menuOptions);
+			if (headerMenuOptionsElem) {
+				if (typeof headerMenuOptions == 'object') {
+					if (headerMenuOptions.links) {
+						let clone = {};
+						for (let i = 0; i < newMenu.children.length; i++) {
+							clone[newMenu.children[i].dataset.name] = newMenu.children[i];
+						}
+						newMenu.innerHTML = '';
+						for (let i = 0; i < headerMenuOptions.links.length; i++) {
+							newMenu.appendChild(clone[headerMenuOptions.links[i]]);
+						}
+					}
+					if (headerMenuOptions.activeLink) {
+						for (let i = 0; i < newMenu.children.length; i++) {
+							if (newMenu.children[i].dataset.name == headerMenuOptions.activeLink) {
+								newMenu.children[i].firstElementChild.classList.add(names.thisPageClass);
+								break;
+							}
+						}
 					}
 				}
+				headerMenuOptionsElem.parentElement.removeChild(headerMenuOptionsElem);
 			}
-			options.elem = document.querySelector(names.menuOptions);
-			if (options.elem) options.elem.parentElement.removeChild(options.elem);
 
 			for (let i = 0; i < this.buttons.length; i++) {
 				this.buttons[i].addEventListener('click', this.toggle.bind(this));
@@ -275,7 +279,7 @@ const header = {
 			if (!this.isLoaded) return;
 			this.Y = this.YPrev = pageYOffset;
 			this.diff = 0;
-			this.currentPos = this.root.headerOffsetTopDefault;
+			this.currentPos = this.root.headerOffset;
 		},
 		scroll: function(e, click) {
 			if (!this.isLoaded) return;
@@ -289,7 +293,7 @@ const header = {
 			}
 			// click-move
 			if (click) {
-				this.currentPos = this.root.headerOffsetTop = this.root.headerOffsetTopDefault;
+				this.currentPos = this.root.headerPosition = this.root.headerOffset;
 				this.root.setCssVar();
 				return;
 			}
@@ -298,15 +302,15 @@ const header = {
 				this.diff = pageYOffset - this.Y;
 			}
 			// scroll-move
-			let currentPos = this.root.headerOffsetTop;
-			let visiblePos = this.root.headerOffsetTopDefault;
+			let currentPos = this.root.headerPosition;
+			let visiblePos = this.root.headerOffset;
 			let hiddenPos = visiblePos - this.root.headerHeight - this.hiddenPositionOffset;
 			this.YPrev = this.Y;
 			this.Y = pageYOffset - this.diff;
 			currentPos -= this.Y - this.YPrev;
 			if (currentPos > visiblePos) currentPos = visiblePos;
 			if (currentPos < hiddenPos) currentPos = hiddenPos;
-			this.root.headerOffsetTop = currentPos;
+			this.root.headerPosition = currentPos;
 			this.root.setCssVar();
 		}
 	},

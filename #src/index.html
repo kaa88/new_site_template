@@ -1,28 +1,26 @@
-@@include('_head.html', {
+<!-- <?php
+/* Template Name: Home */
+get_template_part('parts/header');
+?> -->
+@@include('parts/header.html', {
 	'title': 'New site',
 	'descr': 'Description',
 	'robots': 'noindex, nofollow',
 })
-<body>
-@@include('_noscript.html')
-<!-- @@include('_loadscreen.html') -->
-
-@@include('_header.html')
-<script id="header-menu-options">
-	// список пунктов меню в _header.html
+<!-- <script id="header-menu-options">
+	// список пунктов меню в header.html
 	// наличие и порядок устанавливаются в массиве 'links'
 	// 'activeLink' добавляет класс 'this-page'
 	// тег 'script' можно удалить
 	
-	// let headerMenuOptions = {
+	let headerMenuOptions = {
 	// 	links: ['home','products','about','contacts'],
 	// 	activeLink: 'home'
-	// }
-</script>
+	}
+</script> -->
 
-<!-- <div id="wpadminbar">wpadminbar</div> -->
 
-<main class="main --page-home">
+<main class="main page-home">
 
 	<section class="main__section section">
 		<div class="section__container container">
@@ -57,16 +55,18 @@
 
 </main>
 
-@@include('_footer.html')
 
 <section class="modal">
-	<!-- @@include('_modal-info.html') -->
+	<!-- <?php get_template_part('parts/modal-info'); ?> -->
+	<!-- @@include('parts/modal-info.html') -->
 </section>
 
-<!-- @@include('_svg.html') -->
 
-<!-- <div class="template-test-block scroll-lock-item-p"><div class="container">@@include('../#templates.html')</div></div> -->
+<!-- SVG test -->
+<!-- <img style="width: 300px;" src="media/img/icon-arrow.svg"> -->
 
-@@include('_script.html')
-</body>
-</html>
+<!-- <div class="template-test-block scroll-lock-item-p"><div class="container">@@include('#templates.html')</div></div> -->
+
+
+<!-- <?php get_template_part('parts/footer'); ?> -->
+@@include('parts/footer.html')

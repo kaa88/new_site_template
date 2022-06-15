@@ -47,7 +47,6 @@ const modal = {
 		this.timeout = parseFloat(getComputedStyle(document.body).getPropertyValue('--timer-modal'))*1000 || 0;
 		this.windows = this.elem.querySelectorAll('.' + this.elemName + '__window');
 		this.links = document.querySelectorAll(params.linkName ? '.' + params.linkName : '.modal-link');
-		let that = this;
 		for (let i = 0; i < this.links.length; i++) {
 			this.links[i].addEventListener('click', this.open.bind(this));
 		}

@@ -1,7 +1,6 @@
 <?php
-	get_header();
+get_template_part('parts/header');
 
 	echo '<p>Sorry, page not found</p>';
 
-	get_footer();
-?>
+get_template_part('parts/footer');
