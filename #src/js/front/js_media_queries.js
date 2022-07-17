@@ -5,14 +5,12 @@
 	make sure it matches with CSS.
 
 	Useful output:
-	- jsMediaQueries.mobile
 	- jsMediaQueries.stateIndex
 	
 	Init params {obj}: breakpoints - {obj}
 */
 const jsMediaQueries = {
 	init: function(params = {}) {
-		this.mobile = parseFloat(getComputedStyle(document.body).getPropertyValue('--media-mobile')) || 768;
 		this.breakpoints = params.breakpoints || null;
 		if (!this.breakpoints) return;
 		this.breakpoints.keys = Object.keys(this.breakpoints);

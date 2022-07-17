@@ -1,4 +1,4 @@
-Used: New site template v3.01
+Used: New site template v3.02
 
 # Project NOTE
 
@@ -7,5 +7,4 @@ Used: New site template v3.01
 
 
 ### Template changes:
-
 

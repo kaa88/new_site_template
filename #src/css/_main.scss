@@ -27,28 +27,28 @@ body {
 
 
 /* Modules */
-@import "modules/header";
-@import "modules/footer";
-// @import "modules/loadscreen";
-// @import "modules/modal";
-// @import "modules/popup";
-// @import "modules/form";
-// @import "modules/select";
-// @import "modules/spoiler";
-// @import "modules/tabs";
 // @import "modules/accordion_css";
 // @import "modules/accordion_js";
+@import "modules/footer";
+// @import "modules/form";
+@import "modules/header";
 // @import "modules/input_checkbox";
 // @import "modules/input_radio";
 // @import "modules/input_range_colored";
 // @import "modules/input_range_double";
-// @import "modules/video_player";
+// @import "modules/loadscreen";
+// @import "modules/modal";
 // @import "modules/pagination";
+// @import "modules/popup";
+// @import "modules/select";
+// @import "modules/spoiler";
+// @import "modules/tabs";
 // @import "modules/up_button";
+// @import "modules/video_player";
 
 
-/* Wordpress admin-bar position fix */
-#wpadminbar {position: fixed !important;} //REQ!
+/* WordPress admin-bar position fix */
+#wpadminbar {position: fixed !important;} //REQ! if WordPress
 
 
 /* Main content */

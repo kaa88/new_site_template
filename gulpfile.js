@@ -1,6 +1,6 @@
 let isLiteBuild = isWP = false, load = {};
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 // Basic settings //
 let scriptsPrefix = 'website.'
@@ -14,7 +14,7 @@ isLiteBuild = true
 
 if (isWP) isLiteBuild = false // important
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 // Includes //
 const { src, dest } = require('gulp'),
@@ -38,7 +38,7 @@ const { src, dest } = require('gulp'),
 	through = require('through2'), // for gulp-scale-images
 	imagemin = require('gulp-imagemin-changba');
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 // Path //
 let $source = '#src';
@@ -95,7 +95,7 @@ let path = {
 	}
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function cb() {}
 
@@ -110,7 +110,7 @@ function clean() {
 	return del(path.clean);
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function html(cb, file) {
 	let filepath = isWP ? path.src.html_wp : path.src.html, extDir = '';
@@ -140,7 +140,7 @@ function html(cb, file) {
 		.pipe(browsersync.stream());
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function css() {
 	let stream = src(path.src.css)
@@ -169,7 +169,7 @@ function css() {
 		.pipe(browsersync.stream());
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function js() {
 	let stream = src(path.src.js)
@@ -191,7 +191,7 @@ function js() {
 		.pipe(browsersync.stream());
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function data(cb, file) {
 	let filepath = file ? file : path.src.data;
@@ -201,7 +201,7 @@ function data(cb, file) {
 		.pipe(browsersync.stream());
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function service(cb, file) {
 	if (!isLiteBuild || load.service) {
@@ -216,7 +216,7 @@ function service(cb, file) {
 	else cb();
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function libs(cb) {
 	if (!isLiteBuild || load.libs)
@@ -225,7 +225,7 @@ function libs(cb) {
 	else cb();
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function media(cb, file) {
 	if (!isLiteBuild || load.media) {
@@ -238,7 +238,7 @@ function media(cb, file) {
 	else cb();
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 const faviconSizes = { L: 270, M: 180, S: 32 }
 
@@ -328,7 +328,7 @@ function images(cb, filepath) {
 				.pipe(through.obj(scaleImage2x))
 				.pipe(imageresize(renameImage2x))
 				.pipe(src(filepath));
-		// uncomp
+		// uncompressed
 		if (filepath.match(/\/\$/))
 			return stream
 				.pipe(dest(path.build.img + extDir))
@@ -365,7 +365,7 @@ function images(cb, filepath) {
 		.pipe(browsersync.stream());
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function fonts(cb, filepath = path.src.fonts_ttf) {
 	let stream;
@@ -415,7 +415,7 @@ function fontsStyle() {
 	}
 }
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 function browserSyncInit() {
 	setTimeout(() => {
@@ -475,7 +475,7 @@ exports.html = html;
 exports.start = start;
 exports.default = start;
 
-//////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 // Info
 // npm i --save-dev *plugin*

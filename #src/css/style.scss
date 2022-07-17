@@ -4,8 +4,9 @@
 @import "_mixins";
 @import "_icons";
 
+//////////////////////////////////////////////////
 
-// Fonts //
+/* Fonts */
 // roboto
 // @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap');
 @import "fontscript";
@@ -16,11 +17,13 @@ $font-1: Roboto, Arial, sans-serif;
 // 	font-weight: 700;
 // }
 
+//////////////////////////////////////////////////
 
 // Colors //
 $color-1: #000;
 $color-2: #fff;
 
+//////////////////////////////////////////////////
 
 // Page sizes //
 $font-size-default: 16px; //px
@@ -30,6 +33,7 @@ $container-base-width: 1200;
 $container-padding: 15;
 $container-width: $container-padding * 2 + $container-base-width;
 
+//////////////////////////////////////////////////
 
 // Media breakpoints //
 $desktop: $container-width;
@@ -43,6 +47,7 @@ $media-header2: 390;
 $media-footer: 850;
 $media-footer2: 530;
 
+//////////////////////////////////////////////////
 
 // Transitions //
 $timer-hover: 0.15s;
@@ -54,6 +59,7 @@ $timer-slider: 0.5s;
 $timer-accordion: 0.3s;
 $timer-tabs: 0.8s;
 
+//////////////////////////////////////////////////
 
 @import "_globs";
 @import "_main";

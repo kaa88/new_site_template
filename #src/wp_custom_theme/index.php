@@ -4,7 +4,7 @@ get_template_part('parts/header');
 // index.php
 // Здесь должны быть блоки: is_search, is_archive(рубрики, метки, автор)
 
-Search
+// Search
 if ( is_search() ) {
 	global $wp_query;
 	
@@ -13,7 +13,7 @@ if ( is_search() ) {
 	}
 }
 
-
+// Archive
 if ( have_posts() ) : while ( have_posts() ) : the_post();
 ?>
 
