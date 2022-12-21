@@ -3,7 +3,7 @@ const spoiler = {
 		spoiler: '.spoiler',
 		wrapper: '.spoiler__wrapper'
 	},
-	init: function() {
+	init: async function() {
 		this.wrappers = document.querySelectorAll(this.names.wrapper);
 		if (this.wrappers.length == 0) return;
 		this.calcHeight();

@@ -4,7 +4,7 @@ const timeSelect = {
 		selectedClass: '_selected',
 		selectionClass: '_selection',
 	},
-	init: function() {
+	init: async function() {
 		this.elem = document.querySelector('.time-select')
 		if (!this.elem) return;
 

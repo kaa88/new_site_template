@@ -17,7 +17,7 @@ const inputFile = {
 		fileWrongSize: 'File is too large, choose file less than ',
 	},
 
-	init: function() {
+	init: async function() {
 		let inputs = document.body.querySelectorAll(this.names.input)
 		for (let inp of inputs) {
 			inp.addEventListener('change', this.checkFile.bind(this))
